@@ -92,6 +92,15 @@
 
   - `Iterator` 객체를 만들고 사용가능
 
+  - 정렬을 위해서는 `Collctions.sort()` 사용 (오름차순). 내림차순의 경우 `Collections.reverse()`
+    - `Collections.sort(Arraylist이름)`
+    ```java
+    // 오름차순으로 정렬됨
+    Collecitons.sort(list);
+    // 내림차순으로 정렬됨
+    Collections.reverse(list);
+    ```
+
   
 
 	### Vector

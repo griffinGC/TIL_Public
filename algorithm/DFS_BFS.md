@@ -30,7 +30,7 @@
 
   - `#include <stack>`
 
-- 구현 코드
+- C++ 구현 코드
 
   ```c++
   // dfs를 통해 넣기 위한 스택
@@ -41,7 +41,7 @@
   dfsStack.push(firstState);
   // 방문여부를 확인하는 vector 배열
   vector<boolean> visited(N+1, false);
-// dfs를 수행하였을때 나오는 결과물
+  // dfs를 수행하였을때 나오는 결과물
   vector<int> visitedNode;
 
   // dfs수행을 위한 스택이 빌때까지 수행
@@ -95,14 +95,14 @@
 
   - `#include <queue>`
 
-- 구현 코드
+- C++ 구현 코드
 
   ```c++
   // bfs를 위한 queue
   queue<State> bfsQueue;
-// 처음값 초기화 (시작 번호가 1, depth가 1)
+  // 처음값 초기화 (시작 번호가 1, depth가 1)
   State firstState(1,1);
-// 방문여부를 확인하는 배열
+  // 방문여부를 확인하는 배열
   vector<boolean> visited(N+1, false);
   // bfs를 수행하였을때 나오는 결과물
   vector<int> visitedNode;
@@ -136,4 +136,8 @@
     }
   }
   ```
+
+## 참고자료
+> https://twpower.github.io/73-how-to-implement-dfs-and-bfs-in-cpp
+
   
