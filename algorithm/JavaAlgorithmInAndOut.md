@@ -191,6 +191,9 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
 
   - 속도도 빠르고 부하가 적음
   - 새로운 객체 생성이 아닌 기존의 데이터에 더하는 방식이기 때문
+  - `+` 연산자를 사용할 경우 문자를 추가할때 그때 그때마다 하나씩 추가하기 때문에 부하가 크게 걸림
+
+- 클래스안에 배열공간을 미리 만들어놓고 해당 배열공간에 바로 추가하다가 공간이 부족할때만 복사하기 때문에 복사의 횟수가 현저히 줄어든다.
 
 - 여러번 출력하는것보다 StringBuilder를 이용해 출력하는것이 용이
 
@@ -202,7 +205,7 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
 
 - 문자열로 출력하기 위해서는  `toString()` 함수에 의해서 문자열로 반환시킬 수 있음
 
-- 속도면에서 String 보다는 ***\*StringBuffer\****(동기화) , ***\*StringBuilder\****(비동기화)를 사용하는 것을 추천
+- 속도면에서 String 보다는 **StringBuffer**(동기화 - 멀티스레드 환경에서 사용) , **StringBuilder**(비동기화)를 사용하는 것을 추천
 
   ```java
   package InAndOut;
@@ -314,3 +317,6 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
   > Scanner 출력시 오류 정리
   >
   > - https://deftkang.tistory.com/55
+
+- StringBuilder
+  > https://www.youtube.com/watch?v=gc7bo5_bxdA

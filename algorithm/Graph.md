@@ -1,5 +1,6 @@
-# Adjacency Matrix & Adjacency List
+# Graph
 
+> Graph를 표현하는 방식으로 Adjacency Matrix와 Adjacency List 2가지 방식이 존재함
 
 
 ## Adjacency Matrix
