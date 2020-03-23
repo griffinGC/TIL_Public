@@ -100,13 +100,21 @@
     // 내림차순으로 정렬됨
     Collections.reverse(list);
     ```
+  - ArrayList 특정 값 초기화 방법
+    - 일일이 하나하나 초기화 하는 방법도 존재하지만, 그것 보다는 `Arrays.asList()` 메소드와 `Collections.fill()` 메소드를 이용해서 특정값으로 초기화 가능
+    1. `Arrays.asList()` 에 `new` 메소드와 배열을 이용해서 객체를 할당
+    2. 이를 이용해서 만든 리스트에 `Collections.fill()` 메소드를 이용해서 특정 값 지정
+    ```java
+    ArrayList<Boolean> list = new ArrayList(Arrays.asList(new ArrayList(n)));
+    Collections.fill(list, Boolean.FALSE);
+    ``` 
 
   
 
-	### Vector
+  ### Vector
   
-    - `ArrayList` 와 비슷함
-    - 다른점은 동기화(Synchronized) 된 메소드로 구성되어 있어서 멀티 스레드가 동시에 메소드 실행불가
+  - `ArrayList` 와 비슷함
+  - 다른점은 동기화(Synchronized) 된 메소드로 구성되어 있어서 멀티 스레드가 동시에 메소드 실행불가
   - 하나의 스레드가 실행을 완료 해야만 다른 스레드가 실행 가능
   
   
