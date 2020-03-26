@@ -72,6 +72,92 @@
     }
   }
   ```
+- Java 구현코드
+  ```java
+  package DFSandBFS;
+
+  import java.lang.reflect.Array;
+  import java.util.*;
+
+  public class DFS {
+
+      public static void printDFSArray(ArrayList<Integer> arrayList){
+          System.out.print("start - " );
+          for(int ele : arrayList){
+              System.out.print(ele + " - ");
+          }
+          System.out.println("end");
+      }
+
+
+      public static ArrayList<Integer> dfsOrderNormal(ArrayList<ArrayList<Integer>> adj, int n, int start){
+          ArrayList<Integer> dfsVisitList = new ArrayList<Integer>();
+          Stack<Integer> dfsStack = new Stack<Integer>();
+
+          // 방문 리스트를 false로 초기화
+          ArrayList<Boolean> visited = new ArrayList<Boolean>(Arrays.asList(new Boolean[n+1]));
+          Collections.fill(visited, Boolean.FALSE);
+
+          dfsStack.push(start);
+
+          while(!dfsStack.empty()){
+              Integer current = dfsStack.pop();
+              if(visited.get(current) == true){
+                  continue;
+              }
+              // 방문했을 경우 값을 true로 바꿈
+              visited.set(current, true);
+              // dfs출력을 위한 리스트에 추가
+              dfsVisitList.add(current);
+              for(int i = adj.get(current).size() - 1; i>=0; i--){
+                  int next = adj.get(current).get(i);
+                  if(visited.get(next) == false){
+                      dfsStack.push(next);
+                  }
+              }
+          }
+          // 방문한 리스트 리턴
+          return dfsVisitList;
+      }
+
+
+      public static void main(String[] args) {
+          int N, M, start;
+          Scanner sc = new Scanner(System.in);
+          N = sc.nextInt();
+          M = sc.nextInt();
+          start = sc.nextInt();
+
+          ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>();
+
+          // 개수를 N개가 아닌 N+1로 만드는 이유는 u,v를 0부터가 아닌 1부터
+          // 즉, 본래의 숫자에 맞게 넣기 때문
+          for(int i = 0; i<=N; i++){
+              adj.add(new ArrayList<Integer>());
+          }
+
+  //        System.out.println("adj size is node + 1 : "  + adj.size());
+          for(int i = 0; i<M; i++){
+              int u, v;
+              u = sc.nextInt();
+              v = sc.nextInt();
+              adj.get(u).add(v);
+              adj.get(v).add(u);
+          }
+
+          // ArrayList를 일단 정렬 시켜야 함
+          for(int i = 0; i<=N; i++){
+              Collections.sort(adj.get(i));
+          }
+
+          ArrayList<Integer> result = dfsOrderNormal(adj, N, start);
+          System.out.println("result size : " + result.size());
+          printDFSArray(result);
+      }
+  }
+
+
+  ```
   
   
   
@@ -135,6 +221,88 @@
       }
     }
   }
+  ```
+
+- Java 구현코드
+  ```java
+  package DFSandBFS;
+
+  import java.lang.reflect.Array;
+  import java.util.*;
+
+  public class BFS {
+
+      public static void printBFSArray(ArrayList<Integer> array){
+          System.out.print("start - ");
+          for(int ele : array){
+              System.out.print(ele + " - ");
+          }
+          System.out.println("end");
+      }
+
+      public static ArrayList<Integer> bfsOrderNormal(ArrayList<ArrayList<Integer>> adj, int n, int start){
+          ArrayList<Integer> bfsVisitList = new ArrayList<Integer>();
+          Queue<Integer> bfsQueue = new LinkedList<Integer>();
+
+          ArrayList<Boolean> visited = new ArrayList<Boolean>(Arrays.asList(new Boolean[n+1]));
+          Collections.fill(visited, Boolean.FALSE);
+
+          bfsQueue.add(start);
+
+
+          while(!bfsQueue.isEmpty()){
+              int first = bfsQueue.poll();
+
+              if(visited.get(first) == true){
+                  continue;
+              }
+              visited.set(first, true);
+              bfsVisitList.add(first);
+
+              for(int i = 0; i<adj.get(first).size(); i++){
+                  int next = adj.get(first).get(i);
+                  if(visited.get(next) == false){
+                      bfsQueue.add(next);
+                  }
+              }
+          }
+
+          return bfsVisitList;
+      }
+
+      public static void main(String[] args) {
+          int N, M, start;
+          Scanner sc = new Scanner(System.in);
+          N = sc.nextInt();
+          M = sc.nextInt();
+          start = sc.nextInt();
+
+          ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>();
+
+          for(int i = 0; i<=N; i++){
+              adj.add(new ArrayList<Integer>());
+          }
+
+          for(int i = 0; i<M; i++){
+              int u, v;
+              u = sc.nextInt();
+              v = sc.nextInt();
+              adj.get(u).add(v);
+              adj.get(v).add(u);
+          }
+
+          for(int i = 0; i<=N; i++){
+              Collections.sort(adj.get(i));
+          }
+
+          ArrayList<Integer> result = bfsOrderNormal(adj, N, start);
+
+          printBFSArray(result);
+
+
+      }
+  }
+
   ```
 
 ## 참고자료

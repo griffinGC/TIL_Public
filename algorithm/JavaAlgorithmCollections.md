@@ -100,15 +100,21 @@
     // 내림차순으로 정렬됨
     Collections.reverse(list);
     ```
-  - ArrayList 특정 값 초기화 방법
+  - ArrayList 특정 일관된 값 초기화 방법
     - 일일이 하나하나 초기화 하는 방법도 존재하지만, 그것 보다는 `Arrays.asList()` 메소드와 `Collections.fill()` 메소드를 이용해서 특정값으로 초기화 가능
     1. `Arrays.asList()` 에 `new` 메소드와 배열을 이용해서 객체를 할당
     2. 이를 이용해서 만든 리스트에 `Collections.fill()` 메소드를 이용해서 특정 값 지정
     ```java
-    ArrayList<Boolean> list = new ArrayList(Arrays.asList(new ArrayList(n)));
+    // n만큼의 크기를 가진 배열 객체를 Arrays.asList를 이용하여 ArrayList에 새로운 객체로 할당
+    ArrayList<Boolean> list = new ArrayList(Arrays.asList(new Boolean[n]));
+    // FALSE 값으로 지정해서 list에 저장
     Collections.fill(list, Boolean.FALSE);
     ``` 
-
+  - ArrayList 특정 일관된 값 말고 여러 값으로 초기화 하는 방법
+    - 그냥 배열 형태로 넣거나 `new` 연산자 이용해서 넣기
+    ```java
+    ArrayList<Integer> list = new ArrayList(Arrays.asList(new Integer[]{1, 2, 3}));
+    ```
   
 
   ### Vector
@@ -384,3 +390,7 @@
 - Map 정리
 
   > https://wikidocs.net/208
+
+- ArrayList 값 초기화
+  > https://stackoverflow.com/questions/20615448/set-all-values-of-arraylistboolean-to-false-on-instantiation
+  > https://www.codota.com/code/java/methods/java.util.Collections/fill
