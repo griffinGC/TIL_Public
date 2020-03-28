@@ -281,6 +281,13 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
   // o
   ```
 
+### 9. 배열 출력
+- 한번에 모든 배열의 원소 출력하기 위해서는 `Arrays.toString(배열)` 을 사용하면 됨
+  ```java
+  int[] data = {1,2,3};
+  Arrays.toString(배열);
+  System.out.println(Arrays.toString(배열));
+  ```
   
 
 
