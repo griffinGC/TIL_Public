@@ -125,6 +125,7 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
 - 사용형식
 
   - `String[] result = "문자열".split("정규표현식");`
+  - 특수 문자의 경우 `\\` 을 붙여서 처리 할 수 있도록 만들어 준다.
 
   ```java
   package InAndOut;

@@ -305,7 +305,9 @@
     - Ex) String, Integer...
     - `Map<String, Integer> map = new HashMap<String, Integer>();`
     
-    
+  - Map과 ArrayList를 같이 사용 할 수 있음
+    - `Map<String, Object> map = new HashMap<String, Object>();` 이런식으로 사용 가능
+    - 여기서 나중에 ArrayList에 값을 추가하여도 Map에 반영되어 있음
   
   ### Hashtable
   
