@@ -6,7 +6,7 @@
 
 - char, boolean, byte, short, int, long, float, double
 - float의 경우 선언하고 뒤에 f를 붙여준다.
-- long은 l을 뒤에 붙여준다.
+- long은 l을 뒤에 붙여준다. 
 
 
 
