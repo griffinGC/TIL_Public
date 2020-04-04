@@ -145,6 +145,15 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
   }
   ```
 
+### 4. substring 함수
+- 문자열을 자를때 유용하게 사용할 수 있는 함수
+- 2가지가 존재함
+  1. `String substring(int index)`
+      - 자르고자 하는 문자열의 시작위치를 나타냄
+      - `index` 위치부터 끝까지 잘라서 리턴함 
+  2. `String substring(int begin, int end)`
+      - 문자열의 시작부분과 끝부분을 지정
+      - 시작부분부터 끝 부분까지 자른것을 리턴
   
 
 ### 4. StringTokenizer (java.util.StringTokenizer)
