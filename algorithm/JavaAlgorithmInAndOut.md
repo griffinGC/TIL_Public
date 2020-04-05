@@ -299,7 +299,15 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
   System.out.println(Arrays.toString(배열));
   ```
   
-
+### 10. 문자열 양 끝 공백 제거 함수
+- `trim()` 을 이용하면 문자열 양 끝에 존재하는 공백을 제거 할 수 있음
+- `str.trim()` 
+  ```java
+  String str = " Hello, World! ";
+  str.trim();
+  //  Hello, World! 
+  // Hello,World!
+  ```
 
 
 ## 아스키 코드
