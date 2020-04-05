@@ -306,6 +306,7 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
   String str = " Hello, World! ";
   str.trim();
   //  Hello, World! 
+  // trim() 사용할 경우 아래와 같은 결과 발생
   // Hello,World!
   ```
 

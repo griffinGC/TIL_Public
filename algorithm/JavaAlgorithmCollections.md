@@ -135,7 +135,8 @@
 
 ## 2. Set
 
-- 순서 유지 불가, 중복 불가, null도 한개만 사용 가능
+- 순서 유지 불가, **중복 불가**, null도 한개만 사용 가능
+  - 중복이 불가 하기 때문에 `contains()` 로 확인 안하고 넣을 수 있음!
 
 - Set의 공통 메소드
 
@@ -379,6 +380,89 @@
   - `E peek()` : 맨 뒤의 Object 리턴(삭제는 안하고 확인)
   - `void clear()` : Stack의 모든 원소 삭제
 
+## 6. 배열
+- 배열 정렬 방법
+  - `Arrays.sort(배열명)` 사용하여 배열 정렬 가능 (오름차순)
+  - 내림 차순 정렬 방법
+    -  compare 오버라이딩 해서 사용하는 방식 이용
+    - 즉시 구현하는 방식 사용가능
+    ```java
+    // lambda 함수 이용해서 구현
+    Arrays.sort(arrList, (a,b) -> {return b - a});
+    ```
+
+## 7. 자바에서 정렬 방법
+- 객체의 값을 비교하기 위해서 사용
+- `Arrays.sort` 나 `Collections.sort` 에서 간단히 내림차순으로 구현할때는 두번째 인자에 함수를 넣어서 처리 할 수도 있음
+  - 2개의 값을 비교해서 음수를 리턴하면 앞에 있는 비교자가 앞으로 정렬되고, 0을 리턴하면 동등하게 생각하고, 양수를 리턴하면 뒤에 있는 비교자가 리턴 되는 방식을 적용할 수 있음
+  - 위와 같은 방식은 자바 뿐만 아니라 자바스크립트 C# 등 대부분의 sort에서 통용됨
+  ```java
+  // 밑의 arrow function의 경우,
+  // a와 b 는 arrList라는 배열 내부의 비교값 2개를 뜻함
+  // 인자 2개가 있을때 리턴 값으로 b-a 를 하기때문에, a 가 더 클경우 리턴 값으로 음수가 나오게 되고, 그 결과 앞에 있는 a 가 먼저 정렬되게 된다. 
+  Arrays.sort(arrList, (a, b) -> {return b - a;})
+  ```
+  > https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+- Comparable, Comparator
+
+  - Comparable
+
+    - **기본적으로 적용되는 정렬 기준이 되는 메서드를 정의하는 인터페이스**
+    - 구현한 클래스에서 compare를 구현하고 바로 사용가능!!
+    - Comparable을 상속해서 compareTo 오버라이드 하여 구현하면 Comparator를 따로 구현할 필요가 없음
+    - `public class 클래스명 implements Comparable<클래스명>`
+    - 사용법
+      - Arrays.sort(배열);
+      - Collections.sort(배열);
+
+    ```java
+    public class Student  implements Comparable<Student>{
+        @Override
+        public int compareTo(Student stu){
+     		if(this.score > stu.score){
+                return 1;
+            }else if(this.score < stu.score){
+                return -1;
+            }else return 0;
+        }
+    }
+    ```
+
+    
+
+    
+
+  - Comparator
+
+    - **기본정렬기준과 다르게 정렬하고 싶을때 사용하는 인터페이스**
+    - 구현하려면 새로운 클래스로 구현하려는 클래스 Comparator 구현해서 compare 오버라이딩 
+
+    - `public class MyComparator implements Comparator<비교할클래스>`
+    - 사용법
+      - Arrays.sort(배열, new MyComparator);
+      - Collections.sort(배열, myComparator); // myComparator가 미리 생성 되어야함
+
+    ```java
+    package com.example.day3;
+    import com.example.day2.Student;
+    import java.util.Comparator;
+    
+    // Comparator를 구현할 클래스
+    public class MyComparator implements Comparator<Student> {
+    
+        // 누구를 정렬상태로 삼을것인가 결정을 해야함
+        @Override
+        public int compare(Student o1, Student o2) {
+            if(o1.getSum() < o2.getSum()){
+                return 1;
+            }else if(o1.getSum() > o2.getSum()){
+                return -1;
+                //총점으로 1차정렬, 이름으로 2차정렬
+            }else return o1.getName().compareTo(o2.getName());
+        }
+    }
+    
+    ```
 
 
 
