@@ -151,9 +151,9 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
   1. `String substring(int index)`
       - 자르고자 하는 문자열의 시작위치를 나타냄
       - `index` 위치부터 끝까지 잘라서 리턴함 
-  2. `String substring(int begin, int end)`
-      - 문자열의 시작부분과 끝부분을 지정
-      - 시작부분부터 끝 부분까지 자른것을 리턴
+  2. `String substring(int beginIndex, int endIndex)`
+      - 문자열의 `beginIndex` 부터 `endIndex` 바로 앞부분을 지정
+      - **시작** 부분부터 **끝 부분 바로 앞**까지 자른것을 리턴
   
 
 ### 4. StringTokenizer (java.util.StringTokenizer)
