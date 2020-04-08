@@ -256,10 +256,11 @@
 
 - key 와 value 모두 객체
 
-- key 는 중복 저장 불가. value 는 중복 저장 가능
+- **key 는 중복 저장 불가. value 는 중복 저장 가능**
 
 - 기존에 저장된 key와 동일한 key로 값을 저장하면, 기존의 값이 사라지고 새로운 값이 할당됨
-
+- Map value에 의한 정렬의 경우 `Comparator` 인터페이스 이용
+  > https://cornswrold.tistory.com/114
 - Map의 공통 메소드
 
   - 객체 추가
