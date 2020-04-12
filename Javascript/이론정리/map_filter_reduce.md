@@ -108,7 +108,7 @@ callback : 각 요소를 시험할 함수. true를 반환하면 요소를 유지
 
 thisArg (optional) : callback을 실행할때 this로 사용하는 값
 
-***filter()는 호출되는 배열을 변환시키지는 않는다.**0
+***filter()는 호출되는 배열을 변환시키지는 않는다.***
 
 ```javascript
 //10보다 큰 값만 반환
@@ -124,6 +124,8 @@ const filtered = array.filter(isBig);
 //[12, 130, 45];
 console.log(filtered);
 ```
+
+***Map과 Filter의 차이는 Map은 규칙을 적용시켜 새로운 배열을 리턴하는 것이고, Filter는 배열을 만족시키지 못하는 원소들을 걸러낸다.***
 
 
 
