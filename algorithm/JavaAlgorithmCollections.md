@@ -410,6 +410,11 @@
   - `void clear()` : Stack의 모든 원소 삭제
 
 ## 6. 배열
+- 특정 값 초기화 `Arrays.fill(배열, 값)`
+  ```java
+  boolean[] bList = new boolean[10];
+  Arrays.fill(bList, false);
+  ```
 - 배열 정렬 방법
   - `Arrays.sort(배열명)` 사용하여 배열 정렬 가능 (오름차순)
   - 내림 차순 정렬 방법
