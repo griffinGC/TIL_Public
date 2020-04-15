@@ -274,9 +274,21 @@
     - `Set<K> keySet()` : 모든 key를 set 객체에 담아서 리턴
     - `int size()` : 저장된 키의 수 리턴
     - `Collection<V> values() ` : 저장된 모든 값을 Collection에 담아서 리턴
+    - `Iterator<E> iterator()` : 저장된 객체를 한번씩 가져오는 반복자 리턴. Iterator 인터페이스 타입을 리턴
   - 객체 삭제
     - `void clear()` : 모든 Map.Entry(키와 값)을 삭제
     - `V remove(Object Key)` : 주어진 Key와 일치하는 Map.Entry를 삭제하고 값을 리턴
+  - 성능은 HashMap이 `get()` 메서드의 성능이 O(1)의 시간 복잡도를 가지면서 가장 뛰어남
+  - Map의 정렬의 경우 클래스를 생성해서 구현하는 것이 편리함
+  - TreeMap을 이용해서 key의 순서를 보장할 수도 있음
+  - 또는 아래와 같이 객체 배열로 변경해서 사용하는 것도 하나의 방법임
+    ```java
+    Map<Integer, Integer> score = new HashMap<>();
+    // keySet()을 이용해서 키들을 가져오고, 배열로 변환
+    Object[] mapKey = score.keySet().toArray();
+    Arrays.sort(mapKey);
+    ```
+    
 
 - Map 구현 클래스 
 
@@ -310,9 +322,9 @@
   - Map과 ArrayList를 같이 사용 할 수 있음
     - `Map<String, Object> map = new HashMap<String, Object>();` 이런식으로 사용 가능
     - 여기서 나중에 ArrayList에 값을 추가하여도 Map에 반영되어 있음
-  
+  - **HashMap은 순서를 보장하지 않음**
   ### Hashtable
-  
+   - 중복을 허용하지 않음
    - HashMap 처럼 키로 사용할 객체는 hashCode()와 equals() 메소드를 재정의 해서 동등객체가 될 조건 정해야 함
   
       - 단, 동기화 된 메소드로 하나의 스레드가 실행을 완료해야함, 다음 스레드를 실행할 수 있음
@@ -332,6 +344,22 @@
   ### TreeMap
   
   - 입력된 Key의 소트순으로 데이터가 출력됨
+  - 중복을 허용하지 않고, Key 값을 기준으로 정렬을 해주는 자료구조
+  - Comparator를 구현해서 정렬 순서 변경 가능 (값에 의한 정렬 가능)
+  - 내림차순으로 정렬할때는 `Collections.reverseOrder()` 이용
+    - `TreeMap<String, Integer> reverseMap = new TreeMap<String, Integer>(Collections.reverseOrder());
+  ```java
+  // Key에 의한 정렬
+  TreeMap<Integer, Integer> treeMap = new TreeMap<>;
+  Iterator<Integer> iteratorKey  = treeMap.keySet().iterator();
+  while(iteratorKey.hasNext()){
+    // Iterator를 이용해서 key를 가져옴
+    Integer key = iteratorKey.next();
+    // key를 이용해서 값을 가져옴
+    System.out.println(key + " , " + treeMap.get(key));
+  }
+  ```
+  > https://jobc.tistory.com/176
   
   
 
@@ -411,7 +439,13 @@
     - **기본적으로 적용되는 정렬 기준이 되는 메서드를 정의하는 인터페이스**
     - 구현한 클래스에서 compare를 구현하고 바로 사용가능!!
     - Comparable을 상속해서 compareTo 오버라이드 하여 구현하면 Comparator를 따로 구현할 필요가 없음
+    - 자기 자신을 비교값으로 넣을 때는 `this` 사용
     - `public class 클래스명 implements Comparable<클래스명>`
+    - compareTo 메소드 작성법
+      - 현재객체 < 파라미터로 들어온 객체 : 음수 리턴
+      - 현재객체 == 파라미터로 들어온 객체 : 0 리턴
+      - 현재객체 > 파라미터로 들어온 객체 : 양수 리턴
+      - 즉, 리턴값이 음수이거나 0일 경우에는, 현재객체가 파라미터로 들어온 객체보다 순서상 **앞** 에 위치함
     - 사용법
       - Arrays.sort(배열);
       - Collections.sort(배열);
@@ -437,7 +471,8 @@
 
     - **기본정렬기준과 다르게 정렬하고 싶을때 사용하는 인터페이스**
     - 구현하려면 새로운 클래스로 구현하려는 클래스 Comparator 구현해서 compare 오버라이딩 
-
+    - 객체간의 특별한 정렬이 필요할때 사용
+    - 익명의 Comparator 객체를 만들어서 사용가능
     - `public class MyComparator implements Comparator<비교할클래스>`
     - 사용법
       - Arrays.sort(배열, new MyComparator);
@@ -464,7 +499,31 @@
     }
     
     ```
-
+    - 실제 사용 예제
+      - 익명의 Comparator 객체를 만들어서 사용하는 경우
+    ```java
+    // 익명 Comparator 객체 정의
+    Comparator<Bike> sizeComparator = new Comparator<Bike>(){
+      @Override
+      public int compare(Bike b1, Bike b2){
+        // 내림차순 정렬
+        // b1이 클 경우, 음수가 나오고 b1이 b2 보다 앞에 위치하기 때문
+        return b2.getSize() - b1.getSize();
+      }
+    } 
+    // 정의한 Comparator 사용
+    // 객체를 위에서 정의해도 되지만, 직접 바로 만들어도 됨
+    Collections.sort(bikeList, sizeComparator);
+    Collections.sort(bikeList, new Comparator<Bike>(){
+      @Override
+      public int compare(Bike b1, Bike b2){
+        return b2.getsize() - b1.getSize();
+      }
+    })
+    ```
+  ***Comparable 과 Comparator의 차이는 기본정렬 기준을 구현하느냐 아님 기본정렬 외에 다른 기준으로 정렬하고자 하느냐 이다.***
+  #### Comparable의 compareTo의 경우 인자로 하나만 들어오지만, Comparator의 compare는 인자로 2개가 들어온다.
+  
 
 
 
@@ -477,7 +536,13 @@
 - Map 정리
 
   > https://wikidocs.net/208
+  - Map 비교
+    > https://tomining.tistory.com/168
 
 - ArrayList 값 초기화
   > https://stackoverflow.com/questions/20615448/set-all-values-of-arraylistboolean-to-false-on-instantiation
   > https://www.codota.com/code/java/methods/java.util.Collections/fill
+
+- 정렬
+  > https://gmlwjd9405.github.io/2018/09/06/java-comparable-and-comparator.html
+  > https://cwondev.tistory.com/15
