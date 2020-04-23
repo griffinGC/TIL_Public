@@ -422,6 +422,7 @@
     - 즉시 구현하는 방식 사용가능
     ```java
     // lambda 함수 이용해서 구현
+    // 함수형 인터페이스 Comparator를 람다식으로 구현한 것
     Arrays.sort(arrList, (a,b) -> {return b - a});
     ```
 
@@ -474,10 +475,11 @@
 
   - Comparator
 
-    - **기본정렬기준과 다르게 정렬하고 싶을때 사용하는 인터페이스**
+    - **기본정렬기준과 다르게 정렬하고 싶을때 사용하는 함수형 인터페이스**
     - 구현하려면 새로운 클래스로 구현하려는 클래스 Comparator 구현해서 compare 오버라이딩 
     - 객체간의 특별한 정렬이 필요할때 사용
     - 익명의 Comparator 객체를 만들어서 사용가능
+    - **함수형 인터페이스 이므로 구현하는 클래스를 새로 생성해도 되지만, *람다식* 으로 바로 사용해도 됨**
     - `public class MyComparator implements Comparator<비교할클래스>`
     - 사용법
       - Arrays.sort(배열, new MyComparator);
@@ -517,7 +519,7 @@
       }
     } 
     // 정의한 Comparator 사용
-    // 객체를 위에서 정의해도 되지만, 직접 바로 만들어도 됨
+    // 객체를 위에서 정의해도 되지만, 함수형 인터페이스 이므로 람다식을 이요하거나 Comparator 객체를 직접 바로 만들어도 됨
     Collections.sort(bikeList, sizeComparator);
     Collections.sort(bikeList, new Comparator<Bike>(){
       @Override
