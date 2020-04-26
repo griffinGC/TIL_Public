@@ -212,3 +212,17 @@
   $ git commit -m"apply gitignore"
   $ git push origin master
   ```
+
+
+
+## 7. 마지막 커밋 날짜 변경
+
+- amend 옵션과 date 옵션을 이용해 커밋 날짜 변경
+
+  - `git commit --amend --no-edit --date "${date}"`
+
+  ```zsh
+  git commit --amend --no-edit --date "Sat 25 Apr 2020 20:20:20 KST"
+  ```
+
+  
