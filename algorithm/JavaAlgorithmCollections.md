@@ -115,7 +115,21 @@
     ```java
     ArrayList<Integer> list = new ArrayList(Arrays.asList(new Integer[]{1, 2, 3}));
     ```
-  
+  - 배열에서 ArrayList로 변환하는 법
+    - `Arrays.asList(배열명)` 함수를 이용하여 배열을 ArrayList로 변환
+    ```java
+    String[] arr = {"a", "b", "c"};
+    ArrayList<String> arrList = new ArrayList<>(Arrays.asList(arr));
+    ```
+  - ArrayList에서 배열로 변환하는 법
+    - `toArray()` 함수를 이용하여 ArrayList를 배열로 변환
+    ```java
+    ArrayList<Integer> intList = new ArrayList<Integer>();
+    intList.add(0);
+    intList.add(1);
+    intList.add(2);
+    Integer[] arr = intList.toArray(new Integer[intList.size]);
+    ```
 
   ### Vector
   
@@ -425,6 +439,19 @@
     // 함수형 인터페이스 Comparator를 람다식으로 구현한 것
     Arrays.sort(arrList, (a,b) -> {return b - a});
     ```
+- Integer 배열 int 배열로 변환
+  ```java
+  Integer a[] = {1,2,3,4};
+  int b[] = Arrays.stream(a).mapToInt(Integer::intValue).toArray();
+  int b[] = Arrays.stream(a).mapToInt(i->i).toArray();
+  ```
+  > https://zetawiki.com/wiki/%EC%9E%90%EB%B0%94_Integer_%EB%B0%B0%EC%97%B4%EC%9D%84_int_%EB%B0%B0%EC%97%B4%EB%A1%9C_%EB%B3%80%ED%99%98
+- int 배열 Integer 배열 변환
+  ```java
+  int a[] = {1,2,3,4};
+  Integer b[] = Arrays.stream(a).boxed().toArray(Integer[]::new);
+  ```
+  > https://zetawiki.com/wiki/%EC%9E%90%EB%B0%94_int_%EB%B0%B0%EC%97%B4%EC%9D%84_Integer_%EB%B0%B0%EC%97%B4%EB%A1%9C_%EB%B3%80%ED%99%98
 
 ## 7. 자바에서 정렬 방법
 - 객체의 값을 비교하기 위해서 사용
