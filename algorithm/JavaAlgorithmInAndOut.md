@@ -310,6 +310,14 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
   // Hello,World!
   ```
 
+### 11. 문자 -> 문자열 변환
+- 문자(Character)를 문자열(String)으로 변환할때는 `Character.toString(문자)` 를 사용함
+  ```java
+  String temp = "";
+  char a = 'a';
+  temp += Character.toString(a);
+  // a
+  ```
 
 ## 아스키 코드
 
