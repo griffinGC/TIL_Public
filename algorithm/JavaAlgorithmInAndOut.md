@@ -318,6 +318,9 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
   temp += Character.toString(a);
   // a
   ```
+### 12. 문자열 포함 여부 검색
+- `contains()`, `indexOf()`, `matches()` 존재
+
 
 ## 아스키 코드
 
