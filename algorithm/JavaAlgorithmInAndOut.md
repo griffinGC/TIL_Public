@@ -320,7 +320,14 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
   ```
 ### 12. 문자열 포함 여부 검색
 - `contains()`, `indexOf()`, `matches()` 존재
-
+- `boolean contains()`
+  - 문자열에서 검색하고자 하는 문자가 있는지 확인
+- `int indexOf()`
+  - 문자열에서 검색하는 문자열의 위치를 반환
+  - 없다면 -1 리턴
+- `boolean matches()`
+  - 정규식을 이용하여 문자열 검색
+  - 특정 문자열 검색 보다는 한글, 숫자 같은 다양한 형태의 텍스트가 존재하는지 확인할때 사용
 
 ## 아스키 코드
 
