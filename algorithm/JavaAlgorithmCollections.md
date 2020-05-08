@@ -91,6 +91,7 @@
   - `indeoxOf(값)` : 값을 가지고 있는 인덱스를 리턴해 줌
 
   - `Iterator` 객체를 만들고 사용가능
+    - `Iterator` 이용해서 일치하는 객체 찾으면 `Iterator`의 `remove()` 이용 삭제 가능
 
   - 정렬을 위해서는 `Collctions.sort()` 사용 (오름차순). 내림차순의 경우 `Collections.reverse()`
     - `Collections.sort(Arraylist이름)`
@@ -263,6 +264,8 @@
 - key 와 value 로 구성된 **Entry 객체**를 저장하는 구조
   
 - Map.Entry에 Key와 Value가 존재
+- 순차적인 데이터 지원 안됨
+  - 순차적인거 사용하려면 sortedmap, LinkedHashMap은 순서 지원하나 속도가 떨어짐
   
 - Map.Entry
   - Map 인터페이스의 내부 인터페이스
@@ -353,6 +356,8 @@
   ### LinkedHashMap
   
   - 입력된 순서대로 데이터가 출력되는 특징을 가짐
+  - 기본 맵은 순차적으로 저장 안됨
+  - SortedMap도 ordering 지원 but, 속도가 떨어짐
   
   
   
@@ -390,7 +395,28 @@
 
   - `boolean hasNext()`: 읽어 올 요소가 있는지 여부 확인
   - `Object next()` : 다음 요소 반환
-  - `void remove()` : `next()` 로 읽어 온 요소 삭제. `next()` 호출 한 다음에 호출 가능
+  - `void remove()` : `next()` 로 읽어 온 요소 삭제. `next()` 호출 한 다음에 호출 가능. 컬렉션 순회중에 원소 삭제 가능
+- 사용 방법
+  1. Iterator 선언 및 생성
+  2. for문 혹으 while문사용 iterator 순회
+    ```java
+    // 선언 및 생성
+    Iterator<자료형> 변수명 = 컬렉션명.iterator();
+    while(변수명.hasNext()){
+      자료형 컬렉션원소변수명 = 변수명.next();
+
+    }
+
+    // 리스트일 경우 삭제할때
+    int id = 3;
+    Iterator<User> itr = list.iterator();
+    while(itr.hasNext()){
+      User user = list.get(itr.next());
+      if(user.getId() == id){
+        itr.remove();
+      }
+    }
+    ```
 
   
 
@@ -559,8 +585,6 @@
   ***Comparable 과 Comparator의 차이는 기본정렬 기준을 구현하느냐 아님 기본정렬 외에 다른 기준으로 정렬하고자 하느냐 이다.***
   #### Comparable의 compareTo의 경우 인자로 하나만 들어오지만, Comparator의 compare는 인자로 2개가 들어온다.
   
-
-
 
 ## 출처 정리
 
