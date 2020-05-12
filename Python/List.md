@@ -65,7 +65,10 @@
   - `리스트명.count(값)`
   - 값이 리스트에 몇개 존재하는지 카운트 함
 
+### collections.Counter
 
+- 사용하기 전에 `import collections` 를 해야 함
+- 딕셔너리 형태로 각각의 요소를 카운트해서 리턴해줌
 
 
 
