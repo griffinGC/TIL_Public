@@ -285,6 +285,7 @@
     - `V put(K key, V value)` : 주어진 키와 값을 추가. 저장되면 값을 리턴
   - 객체 검색
     - `boolean containsKey(Object key)` : 주어진 키가 있는지 여부
+    - `V getOrDefault(Object key, V defaultValue)` : 주어진 키가 없는 경우 defaultValue를 주고 있는 경우 key에 해당하는 value를 리턴
     - `boolean containsValue(Object value)` : 주어진 값이 있는지 여부
     - `Set<Map.Entry<k, v>> entrySet()` : 키와 값으로 구성된 모든 Map.Entry객체를 Set에 담아서 리턴. (key와 value쌍을 이용한 set 리턴)
     - `V get(Object key)` : 주어진 키가 있는 값(Value)을 리턴
