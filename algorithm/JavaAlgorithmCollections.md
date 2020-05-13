@@ -436,6 +436,30 @@
   - `E remove()` : 맨 앞에 있는 요소 삭제
   - `boolean isEmpty()` : 비어 있는지를 판별
 
+### Deque
+> https://opensourcedev.tistory.com/3
+- 앞뒤로 추가하고 뺄 수 있는 자료구조
+- 인터페이스
+  - 구현한 클래스
+    - ArrayDeque
+    - ConcurrentLinkedDeque
+    - LinkedBlockingDeque
+    - LinkedList
+- 추가하기
+  - add(E e)
+  - addFirst(E e)
+  - addLast(E e)
+- 제거하기
+  - 제거하고 원소를 받아옴
+  - poll()
+  - pollFirst()
+  - pollLast()
+- 값 확인
+  - peek() : 제일 앞 확인
+  - peekFirst()
+  - peekLast()
+  - getFirst()
+  - getLast()
 
 
 ## 5. Stack
