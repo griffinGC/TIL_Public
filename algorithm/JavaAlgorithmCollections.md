@@ -318,7 +318,20 @@
     `Map<K, V> map = new Hashtable<K, V>();`
 
     `Map<K, V> map = new TreeMap<K, V>();`
-
+- **Map을 Value에 따라 정렬**
+  1. Map의 Key 값을 가지고 List를 만듬
+  2. List에서 Comparator 구현
+  ```java
+  Map<String, Integer> map = new HashMap<String, Integer>();
+  List<String> keyList = new ArrayList<>(map.keyset());
+  // 정렬
+  Collections.sort(keyList, new Comparator<String>(){
+    @Override
+    public int compare (String o1, o2){
+      return o1 - o2;
+    }
+  })
+  ```
   ### HashMap
 
   - 가장 간단한 구조의 `Map` 의 구현 클래스
@@ -491,7 +504,7 @@
     // 함수형 인터페이스 Comparator를 람다식으로 구현한 것
     Arrays.sort(arrList, (a,b) -> {return b - a});
     ```
-- Integer 배열 int 배열로 변환
+- **Integer 배열 int 배열로 변환**
   ```java
   Integer a[] = {1,2,3,4};
   int b[] = Arrays.stream(a).mapToInt(Integer::intValue).toArray();
@@ -530,7 +543,7 @@
       - 현재객체 < 파라미터로 들어온 객체 : 음수 리턴
       - 현재객체 == 파라미터로 들어온 객체 : 0 리턴
       - 현재객체 > 파라미터로 들어온 객체 : 양수 리턴
-      - 즉, 리턴값이 음수이거나 0일 경우에는, 현재객체가 파라미터로 들어온 객체보다 순서상 **앞** 에 위치함
+      - 즉, 리턴값이 **음수**이거나 0일 경우에는, 현재객체가 파라미터로 들어온 객체보다 순서상 **앞** 에 위치함
     - 사용법
       - Arrays.sort(배열);
       - Collections.sort(배열);
@@ -563,6 +576,7 @@
     - 사용법
       - Arrays.sort(배열, new MyComparator);
       - Collections.sort(배열, myComparator); // myComparator가 미리 생성 되어야함
+        - Collections 사용할때는 ArrayList, LinkedList등을 사용함
 
     ```java
     package com.example.day3;
