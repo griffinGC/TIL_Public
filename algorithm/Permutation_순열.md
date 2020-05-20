@@ -3,6 +3,7 @@
 > https://gorakgarak.tistory.com/522
 >
 > http://www.eandbsoftware.org/print-all-permutations-of-a-given-string/
+> https://minusi.tistory.com/entry/%EC%88%9C%EC%97%B4-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-Permutation-Algorithm
 
 - 재귀를 이용해서 구현
 - 맨 앞에 인자부터 순서대로 교환한다.
