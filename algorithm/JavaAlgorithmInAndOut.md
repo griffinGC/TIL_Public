@@ -324,6 +324,8 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
   char[] ary = {'a', 'b', 'c'};
   String str = String.valueOf(ary);
   ```
+- ***값이 null 일 경우, `.toString()` 함수의 경우 null pointer exception을 발생시키지만, `.valueOf()` 는 null을 리턴***
+  - null 값이 들어갈 경우가 생기면 `.valueOf()` 를 사용하는 것이 좋다.
 ### 12. 문자열 포함 여부 검색
 - `contains()`, `indexOf()`, `matches()` 존재
 - `boolean contains()`
