@@ -318,6 +318,12 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
   temp += Character.toString(a);
   // a
   ```
+- 문자 배열 -> 문자열 변환
+  - `String.valueOf(문자배열)` 을 이용하여 변환
+  ```java
+  char[] ary = {'a', 'b', 'c'};
+  String str = String.valueOf(ary);
+  ```
 ### 12. 문자열 포함 여부 검색
 - `contains()`, `indexOf()`, `matches()` 존재
 - `boolean contains()`
@@ -328,6 +334,10 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
 - `boolean matches()`
   - 정규식을 이용하여 문자열 검색
   - 특정 문자열 검색 보다는 한글, 숫자 같은 다양한 형태의 텍스트가 존재하는지 확인할때 사용
+
+### 13. String.valueOf()
+- 문자를 문자열로 변환해줌
+- 인자로는 문자 하나가 들어가도 되지만, 문자 배열이 들어가도 됨
 
 ## 아스키 코드
 
@@ -361,6 +371,8 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
   > Scanner 출력시 오류 정리
   >
   > - https://deftkang.tistory.com/55
+- 문자 -> 문자열 변환
+  > https://kutar37.tistory.com/entry/%EC%9E%90%EB%B0%94-String%EC%9D%84-Char%EB%A1%9C-Char%EB%A5%BC-String%EC%9C%BC%EB%A1%9C-%EB%B3%80%ED%99%98%ED%95%98%EA%B8%B0
 
 - StringBuilder
   > https://www.youtube.com/watch?v=gc7bo5_bxdA
