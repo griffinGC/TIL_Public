@@ -196,6 +196,7 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
 ### 5. StringBuilder
 
 - 출력할 것이 많은 경우에 이용
+- 생성자의 인자로 `String`을 넣어서 처음에 생성 가능
 
 - `+` 연산자를 이용하여 String 객체를 더하는 것보다 메모리 효율이 높음
 
