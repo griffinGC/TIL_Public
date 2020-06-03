@@ -13,6 +13,8 @@
 
   - spring-boot-starter-data-jpa
 
+    - `Spring-Data-JPA -> Hibernate -> JPA`
+
     - jpa를 쉽게 사용하게끔 만들어주는 프레임워크
 
     - Repository Bean을 자동으로 생성해줌
@@ -24,10 +26,22 @@
       - 스프링 부트가 자동으로 설정해줌
 
       - 여러개의 JPA를 사용할때 주입할 Repository Bean을 직접 지정할 수 있음
-
+    
         ```java
         @EnableJpaRepositories(basePackageClasses = ResultLogRepo.class)
         ```
+    
+    - hibernate
+    
+      > https://victorydntmd.tistory.com/195
+      >
+      > https://suhwan.dev/2019/02/24/jpa-vs-hibernate-vs-spring-data-jpa/
+      >
+      > https://velog.io/@adam2/JPA%EB%8A%94-%EB%8F%84%EB%8D%B0%EC%B2%B4-%EB%AD%98%EA%B9%8C-orm-%EC%98%81%EC%86%8D%EC%84%B1-hibernate-spring-data-jpa
+    
+      - ORM으로써 자바 언어를 위한 객체관계 매핑 프레임워크
+      - hibernate를 사용하면 SQL을 직접 사용하지 않고, 메소드 호출만으로 작업 가능
+      - JPA 구현체의 한 종류로 사용됨
 
 - 인터페이스 정의 필요
 
@@ -39,19 +53,18 @@
   
 - application.properties 또는 application.yml 파일 작성해야 함
   - ddl-auto 값으로 4가지중 한가지 지정 가능
-    - create 
-    - update
-    - create-drop 
-    - validate
+    - create : 프로그램 실행할때마다 Table 생성
+    - update : 기존 Table 설정값을 변경하고 update
+    - create-drop : 프로그램 종료되면 Table 삭제됨
+    - validate : 테이블과 매핑하려는 entity가 일치하지 않을 경우 에러 발생
 
 ```yml
 spring:
 	jpa:
     hibernate:
       ddl-auto: update
+    show-sql: true
 ```
-
-
 
 
 
