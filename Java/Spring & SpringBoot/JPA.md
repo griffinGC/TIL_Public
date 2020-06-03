@@ -34,9 +34,9 @@
   - 쿼리문과 같은 역할을 수행함
   - 객체의 Repository 인터페이스를 작성해야함
   - 인터페이스에서 기본으로 지정된 함수 말고 사용자 정의 함수를 지정할 수 있음
-
-
-
+  
+  - `@Repository` annotation 붙이기
+  
 - application.properties 또는 application.yml 파일 작성해야 함
   - ddl-auto 값으로 4가지중 한가지 지정 가능
     - create 
