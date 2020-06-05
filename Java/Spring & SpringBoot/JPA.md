@@ -104,3 +104,10 @@ private Long id;
 
 - 컬럼에 속성을 지정 할 수 있음
 - @Column(nullable = false) -> null값 불가능 하도록 하는 것
+
+
+
+## 다대다 관계
+
+> https://victorydntmd.tistory.com/208
+
