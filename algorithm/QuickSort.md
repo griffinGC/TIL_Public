@@ -189,15 +189,15 @@
                return 0;
            }
            System.out.println("partition 함수 실행!!");
-   //        int lt = start + 1;
+           // int lt = start + 1;
            int lt = start;
            int rt = end;
-   //        바로 밑의 2가지 사례의 경우 pivot이 중복해서 사용되는 경우가 있으므로 sorting이 제대로 이루어 지지 않는다.!!
-   //        int pivot = start;
+           // 바로 밑의 2가지 사례의 경우 pivot이 중복해서 사용되는 경우가 있으므로 sorting이 제대로 이루어 지지 않는다.!!
+           // int pivot = start;
          
-         // 배열이 while문에서 변경되기 때문에 아래와 같은 방식을 사용하면 계속해서 변경된 data의 배열에 접근하게 됨
-   //        int pivot = (start + end) / 2;
-         // 이 방식을 사용하여야 while문 이전에 설정했던 pivot을 계속 이용
+           // 배열이 while문에서 변경되기 때문에 아래와 같은 방식을 사용하면 계속해서 변경된 data의 배열에 접근하게 됨
+           //        int pivot = (start + end) / 2;
+           // 이 방식을 사용하여야 while문 이전에 설정했던 pivot을 계속 이용
            int pivot = data[(start + end) / 2];
    
            System.out.println("pivot값 : " + pivot);
