@@ -228,7 +228,7 @@
                    data[rt] = pivot;
                    pivot = temp;
                    System.out.println("rt is more left than lt ");
-                System.out.println("swap data between pivot and rt: " + data[rt] + " / " + pivot);
+                   System.out.println("swap data between pivot and rt: " + data[rt] + " / " + pivot);
                    // lt 가 rt 보다 작을때 값을 변경한 이후 배열 출력!
                    for(int ele : data){
                        System.out.print(ele + " ");
