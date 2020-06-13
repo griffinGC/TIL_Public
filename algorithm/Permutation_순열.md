@@ -5,11 +5,12 @@
 > http://www.eandbsoftware.org/print-all-permutations-of-a-given-string/
 > https://minusi.tistory.com/entry/%EC%88%9C%EC%97%B4-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-Permutation-Algorithm
 >
-> - 가장 이해 잘된 코드
+> - 가장 이해 잘된 코드 (baaarking dog)
 >
 >   https://blog.encrypted.gg/732
 
 - 재귀를 이용해서 구현
+    - 백트래킹
 - 맨 앞에 인자부터 순서대로 교환한다.
   - 처음으로 교환하는 것은 맨 처음 원소와 맨 처음 원소를 비교하는 것 부터 시작
 - 배열은 계속 해서 들고 다니면서 교환되는 배열
@@ -20,7 +21,6 @@
     ![트리](http://www.eandbsoftware.org/wp-content/uploads/2013/07/NewPermutation.gif)
 - 구현 코드
   - 뒤에서 부터 변경
-
 - 수학 공식
     - nPr = n! / (n-r)!
 
@@ -78,3 +78,8 @@ public class Permutation {
 }
 ```
 
+### 예제 문제
+
+- N과 M (1)
+
+  > https://www.acmicpc.net/problem/15649

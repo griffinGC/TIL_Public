@@ -43,7 +43,7 @@
 
 ### 참고문제
 
-- 백준 2003
+- 백준 2003 
 
   > https://www.acmicpc.net/problem/2003
 
