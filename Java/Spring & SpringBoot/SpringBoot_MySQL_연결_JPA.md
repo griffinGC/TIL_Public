@@ -50,5 +50,6 @@
 
    - `@Repository` annotation 붙이기
    - `JpaRepository<객체, 키값자료형>` 또는 `CrudRepository<객체, 키값자료형>` 을 상속받아야 함
-
+  - CrudRepository <- PagingAndSortingRepository <- JpaRepository
+       - 왼쪽에 있는 것일수록 상위 클래스
    - 서비스 클래스에서 사용
