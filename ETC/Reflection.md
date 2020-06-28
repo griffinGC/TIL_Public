@@ -1,12 +1,27 @@
 # Reflection (리플렉션)
 
-- 객체를 통해 클래스 정보를 분석해 내는 프로그래밍 기법
+- **객체를 통해 클래스 정보를 분석해 내는 프로그래밍 기법**
 
 - 객체의 형(type) 에 대해 모를때 사용 하는 방식
 
 
 
 ### Java에서의 Reflection
+
+- JVM에서 실행되는 애플리케이션의 런타임 동작을 검사하거나 수정할 수 있는 기능이 필요한 프로그램에서 사용됨
+
+- 원래 자바에서는 동적으로 객체를 생성하는 기술이 없었음.
+
+  - 동적으로 인스턴스를 생성하는 Reflection으로 그 역할 대신
+
+- Class 객체를 이용하면 클래스의 생성자, 필드, 메소드 정보를 알아낼 수 있음
+
+  - 일단 객체를 가져와야 함
+    - `Class c = Data.class;`
+
+  - `getDeclaredConstructors();`
+  - `getDeclaredFields();`
+  - `getDeclaredMethods();`
 
 - 구체적인 클래스 타입을 몰라도 그 클래스의 메소드, 타입, 변수들을 접근 할 수 있도록 하는 API
 
@@ -70,3 +85,6 @@
 > https://4whomtbts.tistory.com/33
 >
 > https://brunch.co.kr/@kd4/8
+>
+> > [https://medium.com/msolo021015/%EC%9E%90%EB%B0%94-reflection%EC%9D%B4%EB%9E%80-ee71caf7eec5](https://medium.com/msolo021015/자바-reflection이란-ee71caf7eec5)
+
