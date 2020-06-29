@@ -9,6 +9,7 @@
 
 ## :articulated_lorry: 목차
 
+- :newspaper: [article](./Article)
 - :spiral_notepad: [algorithm](./algorithm)
 -  :old_key: [C++](./C++)
 - :books:[DB](./DB)
