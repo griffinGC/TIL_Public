@@ -48,6 +48,8 @@ var idToNameMap = new HashMap<Integer, String>();
 
 마지막으로, *var*를 사용할때는 runtime 오버헤드가 없다는 것이다. 그리고 이점은 자바를 동적 타입 언어로 만들어 줄 수 없다. 변수의 타입은 아직까지 컴파일 시간에서 추론되고 나중에 변경될 수 없다.
 
+
+
 ## 3. *var*의 잘못된 사용
 
 - 앞에서 언급한 것처럼, *var*는 initializer 없이는 사용할 수 없다.
@@ -80,11 +82,72 @@ var idToNameMap = new HashMap<Integer, String>();
   var arr = { 1, 2, 3 }
   ```
 
+
+
 ## 4. *var*를 사용한 가이드 라인
 
+*var*를 사용할 수 있는 상황들을 알려줄 것입니다. 하지만 이렇게 하는게 좋은 생각은 아닐 수도 있다.
+
+예를 들면 아래의 상황에서는 코드가 가독성이 떨어질 수 있다.
+
+```java
+var result = obj.process();
+```
+
+*var*를 사용할 수 있는 상황일 지라도, 가독성을 떨어뜨리는 코드인 *process()* 에 의한 리턴 타입의 이해는 어려울 수 있다.
+
+[java.net](https://openjdk.java.net) 에서는 [Style Guidelines for Local Variable Type Inference in Java ](https://openjdk.java.net/projects/amber/LVTIstyle.html)에 우리가 이것을 사용할때 어떻게 판단해야될지에 관해 말해줍니다.
+
+*var*의 사용을 피하는 최고의 다른 상황은 긴 파이프라인을 가진 streams을 사용할때 이다.
+
+```java
+var x = emp.getProjects.stream()
+  .findFirst()
+  .map(String::length)
+  .ofElse(0);
+```
+
+*var* 의 사용은 예상치 못한 결과를 가져올 수 있다.
+
+예를 들면, 만약 Java7에서 도입된 다이아몬드 연산자를 사용한다면
+
+```java
+var empList = new ArrayList<>();
+```
+
+*empList*의 타입은 *List<Object>*가 아니라 *ArrayList<Object>* 이다. 
+
+만약 너가 이것을 *ArrayList<Employee>* 로 사용하고 싶다면, 너는 명확하게 표시해야한다.
+
+```java
+var empList = new ArrayList<Employee>();
+```
+
+**선언할 수 없는 타입을 가지고  *var*를 사용하면 예상치 못한 에러를 발생시킬 수 있다.**
+
+예를 들어보자 우리가 익명 클래스 인스턴스를 가진 *var*를 사용할때를 가정하자.
+
+```java
+@Test
+public void whenVarInitWithAnonymous_thenGetAnonymousType(){
+  var obj = new Objet(){};
+  assertFalse(obj.getClass().equals(Object.class));
+}
+```
+
+이제, 우리가 *obj*에 다른 *Object* 를 할당하려고 할때, 우리는 컴파일 오류를 받게 될 것이다.
+
+```java
+obj = new Object() // Object는 <anonyous Object>로 변환 될 수 없다.
+```
+
+*obj* 의 타입이 *Object* 로 추론 될 수 없기 때문이다.
 
 
 
+## 5. 결론
+
+이 article에서 우리는 예제와 함께 새로운 Java 10 지역 변수 타입 추론에 대해 알아 보았다.
 
 
 
