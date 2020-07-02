@@ -15,7 +15,7 @@
 
 2018년에 나온, [2018 JVM ecological survey report](https://snyk.io/blog/jvm-ecosystem-report-2018/) 에 따르면, 70%는 Oracle JDK, 21%는 OpenJDK를 사용했다. 이 가운데 Java8 사용자는 79% 에 달했다.
 
-<img src="https://miro.medium.com/max/1400/1*DdezPEpDhGpNZoSxCNtAug.png" alt="2018" style="zoom:50%;" />
+![2018](https://miro.medium.com/max/1400/1*DdezPEpDhGpNZoSxCNtAug.png)
 
 2019년 보고서에 따르면 Java8은 83%에 이르렀다.
 
@@ -174,7 +174,7 @@ Java 8혹은 이전 버전으로 개발된 많은 프로젝트들 때문에, 인
 
 2017년 9월 Java9의 새로운 버전이 시작하면서, Oracle은 매년 3월과 9월, 6개월마다 새로운 버전의 JDK를 출시하고 있다.  출시를 계속하는게 유행이 되면서 과거 3년동안 한번 출간되는 방법에서 더 빠르게 출시되는 방식으로 변하는 것이 합리적이 되었다.
 
-<img src="https://miro.medium.com/max/1400/1*AZeZye_H_Xa8I2P7HYgxlQ.png" alt="release" style="zoom:50%;" />
+![release](https://miro.medium.com/max/1400/1*AZeZye_H_Xa8I2P7HYgxlQ.png)
 
 또한 이렇게 빠른 출시 리듬은 부정적인 영향을 가져올 수 있다. 예를 들면, 많은 회사들이 6개월 업그레이드 리듬을 따라갈 수 없다.
 
@@ -198,11 +198,11 @@ JDK의 상업 버전은 개발과 테스트에서는 무료로 사용할 수 있
 
 2020년에, 가장 최신 JVM 생태계 설문조사는 오직 사용자의 64%가 Java8을 사용하고, 25%는 Java11 사용을 시작했다고 보고했다.
 
-<img src="https://miro.medium.com/max/1400/1*EMcER77vPOa2iZ0-UGCCqQ.png" alt="updating_java" style="zoom:50%;" />
+![updating_java](https://miro.medium.com/max/1400/1*EMcER77vPOa2iZ0-UGCCqQ.png)
 
 JreREL 리포트는 Java8이 58%라고 보여준다. 즉, Java11의 사용자들이 2년사이에 매우 빠르게 증가하고 있다는것을 증명한다.
 
-<img src="https://miro.medium.com/max/1400/1*LSyO4DVvITh_MnT8c4oqMw.png" alt="rapid_increasing" style="zoom:50%;" />
+![rapid_increasing](https://miro.medium.com/max/1400/1*LSyO4DVvITh_MnT8c4oqMw.png)
 
 동시에 마이크로서비스, continuous-release practices, better-automated testing 역시 이전보다 위험성을 덜 가지면서 언어의 새로운 버전을 받아들이기 쉽게 만들고 있다.
 
@@ -232,7 +232,7 @@ Java11은 업그레이드할 가치가 있다.
 
 ### Java11은 성능이 더 좋다.
 
-<img src="https://miro.medium.com/max/1400/1*-c261AoNchyDOrXTCDThUw.png" style="zoom:50%;" />
+![gc_performance](https://miro.medium.com/max/1400/1*-c261AoNchyDOrXTCDThUw.png)
 
 
 
@@ -240,9 +240,7 @@ Java11은 업그레이드할 가치가 있다.
 
 최근 1월까지, 해커들은 자바의 보안 허점을 이용해 시간당 시스템에 수십만개의 malware를 줄 수 있었다.
 
-<img src="https://miro.medium.com/max/1400/1*8ZGxAFkMYm3ZzPHP9NWlxg.png" alt="malware" style="zoom:50%;" />
-
-
+![malware](https://miro.medium.com/max/1400/1*8ZGxAFkMYm3ZzPHP9NWlxg.png)
 
 이러한 보안 결함들과 다른 많은 것들때문에 자바는 자주 업데이트 되어야 한다.
 
@@ -270,9 +268,9 @@ Java11은 업그레이드할 가치가 있다.
 
 이러한 업그레이드는 3년 마다 큰 업그레이드에서 불이익을 가져온다. 그러나 이러한 업그레이드는 리스크를 측정하는 시간을 더 많이 가질 수 있다.
 
-<img src="https://miro.medium.com/max/1400/1*s1NK2PJy9nYlEvpqR0QyRg.png" alt="openjdk" style="zoom:50%;" />
+![openjdk](https://miro.medium.com/max/1400/1*s1NK2PJy9nYlEvpqR0QyRg.png)
 
-사실 45%의 개발자는 현재 OpenJDK를 사용하고 있다.
+사실은 45%의 개발자는 현재 OpenJDK를 사용하고 있다.
 
 
 
