@@ -115,7 +115,7 @@ var x = emp.getProjects.stream()
 var empList = new ArrayList<>();
 ```
 
-*empList*의 타입은 *List<Object>*가 아니라 *ArrayList<Object>* 이다. 
+*empList*의 타입은 *List<Object>* 가 아니라 *ArrayList<Object>* 이다. 
 
 만약 너가 이것을 *ArrayList<Employee>* 로 사용하고 싶다면, 너는 명확하게 표시해야한다.
 
