@@ -1,4 +1,10 @@
-# Java 10 LocalVariable Type-Interface
+# [번역] Java 10 LocalVariable Type-Inference
+
+> 원본
+>
+> https://www.baeldung.com/java-10-local-variable-type-inference
+>
+> 요약한 내용은 가장 아래문단에 존재합니다.
 
 ## 1. Overview
 
@@ -123,7 +129,12 @@ var empList = new ArrayList<>();
 var empList = new ArrayList<Employee>();
 ```
 
-**선언할 수 없는 타입을 가지고  *var*를 사용하면 예상치 못한 에러를 발생시킬 수 있다.**
+**non-denotable type에서  *var*를 사용하면 예상치 못한 에러를 발생시킬 수 있다.**
+
+> Non Denotable Types
+>
+> - 특정 타입으로 추론 될 수 없는 표현식 (ex. 익명객체)
+> - https://www.journaldev.com/19871/java-10-local-variable-type-inference
 
 예를 들어보자 우리가 익명 클래스 인스턴스를 가진 *var*를 사용할때를 가정하자.
 
@@ -145,13 +156,19 @@ obj = new Object() // Object는 <anonyous Object>로 변환 될 수 없다.
 
 
 
-## 5. 결론
+## 5. 요약
 
-이 article에서 우리는 예제와 함께 새로운 Java 10 지역 변수 타입 추론에 대해 알아 보았다.
+- Java 10 에서 `var`를 이용하여 지역변수 추론이 가능해졌다.
+- 하지만, 여러 제약 사항들이 존재한다.
+  1. 반드시 null 이 아닌, initializer가 있어야 한다.
+  2. 전역변수로는 사용이 불가
+  3. 람다와 배열에서는 사용 불가
+- 때로는 *var*를 사용하는 것이 가독성을 떨어뜨릴 수 있다.
+- 모든 type에서 *var*를 사용할 수 있는 것은 아니다.
 
 
 
-
+---
 
 **Q. 예약어와 keyword의 차이는 무엇인가?**
 
