@@ -263,3 +263,18 @@ collection.forEach(element -> System.out.println(element));
 모두에게 더 나은 언어로 되면서, 천천히 우리의 손을 묶는 불필요한 것들을 삭제하면서, 우리의 생상성에 큰 영향을 끼치면서 자바는 지금 올바른 길로 가고있다고 생각한다.
 
 확실히 함수의 도입은 자바에서 [fluent interfaces](https://en.wikipedia.org/wiki/Fluent_interface#:~:text=In software engineering%2C a fluent,Eric Evans and Martin Fowler.) 설계의 새로운 방식을 열었다. fluent interface는 우리가 영어 같이 공통된 언어에서 생각하는 방식과 같이 코드를 유창하게 작성하는 것을 가능하게 해준다. 이것은 우리의 생산성과 코드의 가독성에 중요한 향상을 가져왔다.
+
+
+
+## 요약
+
+- 함수와 스트림의 도입은 자바에 큰 영향을 끼쳤다.
+- Lambda를 이용하면 좀 더 간결하고 쉽게 코드를 작성할 수 있다.
+  - 간결한 코드
+  - 중복을 제거
+  - 내재적으로 불변
+    - 동시 연산에서 매우 중요
+  - 상태 변경 불가능
+  - 객체들을 변경하는것이 불가능
+  - 느긋한 계산법 (**Lazy evaluation**)
+- Stream을 이용하면 코드의 가독성이 올라갈 수 있다.
