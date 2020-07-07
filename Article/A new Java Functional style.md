@@ -177,7 +177,7 @@ stream에서 **filter** 메소드는 **Predicate** 를 가리킨다. 그러나 *
 
 그 다음 우리는 이 메소드를 우리가 원하는 함수로 넘겨줄 것이다. 그리고 결과는 완벽하게 동일할 것이다.
 
-![](https://miro.medium.com/max/580/0*fu9LygpDm6FZaJfs)
+![result](https://miro.medium.com/max/580/0*fu9LygpDm6FZaJfs)
 
 나는 이런 간단한 예제가 너가 자바에서 functional interface가 무엇인지 명확하게 하는지 도움이 되길 바란다.
 
@@ -191,13 +191,13 @@ Java streams의 가장 중요한 측면중 하나는 **이것이 Lazily evaluate
 
 다른 기억해야할 것은 **stream은 오직 한번만 사용될 수 있다는 것** 이다. 만약 우리가 연산의 같은 파이프 라인을 다시 적용하려한다면, 우리는 stream을 다시 생성해야 한다.
 
-![](https://miro.medium.com/max/700/0*i8b1pDZxC_aWYFm5)
+![stream](https://miro.medium.com/max/700/0*i8b1pDZxC_aWYFm5)
 
 우리는 각 **String** 원소들을 **Integer** 로 변경하는 stream을 정의 했다. 이때 우리는 실행되어야하는 스텝들을 정의했다. 그러나 그것들은 termainal operaion을 부를때까지 수행되지 않을 것이다.
 
 이제 우리의 stream을 이용해서 제공받은 모든 결과 Integer 원소들을 더하는 것을 해보자
 
-![](https://miro.medium.com/max/700/0*6dt3K6QjmK3T6xHG)
+![sum](https://miro.medium.com/max/700/0*6dt3K6QjmK3T6xHG)
 
 **스트림은 우리가 terminal operaion인 sum을 부를 때까지, 배열에서 원소들을 수행하는 것을 시작하지 않을 것이다.**
 
@@ -234,7 +234,7 @@ CompletableFuture에 관해서는 최근 2개의 포스트에서 다뤘다. ("[A
 
 Java Optional에 대해서는 “ [Please stop the Java Optional mess!](https://medium.com/dev-genius/please-stop-the-java-optional-mess-2889dc4f5f27) "에서 얘기해 보았다. 그리고 이것은 함수들은 광범위하게 optional의 상태에 의존하는 정확하고 다양한 행동들을 정의하는데 사용한다.
 
-![](https://miro.medium.com/max/603/0*UOam2SdXn8E_zQqG)
+![optional](https://miro.medium.com/max/603/0*UOam2SdXn8E_zQqG)
 
 함수들은 우리가 if 조건문을 가지고 상태를 확인하고 몇줄에 걸쳐 작성하는 것을 한줄로 정의하는 것을 가능하게 해준다.
 
