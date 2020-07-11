@@ -1,5 +1,11 @@
 # [번역] SOLID Principles — Simplified with Illustrations
 
+> 원본
+>
+> https://levelup.gitconnected.com/solid-principles-simplified-with-illustrations-fe5265f68ec6
+>
+> 요약은 가장 아래에 있습니다.
+
 #### S.O.L.I.D 원칙들의 중요성
 
 ## 소개
@@ -98,7 +104,7 @@ S.O.L.I.D 는 Micheal Feathers에 의해 두문자어 이다. Robert Martin (Unc
 
 ![paymentProcessor](https://miro.medium.com/max/1400/1*XxXYboveAL3NMlIO2GyuYg.png)
 
-우리의 새로운 코드는 이제 open-closed principle을 
+우리의 새로운 코드는 이제 open-closed principle을 따른다. 새로운 행동을 추가하기 위해서, 우리는 단지 우리의 추상클래스인 *PaymentHandler* 를 확장시키고 factory에 같은 설정을 하면 된다. PaymentProcessor를 변경할 필요는 없다.
 
 
 
@@ -106,15 +112,112 @@ S.O.L.I.D 는 Micheal Feathers에 의해 두문자어 이다. Robert Martin (Unc
 
 > 리스코프 치환 원칙
 
+처음 봤을때, 이름이 위협적이게 들린다. 이 원칙은 같은 superclass의 객체는 기존의 코드를 부수는것 없이 각각 서로를 대체할 수 있어야 한다는 것을 말한다.
+
+우리는 영화에 대한 스크래퍼를 개발하는 예제를 볼 것이다. 이 스크래퍼는 영화 이름이나 배우에 의해 영화를 검색하기 위한 인터페이스를 제공한다.
+
+![movieSearch](https://miro.medium.com/max/1400/1*7KSnIrsCPgLHJGaytBZSBQ.png)
+
+![imdbSearch](https://miro.medium.com/max/1400/1*LiCJ6lSPT_7ot_9Ns895Yw.png)
+
+![rottentomatoSearch](https://miro.medium.com/max/1400/1*-GfI3gpx8PRnlgDrvjFt8w.png)
+
+![clientcodeusingtheMovieSearchInterface](https://miro.medium.com/max/1400/1*tsroqTpS6adtmluGw8cBPQ.png)
+
+우리는 2개의 다른 구현체를 가지고 있다. 하나는 Rotten Tomato이고 다른 것은 IMDB이다. 두 개 모두 대체 가능하고 같은 인터페이스를 사용하는 것에 접근 할 수 있다.
+
+만약 클래스로부터 나온 메소드가 구현되지 않았다면 원칙은 위반된다. 아래 예제는 Liskov principle의 위반 예제 이다.
+
+![AllMovieSearch](https://miro.medium.com/max/1400/1*d0XFSx7vgWj7EflFHQ59pA.png)
+
+이 경우에 우리는 All Movies 를 가진 IMDB나 Rotten Tomato 같은 다른 파생된 클래스들을 대체할 수 없다. *searchByMovieName* 클래스는 구현되지 않았다. 그리고 클라이언트 코드에서 변함없는 행동을 가져올 수 없다.
+
+
+
 ## I - Interface Segregation
 
 > 인터페이스 분리 원칙
+
+원칙에 따르면 클아이언트는 필요없는 메소드를 구현하지 않는다고 여겨진다. 만약 당신이 클라이언트가 사용하지 않는 메소드를 정의한다면 인터페이스는 너무 커지고 오염되게 된다.
+
+만약 인터페이스가 섞인 기능을 가지며 너무 크게 된다면, 인터페이스를 여러개의 작은 인터페이스로 나누는 것이 타당하다.  클라이언트가 주식, ETFs, 선물 등을 거래할 수 있는 Portfolio 서비스 예제를 살펴보자
+
+![interface](https://miro.medium.com/max/1400/1*hWpJchGmcTGODDXzCisLlw.png)
+
+우리는 클라이언트가 주식, ETFs, 두가지의 결합을 주문할 수 있는 ***Porfolio*** 인터페이스를 정의했다.
+
+![ETForderService](https://miro.medium.com/max/1400/1*9SwRiXaTGVw-RR3sFDew-Q.png)
+
+![StockorderService](https://miro.medium.com/max/1400/1*AhrPD32DH9N4_601SS0Z2w.png)
+
+우리는 ***Portfolio*** 서비스의 2가지 다른 구현체를 만들었다. ***StockOrderService*** 는 *orderETF* 와 *orderStockAndETFs* 를 구현하지 않은 것으로 보인다. 마찬가지로 ***ETFOrderService*** 는 *orderETF* 만을 구현했다.
+
+만약 우리가 주식을 주문하는 동안 파라미터로써 금액을 추가하는것을 결정한다면, 우리는 파라미터로써 금액을 받는 *orderStocks* 메소드를 구현해야 한다. 게다가 이러한 변경은 ***ETFOrderService*** 가 *orderStocks* 메소드를 지원하지 않더라도 포함되어야 한다.
+
+이것을 극복하기 위해서 우리는 인터페이스를 2개로 나누어야 한다. a) StockPortfolio b) ETFPortfolio
+
+![stockPortfolio](https://miro.medium.com/max/1400/1*eLF7eC5nx6U9v3GKWgYteg.png)
+
+![ETFPortfolio](https://miro.medium.com/max/1400/1*UOkZn0ReeDXdb3AoYfLVoA.png)
+
+새로운 인터페이스로 *StockOrderService* 는 ETFs를 주문하는것을 다루지 않는다. *ETFOrderService* 에도 같은 것이 적용 가능하다.
+
+![etforderservice](https://miro.medium.com/max/1400/1*thSJDyjrtxJk13tly7gEzA.png)
+
+![stockorderservice](https://miro.medium.com/max/1400/1*m8as1nQtsz6gATJoXmqGdw.png)
+
+인터페이스 분리는 Single Responsibility와 Liskov Substitution Principle과 여러 유사점을 공유한다.
+
+위의 부피가 큰 인터페이스 예제에서 우리는 StockOrderService에서 예외를 던졌다. 이것은 Liskov Substitution Principle 위반이다. 이 경우에 파생된 클래스는 기능을 확장하지 않는다.
+
+만약 관계없는 메소드들이 인터페이스에서 정의 된다면, 클래스들은 변경하기 위한 여러가지 이유들을 가질 것이다. 이것은 Single Responsibility Principle을 위반한다.
+
+ 
 
 ## D- Dependency Inversion
 
 > 의존관계 역전 원칙
 
+Dependency Inversion에 따르면, 프로그램에서 높은 레벨의 모듈들은 낮은 레벨의 모듈과 밀접하게 결합되어서는 안된다. 모듈들 모두 추상화에 의존해야 한다. 이 원칙은 느슨하게 결합된 소프트웨어 모듈들을 만들기 위한 메커니즘을 제공한다.
 
+아래 예제들을 한번 살펴 보자. 이 예제에서 *OrderHistory* 클래스는 PostgreSQL 데이터 저장소로부터 데이터를 가져온다.
+
+![orderHistory](https://miro.medium.com/max/1400/1*3DLLxmldatpcBT5cNMFEGA.png)
+
+***OrderHistory*** 클래스는 PostgresDB 의존성의 구현 세부사항을 알아야만 한다. 만약 우리가 다른 데이터베이스 드라이버를 사용하기로 결정했다면, 우리는 새로운 의존성을 가지고 ***PostgresDB*** 의 모든 인스턴스를 대체할 수 있어야 한다.
+
+게다가, DB 드라이버 변경의 한 기능은 무엇인가? DB 드라이버의 메소드를 부르는 ***OrderHistory*** 클래스에서 변경할 필요가 있을 것이다.
+
+이 결합은 ***DataStore*** 인터페이스를 선언하는 것에 의해서 사라질 수 있다. 이 인터페이스는 consumer를 호출하는 API들을 노출시킬 것이다. 우리는 ***DataStore*** 의 여러 구현을 가질 수 있다. a) Postgres DataStore b) MySQL DataStore c) S3, etc
+
+![DataStore](https://miro.medium.com/max/1400/1*7j9r-WrHfCp0fLfNgKroxQ.png)
+
+![PostgresDataStore](https://miro.medium.com/max/1400/1*8vW-JwwgPmzg5b3ugXbqeA.png)
+
+![orderHistory](https://miro.medium.com/max/1400/1*v73kFdpAzVHH34bj5i0pEw.png)
+
+이제 우리의 consumer 클래스는 데이터 저장소가 사용되는 곳의 low level 세부사항을 다룰 필요가 없다. high-level 모듈 ***OrderHistory*** 는 데이터에 접근하기 위해 DataStore 인터페이스에 의존해야 한다. lower level **DataStore** 에서의 변화는 ***OrderHistory*** 에 어떠한 영향도 주지 않는다.
+
+나아가, 모듈들이 느슨하게 결합되어있기 때문에, 그것들은 독립적으로 테스트 될 수 있다. 새로운 구현은 Dependency Injection(의존성 주입)을 이용해 High-level 모듈에 쉽게 삽입 될 수 있다.
+
+
+
+## 결론
+
+위의 5가지 원칙은 소프트웨어 엔지니어링에서 따르는 최상의 모범사례를 위한 초석을 구성한다. 매일 작업에서 위의 원칙들을 연습하는 것은 소프트웨어의 가독성, 모듈성, 확장성, 테스트능력을 향상시키는 것을 도와준다.
+
+결국, 이것은 이해하기 쉽고 잘 관리되는 소프트웨어를 짓는데 도움을 준다. 위의 원칙들을 따르는 것은 개발자 생산성과 엔지니어링 팀의 agility를 향상시키는것을 도와준다.
+
+
+
+## 참고자료
+
+- [Solid Principles in Android](https://proandroiddev.com/exploring-s-o-l-i-d-principle-in-android-a90947f57cf0)
+- [Solid Principles Simplified](https://itnext.io/solid-principles-explanation-and-examples-715b975dcad4)
+- [Liskov Substitution Principle](https://dev.to/erikwhiting88/liskov-substitution-principle-in-3-minutes-2dc6)
+- [Become a better developer by applying SOLID principles](https://www.youtube.com/watch?v=rtmFCcjEgEw)
+- [SOLID principles in five minutes](https://medium.com/swlh/s-o-l-i-d-principles-explained-in-five-minutes-8d36b1da4f6b)
+- [Cover photo](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F393220611216597358%2F&psig=AOvVaw1wiqQHCovfFQCcWfgVQYc1&ust=1591728875201000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNiTpO7z8ukCFQAAAAAdAAAAABAF)
 
 
 
