@@ -10,29 +10,29 @@
 
 ## 소개
 
-개발자로써 우리는 항상 legacy codebase들을 다룬다. legacy codebases의 대부분은 매우 coupled된 클래스들, 불필요한 코드들, 적은 테스트 coverage를 가지고 있다.이것은 코드를 빠르게 보게 하였을때 개발자들에게 코드베이스의 기능들을 이해하는것을 어렵게 만든다. 
+개발자로써 우리는 항상 legacy codebase들을 다룬다. legacy codebases의 대부분은 밀접하게 결합된 클래스들, 불필요한 코드들, 적은 테스트 coverage를 가지고 있다.이것은 코드를 빠르게 보게 하였을때 개발자들에게 코드베이스의 기능들을 이해하는것을 어렵게 만든다. 
 
 
 
-오직 버그를 고치기위해 클래스에서 끝없는 코드를 통해 겼는 고통을 상상해봐라. 개발자들은 결국 적는것보다 코드의 라인을 읽게 될 것이다. 나아가 한 흐름을 고치는 것은 다른것을 부수는 결과를 가져올 수 있다. 이것은 나에게 아래 유명한 밈을 떠오르게 했다.
+오직 버그를 고치기위해 클래스에서 끝없는 코드를 통해 겼는 고통을 상상해봐라. 개발자들은 결국 적는것보다 더 많은 코드의 라인을 읽게 될 것이다. 나아가 한 흐름을 고치는 것은 다른것을 부수는 결과를 가져올 수 있다. 이것은 나에게 아래 유명한 밈을 떠오르게 했다.
 
 ![meme](https://miro.medium.com/max/1400/1*DCzEkGFZApLwZLmGuIDAOw.png)
 
- legacy software에서 적극적인 개발이 일어나지 않기 때문에, 개발자들과 매니저들은 딜레마에 빠진다. 그 다음 팀은 전체 서비스를 다시 작성하는것과 옛날 것을 삭제하는 것을 심사숙고한다.
+ legacy software에서 적극적인 개발이 일어나지 않기 때문에, 개발자들과 매니저들을 딜레마에 빠지게 한다. 그 다음 팀은 전체 서비스를 다시 작성하는것과 옛날 것을 삭제하는 것에 대해 고려한다.
 
 ![no_bugs](https://miro.medium.com/max/1400/1*PQ2-pQabm1QglrUgqOXiPg.png)
 
 
 
-## 왜 소프트웨어 디자인 원칙인가?
+## 왜 소프트웨어 설계 원칙인가?
 
-발전한 오늘날의 세계에서, 소비자의 요구사항들은 은 전래없는 속도로 변화를 이어나가고 있다. 이것은 소프트웨어 팀들에게 새로운 요구사항에 적응하는것과 빠르게 변화를 운반하는것은 필수가 되어가고 있다. 이것을 이루기 위해서는, 소프트웨어 개발과 테스트 시간을 줄이는것이 필수적이다.
+오늘날의 발전하는 세계에서, 소비자의 요구사항들은 전래없는 속도로 변화를 이어나가고 있다. 소프트웨어 팀들에게 새로운 요구사항에 적응하는것과 빠르게 변화를 운반하는것은 필수가 되어가고 있다. 이것을 이루기 위해서는, 소프트웨어 개발과 테스트 시간을 줄이는것이 필수적이다.
 
-동시에 새로운 기술들은 매년 소개되고 있다. 이것은 기존의 존재하는 기술들을 교체해서 더 최적의 효과적인 기술을 가진 실험을 하는 것은 흔하다. 따라서 작성된 코드가 어떤 변화를 소개하기 위해서는 유연해야 하고 덜 coupled(결합) 되어야만 한다.
+동시에 새로운 기술들은 매년 소개되고 있다. 기존의 존재하는 기술들을 대체해서 더 최적의 효과적인 기술을 가진 실험을 하는 것은 흔하다. 따라서 작성된 코드가 어떤 변화를 소개하기 위해서는 유연해야 하고 덜 coupled(결합) 되어야만 한다.
 
 잘 작성된 코드는 이해하기 쉽다. 새로운 개발자들은 코드의 부분을 수정하는 것보다 코드를 읽는데 많은 시간을 쓸 필요가 없다. 따라서 잘 유지된 소프트웨어는 개발자와 팀의 생산성을 높인다. 추가적으로 높은 테스트 coverage는 새로운 변경사항을 배포하기위한 신뢰성을 높인다.
 
-S.O.L.I.D 는 Micheal Feathers에 의해 두문자어 이다. Robert Martin (Uncle Bob)에 의해 출판된 원칙의 부분집함이다. 우리는 각각의 일러스트를 통해 5가지 원칙을 알아볼 것이다. 
+S.O.L.I.D 는 Micheal Feathers에 의해 두문자어 이다. Robert Martin (Uncle Bob)에 의해 출판된 원칙들의 부분집합이다. 우리는 각각의 일러스트를 통해 5가지 원칙을 알아볼 것이다. 
 
 
 
@@ -40,9 +40,9 @@ S.O.L.I.D 는 Micheal Feathers에 의해 두문자어 이다. Robert Martin (Unc
 
 > 단일 책임 원칙
 
-가장 이해하기 쉬운 원칙중 하나이다. 'A class는 바꾸기 위한 오직 하나의 이유만을 가지고 있다' 라는것을 설명한다. 여러번 당신은 함수가 의도한것보다 여리 기능들을 수행하는 함수들을 발견한 적이 있을 것이다.
+가장 이해하기 쉬운 원칙중 하나이다. 'A class는 바꾸기 위한 오직 하나의 이유만을 가지고 있어햐 한다.' 라는것을 설명한다. 여러번 당신은 함수가 의도한것보다 여러 기능들을 수행하는 함수들을 발견한 적이 있을 것이다.
 
-당신이 은행 소프트웨어에 대해 코드를 작성한다고 가정해보자. 기능은 주어진 유저에게 상태를 보여주는 것이다. 그 코드는 데이터베이스로부터 보드를 가져온다. 그리고 유저간 선택한 포맷에 맞춰 데이터를 보여준다. 당신은 아래와 같은 코드를 짜게 될 것이다.
+당신이 은행 소프트웨어에 대해 코드를 작성한다고 가정해보자. 기능은 주어진 유저에게 상태를 보여주는 것이다. 그 코드는 데이터베이스로부터 데이터를 가져온다. 그리고 유저가 선택한 포맷에 맞춰 데이터를 보여준다. 당신은 아래와 같은 코드를 짜게 될 것이다.
 
 ![뱅킹](https://miro.medium.com/max/1400/1*z4B2GPDeg5JPGR5pzJhc-A.png)
 
@@ -59,8 +59,8 @@ S.O.L.I.D 는 Micheal Feathers에 의해 두문자어 이다. Robert Martin (Unc
 
 - 트랜잭션들을 포맷하는 것을 책임지는 분리된 포맷터들을 정의해라 
 - 데이터 접근 객체 혹은 DAO를 추가해라, DAO는 데이터베이스 드라이버를 은닉화 할 것이다. 그리고 모든 쿼리 헤비 리프팅을 수행한다.
-- ***BankStatementMgr*** 은 데이터를 가져오기 위해 DAO에게 요청을 위임한다.
-- 이러한 방법으로, 우리는 DAO와 포매터를 독립적으로 테스트 할 수 있다. 그리고 약한 결합을 달성할수 있다. 따라서, 책임을 분리함으로써 코드 모듈러를 만들 수 있다.
+- ***BankStatementMgr*** 은 데이터를 가져오기 위해 DAO에게 요청을 위임할 것이다. 그리고 깔끔하게 하기 위해 포매터에게 응답을 넘길 것이다.
+- 이러한 방법으로, 우리는 DAO와 포매터를 독립적으로 테스트 할 수 있다. 그리고 느슨한 결합을 달성할수 있다. 따라서, 책임을 분리함으로써 코드 모듈러를 만들 수 있다.
 
 
 
@@ -76,7 +76,7 @@ S.O.L.I.D 는 Micheal Feathers에 의해 두문자어 이다. Robert Martin (Unc
 
 
 
-## O - Open-Closed principle
+## O - Open-Closed Principle
 
 > 개방 폐쇄 원칙
 
@@ -90,7 +90,7 @@ S.O.L.I.D 는 Micheal Feathers에 의해 두문자어 이다. Robert Martin (Unc
 
 ***PaymentHandler*** 는 결제 요청을 관리한다. ***PaymentProcessor*** 는 모드를 결정하고 올바른 액션으로 그것을 위임한다. 이 코드는 open-closed priciple을 위반하고 있다. 왜냐하면 어떤 기능은 *PaymentProcessor* 와 *PaymentHandler* 두기능 모두 변경을 요구할 수 있기 때문이다. 이 설계는 매번 각각 모든 새로운 결제 모드는 스위치 구문에서 새로운 케이스 블록을 가져올 것이기 때문에 확장성 있지 않다.
 
-코드를 확장성 있게 만들기 위해서는, 우리는 추상*PaymentHandler* 를 만들고 Payment를 다루기 위해 메소드를 정의 해야 한다. 새로운 결제 모드를 다루기 위해서, 우리는 이 기본 코드를 확장 시키고 이것의 handlePayment 메소드를 오버라이드 할 수 있다. 아래에 있는 것이 새로운 코드다.
+코드를 확장성 있게 만들기 위해서는, 우리는 추상 *PaymentHandler* 를 만들고 Payment를 다루기 위해 메소드를 정의 해야 한다. 새로운 결제 모드를 다루기 위해서, 우리는 이 기본 코드를 확장 시키고 이것의 handlePayment 메소드를 오버라이드 할 수 있다. 아래에 있는 것이 새로운 코드다.
 
 ![abstractPaymentHandler](https://miro.medium.com/max/1400/1*06hlzBZyy12m2pUVCMYibQ.png)
 
@@ -108,7 +108,7 @@ S.O.L.I.D 는 Micheal Feathers에 의해 두문자어 이다. Robert Martin (Unc
 
 
 
-## L - Liskov Substitution principle
+## L - Liskov Substitution Principle
 
 > 리스코프 치환 원칙
 
@@ -134,7 +134,7 @@ S.O.L.I.D 는 Micheal Feathers에 의해 두문자어 이다. Robert Martin (Unc
 
 
 
-## I - Interface Segregation
+## I - Interface Segregation Principle
 
 > 인터페이스 분리 원칙
 
@@ -174,7 +174,7 @@ S.O.L.I.D 는 Micheal Feathers에 의해 두문자어 이다. Robert Martin (Unc
 
  
 
-## D- Dependency Inversion
+## D- Dependency Inversion Principle
 
 > 의존관계 역전 원칙
 
@@ -220,6 +220,43 @@ Dependency Inversion에 따르면, 프로그램에서 높은 레벨의 모듈들
 - [Cover photo](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F393220611216597358%2F&psig=AOvVaw1wiqQHCovfFQCcWfgVQYc1&ust=1591728875201000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNiTpO7z8ukCFQAAAAAdAAAAABAF)
 
 
+
+## 요약
+
+- 잘못 설계된 legacy 코드를 수정하는 것은 어렵다.
+
+- 처음에 설계할때 잘 설계하는 것이 중요하다. 이를 위해 5가지 원칙이 존재한다.
+
+- 5가지 원칙
+
+  - Single Responsibility Principle
+
+    - 한번에 한가지 책임
+
+  - Open Closed Principle
+
+    - 확장에 열려있고 수정에 닫혀있어야 함
+    - 새로운 기능이 추가될 경우 클래스는 **확장** 되어야 함
+    - 시스템의 행동을 확장시키도록 만들기 위해서는 **분리** 되어야 함
+    - Switch 문을 하나의 인터페이스 혹은 추상 클래스와 그것을 구현 혹은 상속받는 여러개의 클래스를 이용하여 구현
+      - 이를 이용하여 새로운 조건에 대해 클래스를 생성하고 기존의 클래스는 수정안해도 됨
+
+  - Liskov Substitution Principle
+
+    > https://vandbt.tistory.com/41
+
+    - 같은 클래스를 상속받는 객체는 기존의 코드에 영향을 주지 않고 서로를 대체할 수 있어야 함
+
+  - Interface Segregation Principle
+
+    - 사용하지 않는 메소드는 인터페이스 내에 정의하지 않도록 함
+    - 인터페이스가 너무 클 경우 여러개의 작은 인터페이스로 나누는 방식 추천
+
+  - Dependency Inversion Principle
+
+    - low-level module과 high-level module이 밀접하게 결합되지 않도록 해야 함
+    - low-level module이 변경 되어도 high-level module이 영향을 받지 않도록 low-level에 대한 인터페이스를 정의해주는것도 하나의 방식이 될 수 있음
+    - 느슨하게 결합 되어 있으면 독립적으로 테스트 가능
 
 
 
