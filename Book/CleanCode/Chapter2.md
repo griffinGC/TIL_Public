@@ -7,7 +7,7 @@
 - 의도를 명확하게 함으로써 코드의 가독성을 높힐 수 있다.
   - 함수가 하는 일이 무엇인지 이해하기 쉬워진다.
 
-### Bad Example
+### 안좋은 예시
 
 ```java
 public List<int[]> getThem() {
@@ -21,7 +21,7 @@ public List<int[]> getThem() {
 }
 ```
 
-### Good Example
+### 좋은 예시
 
 ```java
 public List<Cell> getFlaggedCells() {
@@ -45,7 +45,7 @@ public List<Cell> getFlaggedCells() {
 
 ## 의미있게 구분하라
 
-- `불용어-noise word`을 사용하지않는다.
+- `불용어`(noise word)을 사용하지않는다.
   - 자주쓰는 `Info`, `Data`는 `a`와 `an`, `the`와 마찬가지이며 의미를 구분하기 힘든 용어이다.
 
 ## 발음하기 쉬운 이름을 사용하라
@@ -53,7 +53,7 @@ public List<Cell> getFlaggedCells() {
 - 발음하기 어려운 이름은 토론하기 어렵다.
 - 새로운 개발자가 들어오면 일일이 설명을 해주어야 한다.
 
-### Bad Example
+### 안좋은 예시
 
 ```java
 class DtaRcrd102 {
@@ -63,7 +63,7 @@ class DtaRcrd102 {
 };
 ```
 
-### Good Example
+### 좋은 예시
 
 ```java
 class Customer {
@@ -77,13 +77,13 @@ class Customer {
 
 - 너무 많은 정보를 인코딩에 넣으면 이름을 해독하기 어려워진다.
 - 접두어 `I`는 주의를 흐트리고 과도한 정보를 제공한다.
-- 인터페이스 클래스 이름과 구현 클래스 이름 중 하나를 인코딩 해야 한다면 구현 클래스 이름을 인코딩하는 것을 추천한다.
+- 인터페이스 클래스 이름과 구현 클래스 이름 중 하나를 인코딩 해야 한다면 **구현 클래스 이름을 인코딩**하는 것을 추천한다.
   - 추상화된 Class이름을 ShapeFactory로 정의하고 상속받아 구현하는 Class이름을 `ShapeFactoryImp`, `CShapeFactory`으로 정의한다.
 
 ## 자신의 기억력을 자랑하지 마라
 
 - 전문가 프로그래머는 **명료함이 최고** 라는 사실을 이해한다.
-  - 재미난 이름보다는 명료한 이름을 선택하라
+  - 재미난 이름보다는 **명료한 이름**을 선택하라
 
 ## 클래스 이름
 
@@ -116,7 +116,10 @@ Complex fulcrumPoint = Complex.FromRealNumber(23.0); // better
 
 ## 의미있는 맥락을 추가하라
 
-### Bad Example
+- 클래스, 함수, 이름 공간에 넣어 맥락을 부여
+  - 모든 방법 실패시 마지막 수단으로 접두어 붙이기
+
+### 안좋은 예시
 
 - 세 변수의 의미가 불분명하다.
 
@@ -144,9 +147,11 @@ private void printGuessStatistics(char candidate, int count) {
 }
 ```
 
-### Good Example
+### 좋은 예시
 
-- 함수를 쪼개기가 쉬워지므로 알고리즘도 좀 더 명확해진다.
+- 불분명한 세 변수를 GuessStatisticsMessage에 넣음
+  - 변수의 맥락이 명확해짐
+  - 함수를 쪼개기가 쉬워지므로 알고리즘도 좀 더 명확해짐
 
 ```java
 public class GuessStatisticsMessage {
@@ -189,3 +194,8 @@ public class GuessStatisticsMessage {
 }
 ```
 
+## 불필요한 맥락을 없애라
+
+- Gas Station Deluxe 라는 애플리케이션을 만든다고 가정할때 모든 클래스를 GSD로 시작하는 것은 바람직하지 못하다.
+- 의미가 분명하다면 짧은 이름이 좋다.
+- 이름에 불필요한 맥락을 추가하지 않도록 주의한다.
