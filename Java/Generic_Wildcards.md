@@ -134,6 +134,7 @@
       // Integer의 상위 클래스인 Number 와 Object 만 가능
     ```
 
+
 ---
 
 ### Wildcards 캡쳐
@@ -148,14 +149,14 @@
 >
 > https://docs.oracle.com/javase/tutorial/java/generics/types.html
 
-- <T> : type 을 나타냄
-- <E> : element 를 나타냄
+- T : type 을 나타냄
+- E : element 를 나타냄
   - 요소로 해석
   - ArrayList는 요소(오브젝트)들을 저장하기 때문에 E로 선언
   - 리스트에서는 E(element)가 어울림
-- <N> : number
-- <V> : value
-- <S>, <U>, <V> etc : 2nd, 3rd, 4th types
+- N : number
+- V : value
+- S, U, V ..etc : 2nd, 3rd, 4th types
 - 기능적으로는 크게 차이 없음
 - 컬렉션 클래스와 같이 배열 기반으로 되어 있는 곳에서는 **E** 가 어울리고 그 외에는 **T** 가 어울린다.
 - T, E, ? 세가지의 차이는 무엇?
@@ -170,8 +171,8 @@
 
 - 서로 같다고 많이들 사용하지만 실제로는 다름
 - parameterized type을 만들기 위해서 type argument를 넘겨줄때
-  - Foo<T> : type Parameter
-  - Foo<String> : type Argument
+  - `Foo<T>` : type Parameter
+  - `Foo<String>` : type Argument
 - 
 
 
