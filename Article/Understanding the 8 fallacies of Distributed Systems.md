@@ -4,9 +4,7 @@
 
 
 
-20년도 더 전에 Peter Deutsch 와 James Gosling은 분산 컴퓨팅의 8가지 오류를 정의 했다. 이러한 것들은 분산 시스템에 관해 많은 개발자들이 잘못 가정하게 만드는 것들이다. 이러한 것들은 버그들을 수정하는 것을 어렵게 만들면서, 긴 시간을 통해 일반적으로 잘못된 것으로 증명되었다.
-
-
+20년도 더 전에 Peter Deutsch 와 James Gosling은 분산 컴퓨팅의 8가지 오류를 정의 했다. 이러한 것들은 분산 시스템에 관해 많은 개발자들이 잘못 가정한 것들이다. 이러한 것들은 버그들을 수정하는 것을 어렵게 만들면서, 긴 시간을 통해 일반적으로 잘못된 것으로 증명되었다.
 
 8가지 오류는 아래와 같다.
 
@@ -25,30 +23,30 @@
 
 ### 문제
 
-**네트워크를 통한 호출은 실패한다.**
+**네트워크를 통한 호출은 실패할 것이다.**
 
-오늘날 대다수의 시스템들은 다른 시스템들을 호출한다. 3rd 파티 시스템(결제 게이트웨이, 회계 시스템, CRMs)들과 통합하나? 웹 서비스 콜을 하는가? 호출이 실패하면 무슨일이 발생하는가? 만약 데이터를 쿼리한다면, 간단한 재시도만 하면 된다. 그러나 만약 너가 명령어를 전송한다면 무슨일이 발생하는가? 간단한 예제를 살펴보자.
+오늘날 대다수의 시스템들은 다른 시스템들을 호출한다. 3rd party system(결제 게이트웨이, 회계 시스템, CRMs)들과 통합하나? 웹 서비스 콜을 하는가? 호출이 실패하면 무슨일이 발생하는가? 만약 데이터를 쿼리한다면, 간단한 재시도만 하면 된다. 그러나 만약 너가 명령어를 전송한다면 무슨일이 발생하겠는가? 간단한 예제를 살펴보자.
 
 ```java
 var creditCardProcessor = new CreditCardPaymentService();
 creditCardProcessor.Charge(chargeRequest);
 ```
 
-우리가 HTTP 시간 초과 예외를 받는다면 어떤 일이 발생하는가? 만약 서버가 요청을 수행하지 못한다면, 우리는 다시 시도할 것이다. 그러나 요청을 처리 했다면, 우리는 고객들에게 2번 책임을 묻지 않는다는 것을 확실히 할 필요가 있다. 너는 서버를 idempotent(몇번을 수행해도 값이 변하지 않게) 하게 함으로써 이렇게 할 수 있다. 이것은 만약 너가 같은 책임 요청에 대해 10번 호출한다면, 고객은 오직 한번만 책임을 물게 될 것이다. 만약 너가 적절히 이러한 에러들을 처리하지 않는다면, 너의 시스템 비결정적인 것이다. 이러한 경우들을 처리하는 것은 정말 빨리 복잡해 질 수 있다.
+만약 우리가 HTTP 시간 초과 예외를 받는다면 어떤 일이 발생하는가? 만약 서버가 요청을 수행하지 못한다면, 우리는 다시 시도할 것이다. 그러나 요청을 처리 했다면, 우리는 고객들에게 2번 책임을 묻지 않는다는 것을 확실히 할 필요가 있다. 너는 서버를 idempotent(몇번을 수행해도 값이 변하지 않게) 하게 함으로써 이렇게 할 수 있다. 이것은 만약 너가 같은 책임 요청에 대해 10번 호출한다면, 고객은 오직 한번만 책임을 물게 될 것이다. 만약 너가 적절히 이러한 에러들을 처리하지 않는다면, 너의 시스템 비결정적인 것이다. 이러한 경우들을 처리하는 것은 정말 빨리 복잡해 질 수 있다.
 
 ### 해법
 
-만약 네트워크를 통한 호출이 실패한다면, 우리는 무얼 할 수 있을까? 우리는 자동적으로 재시도하도록 할 수 있을 것이다. 큐잉 시스템은 이러한 상황에 매우 좋다. 큐잉 시스템은 보통 store and forward 라고 불리는 패턴을 사용한다. 수신자에게 메세지를 전달하기 전에, 로컬에 메시지를 저장한다. 만약, 수신자가 오프라인이라면, 큐잉 시스템은 메세지 전송을 재시도 한다. [MSMQ](http://www.simpleorientedarchitecture.com/msmq-basics/) 가 이러한 큐잉 시스템의 예제이다.
+만약 네트워크를 통한 호출이 실패한다면, 우리는 무엇을 할 수 있을까? 우리는 자동적으로 재시도하도록 할 수 있을 것이다. 큐잉 시스템은 이러한 상황에 매우 좋다. 큐잉 시스템은 보통 store and forward 라고 불리는 패턴을 사용한다. 수신자에게 메세지를 전달하기 전에, 로컬에 메시지를 저장한다. 만약, 수신자가 오프라인이라면, 큐잉 시스템은 메세지 전송을 재시도 한다. [MSMQ](http://www.simpleorientedarchitecture.com/msmq-basics/) 가 이러한 큐잉 시스템의 예제이다.
 
 그러나 이러한 변경은 너의 시스템의 설계에 큰 영향을 끼칠 것이다. 너가 request/response 모델에서 fire and forget으로 변경하는 것이다. 너는 응답을 더 이상 기다리지 않기 때문에, 너의 시스템을 통해 사용자의 이동경로들을 변경해야 한다. 너는 단지 각각의 웹서비스 호출을 큐 전송으로 변경할 수 없다.
 
 ### 결론
 
-너는 아마 요새 네트워크들은 신뢰할 수 있다고 말할지도 모른다. 그리고 그것들은 그렇다. 그러나 일은 일어난다. 하드웨어와 소프트웨어는 전원 공급, 라우터, 업데이트 실패, 약한 무선 신호, 네트워크 혼잡, 설치류, 상어 등에 고장 날 수 있다. 그래, 상어 : [Google is reinforcing undersea data cables with Kevlar after a series of shark bites](https://www.theguardian.com/technology/2014/aug/14/google-undersea-fibre-optic-cables-shark-attacks).
+너는 아마 요새 네트워크들은 신뢰할 수 있다고 말할지도 모른다. 그리고 그것들은 그렇다. 그러나 일은 일어난다. 하드웨어와 소프트웨어는 전원 공급, 라우터, 업데이트 실패, 약한 무선 신호, 네트워크 혼잡, 설치류, 상어 등에 고장 날 수 있다. 맞다, 상어 : [Google is reinforcing undersea data cables with Kevlar after a series of shark bites](https://www.theguardian.com/technology/2014/aug/14/google-undersea-fibre-optic-cables-shark-attacks).
 
 그리고 거기에도 사람들의 측면도 있다. 사람들은 DDOS 공격을 시작하거나 물리적인 장비들을 파괴할 수 있다.
 
-이게 너가 현재 기술 스택을 버리고 메시징 시스템을 사용해야 한다는 것을 의미할까? 아니다! 너는 너가 해야하는 투자로 가질 실패의 리스크를 저울질 할 필요가 있다. 너는 인프라와 스프트웨어에 투자 함으로써 실패의 기회를 최소화 할 수 있다. 많은 경우에, 실패는 선택사항이다. 그러나 분산시스템을 설계할때 너는 실패를 고려할 필요가 있다.
+이것이 너가 현재 기술 스택을 버리고 메시징 시스템을 사용해야 한다는 것을 의미할까? 아니다! 너는 너가 해야하는 투자로 가질 실패의 리스크를 저울질 할 필요가 있다. 너는 인프라와 스프트웨어에 투자 함으로써 실패의 기회를 최소화 할 수 있다. 많은 경우에, 실패는 선택사항이다. 그러나 분산시스템을 설계할때 너는 실패를 고려할 필요가 있다.
 
 
 
@@ -158,7 +156,7 @@ ORM을 부적절하게 사용하는 것 역시 상처를 남길 수 있다. 나�
 
 #### 보안 마인드셋
 
-시스템을 설계할때 보안을 기억해야 한다. [The top ten vulnerabilities](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project) list [has not changed that much in the last 5 years](http://resources.infosecinstitute.com/owasp-2017-top-10-vs-2013-top-10).  보안 소프트웨어 설계와 일반적인 보함 결함에 대해 코드를 리뷰를 위해 모범 사례를 따라야 한다. 정기적으로 3rd party 라이브러이에 대한 새로운 취약점들을 검색해야 한다. The list of [Common Vulnerabilities and Exposures](https://cve.mitre.org/index.html) 가 도움이 될 수 있다.
+시스템을 설계할때 보안을 기억해야 한다. [The top ten vulnerabilities](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project) list [has not changed that much in the last 5 years](http://resources.infosecinstitute.com/owasp-2017-top-10-vs-2013-top-10).  보안 소프트웨어 설계와 일반적인 보함 결함에 대해 코드를 리뷰를 위해 모범 사례를 따라야 한다. 정기적으로 3rd party 라이브러리에 대한 새로운 취약점들을 검색해야 한다. The list of [Common Vulnerabilities and Exposures](https://cve.mitre.org/index.html) 가 도움이 될 수 있다.
 
 #### 위협적인 모델링
 
@@ -303,10 +301,3 @@ Threat modeling은 시스템에서 가능한 보안 위협을 확인하는 시�
 - [Dr. Harvey and the 8 Fallacies of Distributed Computing](https://www.amazon.com/Dr-Harvey-Fallacies-Distributed-Computing/dp/1367251796) by David Boike
 - [Fallacies of Distributed Computing Explained](http://www.rgoarchitects.com/Files/fallacies.pdf) by Arnon Rotem-Gal-Oz
 - [The Web vs. the Fallacies](http://www.tbray.org/ongoing/When/200x/2009/05/25/HTTP-and-the-Fallacies-of-Distributed-Computing)
-
-
-
-
-
-
-
