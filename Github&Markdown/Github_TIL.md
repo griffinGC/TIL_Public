@@ -225,15 +225,15 @@
   git commit --amend --no-edit --date "Sat 25 Apr 2020 20:20:20 KST"
   ```
   
-## 8. 마지막 커밋 취소
-- commit 취소 및 해당 파일들 staged 상태로 유지
+## 8. 커밋 취소
+- 마지막 commit 취소 및 해당 파일들 staged 상태로 유지
 
   ```zsh
   git reset --soft HEAD^
   ```
 
 - commit 취소 및 해당 파일들 unstaged 상태로 변경
-
+  - `^`은 마지막을 의미
   ```zsh
   git reset --mixed HEAD^
   git reset HEAD^
