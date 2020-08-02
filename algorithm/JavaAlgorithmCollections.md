@@ -14,6 +14,10 @@
     - HashSet, TreeSet
   - **Map** : 키와 값을 쌍으로 저장, 키는 중복 저장 불가
     - HashMap, HashTable, TreeMap, Properties
+- 값의 정렬 순서를 바꿀때는 `Collections.reverseOrder()` 이용하면 됨
+  - 기존의 Comparator의 반대로 정렬 순서를 변경 가능
+  - 이 함수는 Comparator 리턴함
+  - PriorityQueue 같은 곳에서 유용하게 사용 가능
 
 
 
@@ -91,8 +95,9 @@
   - `indeoxOf(값)` : 값을 가지고 있는 인덱스를 리턴해 줌
 
   - `Iterator` 객체를 만들고 사용가능
-    - `Iterator` 이용해서 일치하는 객체 찾으면 `Iterator`의 `remove()` 이용 삭제 가능
-
+    
+- `Iterator` 이용해서 일치하는 객체 찾으면 `Iterator`의 `remove()` 이용 삭제 가능
+    
   - 정렬을 위해서는 `Collctions.sort()` 사용 (오름차순). 내림차순의 경우 `Collections.reverse()`
     - `Collections.sort(Arraylist이름)`
     ```java
@@ -110,7 +115,7 @@
     ArrayList<Boolean> list = new ArrayList(Arrays.asList(new Boolean[n]));
     // FALSE 값으로 지정해서 list에 저장
     Collections.fill(list, Boolean.FALSE);
-    ``` 
+    ```
   - ArrayList 특정 일관된 값 말고 여러 값으로 초기화 하는 방법
     - 그냥 배열 형태로 넣거나 `new` 연산자 이용해서 넣기
     ```java
@@ -130,8 +135,8 @@
     intList.add(1);
     intList.add(2);
     Integer[] arr = intList.toArray(new Integer[intList.size]);
-    ```
-
+  ```
+  
   ### Vector
   
   - `ArrayList` 와 비슷함
@@ -265,6 +270,7 @@
   
 - Map.Entry에 Key와 Value가 존재
 - 순차적인 데이터 지원 안됨
+  
   - 순차적인거 사용하려면 sortedmap, LinkedHashMap은 순서 지원하나 속도가 떨어짐
   
 - Map.Entry
@@ -278,10 +284,12 @@
 
 - 기존에 저장된 key와 동일한 key로 값을 저장하면, 기존의 값이 사라지고 새로운 값이 할당됨
 - Map value에 의한 정렬의 경우 `Comparator` 인터페이스 이용
+  
   > https://cornswrold.tistory.com/114
 - Map의 공통 메소드
 
   - 객체 추가
+    
     - `V put(K key, V value)` : 주어진 키와 값을 추가. 저장되면 값을 리턴
   - 객체 검색
     - `boolean containsKey(Object key)` : 주어진 키가 있는지 여부
@@ -381,7 +389,7 @@
   - 중복을 허용하지 않고, Key 값을 기준으로 정렬을 해주는 자료구조
   - Comparator를 구현해서 정렬 순서 변경 가능 (값에 의한 정렬 가능)
   - 내림차순으로 정렬할때는 `Collections.reverseOrder()` 이용
-    - `TreeMap<String, Integer> reverseMap = new TreeMap<String, Integer>(Collections.reverseOrder());
+    - `TreeMap<String, Integer> reverseMap = new TreeMap<String, Integer>(Collections.reverseOrder());`
   ```java
   // Key에 의한 정렬
   TreeMap<Integer, Integer> treeMap = new TreeMap<>;
@@ -439,9 +447,20 @@
 ## 4. Queue
 
 - FIFO 자료구조에서 사용되는 메소드를 정의함
+
 - 구현한 클래스는 LinkedList, PriorityQueue
+
 - PriorityQueue : 최대 값 또는 최소 값이 우선순위를 갖고 그것이 먼저 나오는 큐
+
 - `Queue<E> 변수명 = new LinkedList<E>();`
+
+- 값 넣을 때 add와 offer의 차이
+
+  > https://goodteacher.tistory.com/112
+
+  - add는 예외 발생 시킨다.
+  - offer는 값을 리턴한다. (실패할 경우 false 리턴)
+
 - 메소드
   - `boolean offer(E e)` : 주어진 객체를 맨 뒤에 넣음
   - `E peek()` : 맨 앞 객체 하나를 가져옴. (큐에서 제거 하지 않음)
@@ -450,6 +469,7 @@
   - `boolean isEmpty()` : 비어 있는지를 판별
 
 ### Deque
+
 > https://opensourcedev.tistory.com/3
 - 앞뒤로 추가하고 뺄 수 있는 자료구조
 - 인터페이스
@@ -473,6 +493,40 @@
   - peekLast()
   - getFirst()
   - getLast()
+
+### PriorityQueue
+
+> https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/PriorityQueue.html
+
+- priority heap 기반의 priority queue
+
+- 순서에 따라 원소들이 정렬됨 혹은 Comparator에 따라 정렬 가능
+
+  - 기본 적으로 맨 앞에 있는 원소는 가장 작은 원소
+
+  - 생성할때 비교 기준인 Comparator 지정 가능
+
+  - 이것을 반대로 내림차순으로 정렬하고 싶다면 `Collections.reverseOrder()` 사용하면 됨
+
+    ```java
+    PriorityQueue<Person> priorityQueue = getPriorityQueue();
+    PriorityQueue<Person> reversedPriorityQueue = new PriorityQueue<Person>(priorityQueue.size(), Collections.reverseOrder());
+    reversedPriorityQueue.addAll(priorityQueue);
+    ```
+
+    
+
+- `null` 원소 허용하지 않음
+
+- 비교 할 수 없는 객체들 허용하지 않음
+
+- 값 가져오고 하는 것은 queue와 동일
+
+- 값 추가
+
+  - add(E e)
+  - offer(E e)
+    - 특정 원소 추가
 
 
 ## 5. Stack
@@ -622,6 +676,7 @@
     })
     ```
   ***Comparable 과 Comparator의 차이는 기본정렬 기준을 구현하느냐 아님 기본정렬 외에 다른 기준으로 정렬하고자 하느냐 이다.***
+  
   #### Comparable의 compareTo의 경우 인자로 하나만 들어오지만, Comparator의 compare는 인자로 2개가 들어온다.
   
 
@@ -635,6 +690,7 @@
 
   > https://wikidocs.net/208
   - Map 비교
+    
     > https://tomining.tistory.com/168
 
 - ArrayList 값 초기화
