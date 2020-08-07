@@ -99,9 +99,11 @@
 - 파라미터, 필드, 지역 변수의 타입 또는 반환 타입 같은 다양한 상황에서 사용 가능
 - 제네릭 메소드 호출에 대한 형식 인수, 제네릭 클래스 인스턴스 생성, 슈퍼타입으로 사용될 수 없음
 
-### Upper Bounded Wildcards (하위 클래스 제한)
+### Upper Bounded Wildcards (상위 클래스 제한)
 
 - 변수의 제한을 완화하기 위해 사용하는 방법
+
+- 지정된 타입과 그 하위 타입만 됨
 
 - List<Integer>, List<Double>, List<Number> 를 인자로 받는 메소드를 만들기 위해 아래와 같이 사용 가능
 
@@ -119,9 +121,9 @@
   1. Object 클래스에서 제공되는 기능만을 사용할 경우
   2. 제너릭 클래스의 메소드들중에 List.size, List.clear 처럼 타입 파라미터에 의존하지 않는 메소드들만 사용할 경우
 
-### Lower Bounded Wildcards
+### Lower Bounded Wildcards (하위 클래스 제한)
 
-- <? super A>
+- `<? super A>`
 
 - upper bounded Wildcards와 반대의미
 
