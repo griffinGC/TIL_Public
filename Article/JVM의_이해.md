@@ -42,17 +42,17 @@
 
 - 4가지의 원칙과 3가지 유형의 클래스 로더가 존재함
 
-  #### 1.1.1) Visibility Principle
+#### 1.1.1) Visibility Principle
 
   - 자식 클래스 로더는 부모 클래스 로더에 의해 로딩된 클래스를 볼 수 있음
   - 부모 클래스 로더는 자식 클래스 로더에 의해 로딩된 클래스를 알 수 없음
 
-  #### 1.1.2) Uniqueness Principle
+#### 1.1.2) Uniqueness Principle
 
   - 부모에 의해 로딩된 클래스는 다시 자식 클래스 로더에 의해 로딩될 수 없음
   - 클래스 로딩 복사가 발생하지 않아야 함
 
-  #### 1.1.3) Delegation Hierarchy Principle
+#### 1.1.3) Delegation Hierarchy Principle
 
   - JVM은 각각의 클래스 로딩 요청에 대해 클래스 로더를 선택하기 위한 위임계층을 따름
 
