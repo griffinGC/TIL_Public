@@ -1,5 +1,7 @@
 # JVM 설계의 이해 [번역 및 요약]
 
+> https://medium.com/platform-engineer/understanding-jvm-architecture-22c0ddf09722
+
 - 자바 생태계를 효과적으로 사용하기 위해서 JVM 설계와 그 아래에서 어떻게 자바가 동작하는지 이해하는 것은 모든 자바 개발자들에게 매우 중요한 배움이다. 이 블로그 포스트 시리즈는 JVM 내부와 자바 생태계 주변 기술들에 대한 토대를 제공해 줄 것이다.
 
 
