@@ -1,9 +1,21 @@
 # JPA
 
 - JPA (Java Persistence API)
+  - 일종의 인터페이스
+    - 구현은 존재하지 않음. 고로, spring-data-jpa, hibernate 같은 것을 사용해야 함
+  - 관계형 데이터 베이스를 사용하는 방식을 정의한 인터페이스
 - MyBatis 보다 좀 더 쉽게 DB에 접근 할 수 있도록 도와줌
 - ORM (Object Relational Mapping)을 위한 자바 표준
+
+  - ORM은 객체와 DB 데이터를 맵핑해줌
+  
+  - 즉, 객체와 테이블을 맵핑시켜줌
+  
+  - 직관적인 코드로 데이터 조작할 수 있음
+
 - 객체와 릴레이션을 맵핑할때 발생하는 불일치를 해결시켜줌
+
+- 개발자가 비지니스 로직에 집중할 수 있고, 객체지향적 개발 가능
 
 
 
@@ -13,11 +25,22 @@
 
   - spring-boot-starter-data-jpa
 
-    - `Spring-Data-JPA -> Hibernate -> JPA`
+    - 추상화 정도
+
+      - `Spring-Data-JPA -> Hibernate -> JPA`
+      
+      ![hierarchyOfJPA](https://suhwan.dev/images/jpa_hibernate_repository/overall_design.png)
+      
+        - hibernate는 jpa의 구현체 중 하나 (jpa를 사용하기 위해 반드시 hibernate를 사용할 필요는 없음)
+	
 
     - jpa를 쉽게 사용하게끔 만들어주는 프레임워크
 
-    - Repository Bean을 자동으로 생성해줌
+    - Spring-data-jpa는 jpa를 한 단계 더 추상화 시킨 Repository 제공
+    
+      - Repository 인터페이스를 구현하고, Repository 인터페이스에 정해진 규칙대로 메소드를 입력하면 사용 
+      
+      - Repository의 구현에서 JPA 사용
 
     - 쿼리  메소드 자동 구현
 
