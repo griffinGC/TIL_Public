@@ -34,3 +34,12 @@
 ## @EqualsAndHashCode
 
 - `equals`와 `hashcode` 를 자동으로 생성해줌
+
+## @Include와 @Exclude
+
+> https://java.ihoney.pe.kr/510
+
+- 이를 이용하여 필드에서 `toString()`, `equals()`, `hashcode()`를 사용할 필드를 지정할 수 있음'
+
+- `(onlyExplicitlyIncluded = true)`를 적어줘야 적용가능
+
