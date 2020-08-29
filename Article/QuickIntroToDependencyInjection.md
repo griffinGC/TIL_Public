@@ -129,7 +129,7 @@ class Car{
 - [Castle Windsor](https://github.com/castleproject/Windsor) (.NET)
 - [Unity](https://www.microsoft.com/en-us/download/details.aspx?id=39944)(.NET)
 
-의존성 주입에 관해 더 배우기 위해서는 아래의 출처들을 확인할 수 있다.
+의존성 주입에 관해 더 배우기 위해서는 아래의 리소스들을 확인할 수 있다.
 
 [**Java Dependency Injection — DI Design Pattern Example Tutorial — JournalDev**](https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial)
 
