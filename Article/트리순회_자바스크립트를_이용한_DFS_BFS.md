@@ -1,5 +1,8 @@
 # 트리 순회 : 자바스크립트를 이용한 넓이우선탐색, 깊이우선탐색
 
+> https://medium.com/swlh/traversing-trees-breadth-first-and-depth-first-searches-with-javascript-316f23c9fe8f
+> 
+
 ![firstTree](https://miro.medium.com/max/562/1*yv20NoCVYhsLbNAHOMGflQ.png)
 
 내가 젋었을때, 가지고 있는 파일이나 폴더들을 무작위로 내 컴퓨터나 외부 하드 드라이브에 흩뿌려 놓곤 했다. 컴퓨터로 대부분의 작업을 하는 고등학생이 되었을때, 파일 구성이 섞여있기 때문에 컴퓨터에서 무언가를 찾기에는 너무 어렵다는 것을 깨달았다.
