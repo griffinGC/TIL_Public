@@ -66,6 +66,10 @@
 
   - List가 인터페이스 이기 때문에 구현 객체를 생성해서 인터페이스 변수에 대입해야함
 
+  - ArrayList는 탐색이 빠름
+  - LinkedList는 입력, 삭제가 빠름
+    - 알고리즘 풀다가 시간초과 나면 생각해볼것
+
   - `List<E> 변수명 = new ArrayList<E>(사이즈);`
 
     `List<E> 변수명 = new ArrayList<E>(30);`
