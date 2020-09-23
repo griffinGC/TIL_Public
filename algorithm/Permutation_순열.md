@@ -122,5 +122,24 @@ public class Permutation {
       }
   }
   ```
+  ## 방문처리를 이용한 순열
+  > https://velog.io/@junhok82/Java%EB%A1%9C-%EC%88%9C%EC%97%B4Permutation-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
+  >
+  - recursive를 이용항 top-down 방식의 이해 순서
+  ```java
+  public static void permutation(int idx){
+      if(idx == R) {
+          return;
+      }
+      for(int i = 0; i<list.length; i++){
+          if(visited[i]) continue;
+
+          resultList[idx] = list[i];
+          visited[i] = true;
+          permutation(idx + 1);
+          visited[i] = false;
+      }
+  }
+  ```
 
   
