@@ -12,7 +12,23 @@
     - n**P**r / r!
     - 조합을 선택하고자 하는 숫자의 팩토리얼로 나눈다.
     - n**C**r = n-1**C**r-1 + n-1**C**r
+
+- 자바 같은 경우에는 직접 구현해야 하지만 파이썬이나 c++의 경우 라이브러리를 사용 가능
+  
+  
+  - 파이썬 라이브러리
     
+    
+    - 1번째 인자로는 list, 2번째 인자로는 뽑을 갯수 (2번째 인자 없으면 자동으로 전체)
+    
+      > https://mong9data.tistory.com/32
+    
+    ```python
+    from itertools import combinations
+    ```
+    
+    
+  
 - n 과 r 이 같은 경우와 r이 0인 경우는 1로 처리하고, 나머지는 재귀로 처리
     ```java
     public int combination(int n, int r ){

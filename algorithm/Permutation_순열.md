@@ -10,19 +10,47 @@
 >   https://blog.encrypted.gg/732
 
 - 재귀를 이용해서 구현
+  
     - 백트래킹
+    
 - 맨 앞에 인자부터 순서대로 교환한다.
+  
   - 처음으로 교환하는 것은 맨 처음 원소와 맨 처음 원소를 비교하는 것 부터 시작
+  
 - 배열은 계속 해서 들고 다니면서 교환되는 배열
+
 - 인자가 서로 교환된 상태라면 그걸 고정시키고 DFS처럼 재귀를 이용하여 depth를 추가하며 깊이 들어가게된다.
   - 그리고 더이상 교환할 수 없는 depth에 도달하게 되면 출력하는 형식이다.
   - 출력한 이후에는 함수를 종료시키고 재귀를 빠져나오며 교환했던 부분을 원상복구 시킨다.
+  
 - 트리 형태로 생각
     ![트리](http://www.eandbsoftware.org/wp-content/uploads/2013/07/NewPermutation.gif)
+    
 - 구현 코드
+  
   - 뒤에서 부터 변경
+  
 - 수학 공식
-    - nPr = n! / (n-r)!
+  
+- nPr = n! / (n-r)!
+  
+- 자바 같은 경우에는 직접 구현해야 하지만 파이썬이나 c++의 경우 라이브러리를 사용 가능
+
+    - itertools 의 permutation
+
+    - 첫번째 인자는 리스트, 두번째 인자는 뽑을 갯수 (두번째 인자 생략시 자동으로 전체)
+    
+        > https://mong9data.tistory.com/32
+        
+        ```python
+        from itertools import combinations, permutations
+        def solution(mylist):
+        print(mylist.sort())
+            answer = list(permutations(mylist, len(mylist)))
+        return answer
+        ```
+        
+        
 
 ```java
 package Search;
