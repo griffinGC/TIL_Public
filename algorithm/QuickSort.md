@@ -152,6 +152,7 @@
        // lt의 값이 rt보다 클 경우, 
        // 즉, 엇갈렸을 경우에는, 작은 값을 발견한 data[rt]와 pivot을 교환
        // 왼쪽에는 작은 값만 존재해야 하기 때문!
+       // 교차되자마자 찾음
        if(lt > rt){
          temp = pivot;
          pivot = data[rt];
@@ -236,6 +237,8 @@
                    System.out.println();
                }
            }
+           // 결국 lt와 rt는 서로 교차하게 됨 -> rt의 위치는 pivot이 들어갈 위치가 됨
+           // 그리고 그 위치는 2번째 파티션의 첫번째 원소 위치가 됨
            // rt 즉, pivot보다 작은 값을 이제 pivot과 바꿔주고 그 값을 리턴해서 pivot값을 기준으로 양쪽으로 배열을 나누어 주어야함!
            System.out.println("return하는 rt의 index & 값! : " +rt + " / " +  data[rt]);
            System.out.println("이것이 pivot이 되어서 이것을 기준으로 다시 나눠지게 됨!");
