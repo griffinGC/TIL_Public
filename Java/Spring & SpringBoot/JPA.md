@@ -12,10 +12,21 @@
   - 즉, 객체와 테이블을 맵핑시켜줌
   
   - 직관적인 코드로 데이터 조작할 수 있음
-
 - 객체와 릴레이션을 맵핑할때 발생하는 불일치를 해결시켜줌
-
 - 개발자가 비지니스 로직에 집중할 수 있고, 객체지향적 개발 가능
+- 엔티티가 영속성 컨텍스트(엔티티를 영구 저장하는 환경)에 포함되어 있냐 아니냐가 중요
+- jpa의 엔티티 매니저가 활성화된 상태로 **트랜젝션 안에서 데이터베이스에서 데이터를 가져오면** 이 데이터는 영속성 컨텍스트가 유지된 상태
+  - 이 상태에서 데이터 값을 변경하면 **트랜잭션이 끝나는 시점에 해당 테이블에 변경분을 반영**
+  - Entity 객체의 값만 변경하면 별도로 Update 쿼리를 날릴 필요 없음 (더티체킹)
+- JPA에서는 트랜잭션이 끝나는 시점에 **변화가 있는 모든 엔티티 객체**를 데이터베이스에 자동으로 반영해줌
+- JPA에서는 엔티티를 조회하면 해당 엔티티의 조회 상태 그대로 **스냅샷**을 만들어 놓음
+  - 트랜잭션이 끝나는 시점에 **스냅샷**과 비교하여 다른점이 있다면 update Query를 데이터베이스로 전달
+  - 상태 변경 검사는 **영속성 컨텍스트가 관리하는 엔티티에만 적용**
+  - 준영속/비영속 상태의 엔티티는 값을 변경해도 데이트베이스에 반영되지 않음
+    - detach된 엔티티 (준영속)
+    - db에 반영되기 전 처음 생성된 엔티티(비영속)
+
+
 
 
 
@@ -49,7 +60,7 @@
       - 스프링 부트가 자동으로 설정해줌
 
       - 여러개의 JPA를 사용할때 주입할 Repository Bean을 직접 지정할 수 있음
-    
+      
         ```java
         @EnableJpaRepositories(basePackageClasses = ResultLogRepo.class)
         ```
@@ -130,7 +141,38 @@ private Long id;
 
 
 
+## @Enumerated(EnumType.STRING)
+
+
+
+
+
 ## 다대다 관계
 
 > https://victorydntmd.tistory.com/208
 
+
+
+## Auditing
+
+- 생성시간 / 수정시간 자동화 하기
+- LocalDate 혹은 LocalDateTime 사용
+- 추상클래스 정의
+  - 사용할 클래스에 일단 JPA Entity 클래스들이 상속할 수 있게 끔 
+    - @MappedSuperClass 붙여주기
+  - 클래스에 Auditing 기능 추가
+    - @EntityListeners(AuditingEntityListener.class)
+  - @CreatedDate
+    - 생성 시간
+  - @LastModifiedDate
+    - 변경 시간
+  - 사용할 Entity객체에 추상 클래스 상속 받도록 설정
+  - 메인 Application클래스에 @EnableAuditing 어노테이션 추가
+
+
+
+## @Query
+
+- 지원하지 않는 쿼리를 사용할때는 Repository클래스에서 메소드 위에 어노테이션 추가하고 쿼리를 직접 입력해서 사용 가능
+
+  `@Query("SELECT p FROM Posts p ORDER BY p.id DESC")`

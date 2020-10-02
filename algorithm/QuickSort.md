@@ -277,6 +277,64 @@
    }
    ```
    
+   ```java
+   package SortAlgorithm;
+   
+   import java.util.Arrays;
+   
+   public class QuickSortAlgoritm2 {
+   
+       private static void quickSort2(int[] arr, int start, int end){
+           if(start < end){
+               // pivot을 기준으로 좌우 정렬
+               int p = partition(arr, start, end);
+               // pivot의 왼쪽 정렬
+               quickSort2(arr, start, p-1);
+               quickSort2(arr, p+1, end);
+               // pivot의 오른쪽 정렬
+           }
+   
+       }
+   
+       // 오른쪽 파티션의 시작 부분을 리턴
+       private static int partition(int[] arr, int start, int end) {
+           if(start > end){
+               return 0;
+           }
+           int lt = start;
+           int rt = end;
+           int pivot = arr[(start + end) / 2];
+           while(lt < rt){
+               while(arr[lt] < pivot && lt < end) lt++;
+               while(arr[rt] > pivot && rt > start) rt--;
+               if(lt < rt){
+                   int temp = arr[lt];
+                   arr[lt] = arr[rt];
+                   arr[rt] = temp;
+               } else {
+                   int temp = arr[rt];
+                   arr[rt] = pivot;
+                   pivot = temp;
+               }
+           }
+           return rt;
+       }
+   
+       public static void main(String[] args) {
+           int[] dataList = { 3, 9, 4, 7, 5, 0, 1, 6, 8, 2 };
+           System.out.println("정렬 전!!");
+           System.out.println(Arrays.toString(dataList));
+   
+           quickSort2(dataList, 0, dataList.length - 1);
+           System.out.println("정렬 된 후!!");
+           for(int data : dataList){
+               System.out.print(data + " ");
+           }
+       }
+   }
+   
+   ```
+   
    
 
 
