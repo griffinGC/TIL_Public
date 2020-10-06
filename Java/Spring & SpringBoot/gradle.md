@@ -7,7 +7,9 @@
 - Groovy를 사용하기 때문에, 동적인 빌드는 Groovy 스크립트로 플러그인을 호출하거나 직접코드를 짜면 됨
   - Congifuration Injection방식을 사용해서 공통 모듈을 상속해서 사용하는 단점을 커버
   - 설정 주입 시 프로젝트의 조건을 체크할 수 있어 프로젝트 별로 주입되는 설정을 다르게 할 수 있음
-- Maven보다 빌드 속도가 빠름
+- Maven보다 빌드와 실행속도가 빠름
+  - Gradle은 캐시를 사용하기 때문에 속도차이가 더 커짐
+- Ant Builder와 그루비 스크립트 기반으로 구축되어 기존 Ant의 역할과 배포 스크립트의 기능을 모두 사용 가능
 
 ## Gradle 버전 변경
 
@@ -21,5 +23,8 @@
 
 ## 참고 자료
 
+> https://gradle.org/maven-vs-gradle/
+>
 > https://bkim.tistory.com/13
 
+> https://hyojun123.github.io/2019/04/18/gradleAndMaven/
