@@ -29,6 +29,24 @@
 
   
 
+## 시간 초과 막는법
+
+> https://bnzn2426.tistory.com/105
+
+- 일반적으로 input()을 사용하면 시간초과가 뜰 수 있기 때문에 input을 아래와 같이 변경해서 사용한다.
+
+  ```python
+  import sys
+  input = sys.stdin.readline
+  ....
+  ...
+  ...
+  ..
+  for _ in range(int(input()))
+  ```
+
+  
+
 
 
 ## 출처

@@ -68,25 +68,26 @@
 
   - ArrayList는 탐색이 빠름
   - LinkedList는 입력, 삭제가 빠름
-    - 알고리즘 풀다가 시간초과 나면 생각해볼것
-
-  - `List<E> 변수명 = new ArrayList<E>(사이즈);`
-
-    `List<E> 변수명 = new ArrayList<E>(30);`
-
-  ### ArrayList
-
+    
+- 알고리즘 풀다가 시간초과 나면 생각해볼것
+    
+- `List<E> 변수명 = new ArrayList<E>(사이즈);`
+  
+  `List<E> 변수명 = new ArrayList<E>(30);`
+  
+### ArrayList
+  
   - 시간 복잡도는 O(n)
   - 배열이 다 차면 배열의 크기를 2배로 늘려줌. 계속 O(n) 유지 가능
-  - 인덱스로 객체 관리, 배열과 다른점은 배열은 사용 중 크기 변경 못하지만, 
-
-    ArrayList는 저장용량을 초과한 객체들이 들어오면 자동적으로 저장용량이 늘어난다.
-
+- 인덱스로 객체 관리, 배열과 다른점은 배열은 사용 중 크기 변경 못하지만, 
+  
+  ArrayList는 저장용량을 초과한 객체들이 들어오면 자동적으로 저장용량이 늘어난다.
+  
   - 추가하면 index가 0부터 차례대로 추가되고, 삭제되면 index가 1씩 당겨짐
   
   - C++의 vector와 비슷
-  
-	- 빈번한 객체의 삽입과 삭제에서는 바람직하지 않음, 인덱스 검색과 마지막 객체 추가 용이
+	
+  - 빈번한 객체의 삽입과 삭제에서는 바람직하지 않음, 인덱스 검색과 마지막 객체 추가 용이
   
   - 빈번한 객체 삽입과 삭제에서는 `LinkedList` 이용하는게 바람직
   
@@ -96,12 +97,12 @@
     - 또는 아래와 같은 형식으로 자료형으로 ArrayList를 넣어서 사용!
       - `ArrayList<ArrayList<String>> doubleMatrix = new ArrayList<ArrayList<String>>();`
   
-  - `indeoxOf(값)` : 값을 가지고 있는 인덱스를 리턴해 줌
-
+- `indeoxOf(값)` : 값을 가지고 있는 인덱스를 리턴해 줌
+  
   - `Iterator` 객체를 만들고 사용가능
-    
+  
 - `Iterator` 이용해서 일치하는 객체 찾으면 `Iterator`의 `remove()` 이용 삭제 가능
-    
+  
   - 정렬을 위해서는 `Collctions.sort()` 사용 (오름차순). 내림차순의 경우 `Collections.reverse()`
     - `Collections.sort(Arraylist이름)`
     ```java
@@ -139,6 +140,7 @@
     intList.add(1);
     intList.add(2);
     Integer[] arr = intList.toArray(new Integer[intList.size]);
+    ```
   ```
   
   ### Vector
@@ -154,6 +156,7 @@
   - 인접 참조를 링크해서 체인처럼 관리
   - 객체를 제거하면 앞뒤 링크만 변경되고 나머지 링크는 변경되지 않음
   - 빈번한 객체 삭제와 삽입에 유리
+  ```
 
 
 
@@ -506,7 +509,7 @@
 
 - 순서에 따라 원소들이 정렬됨 혹은 Comparator에 따라 정렬 가능
 
-  - 기본 적으로 맨 앞에 있는 원소는 가장 작은 원소
+  - 기본 적으로 **맨 앞**에 있는 원소는 **가장 작은 원소**
 
   - 생성할때 비교 기준인 Comparator 지정 가능
 
