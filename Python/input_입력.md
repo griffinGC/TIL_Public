@@ -45,7 +45,7 @@
   for _ in range(int(input()))
   ```
 
-  
+- python3으로 했을때 시간초과 뜨면 pypy3로 돌려보기
 
 
 
