@@ -15,6 +15,10 @@
 
 - 파이썬의 리스트는 다른 언어의 **배열 + 리스트** (동적 배열)
 
+- 1차원 배열
+
+  - `adj = [0 for i in node]`
+  
 - 2차원 배열
 
   - `adj = [[0 for i in node] for j in node]`

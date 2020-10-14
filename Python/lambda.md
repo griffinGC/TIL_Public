@@ -19,6 +19,11 @@
 
 
 
-## filter(함수, 리스트)
+## filter(함수, 리스트 or 딕셔너리)
 
 - 함수에 따라 리스트 값을 필터링 해줌
+
+```python
+over_30_dict = dict(filter(lambda elem:elem[1]>=30, score_dict.items()))
+```
+
