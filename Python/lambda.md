@@ -1,4 +1,4 @@
-# lambda
+# 파이썬 lambda
 
 > https://wikidocs.net/64
 
