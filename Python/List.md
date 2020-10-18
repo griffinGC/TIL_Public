@@ -49,7 +49,8 @@
 - 삭제
 
   - `del` 함수 이용
-  - `del 리스트명[인덱스]`
+    - 인덱스로 삭제
+    - `del 리스트명[인덱스]`
     - 리스트에 있는 요소 삭제되고 한칸씩 앞으로 당겨짐
 
   ```python
@@ -58,7 +59,8 @@
   # a= [1,3]
   ```
 
-  - `remove()` 함수 이용
+  - `리스트.remove(값)` 함수 이용
+    - 값으로 삭제
   - `리스트명.remove(value)`
     - 값중에 제일 처음에 등장하는 요소 삭제 후, 한칸씩 당겨짐
 
@@ -131,38 +133,11 @@
   - 제일 마지막 요소 리턴하고 그 요소는 삭제
 - 큐처럼 사용가능
   - 맨 앞 원소 제거는 `리스트명.pop(0)`
-  - 혹은 `dequeue`를 import해서 사용
+  - 혹은 `deque`를 import해서 사용
 - 요소 갯수 세기
   - `count()` 함수 이용
   - `리스트명.count(값)`
   - 값이 리스트에 몇개 존재하는지 카운트 함
-
-### collections
-
-- 사용하기 전에 `import collections` 를 해야 함
-
-- Counter(리스트명)
-
-  - 딕셔너리 형태로 각각의 요소를 카운트해서 리턴해줌
-
-  ```python
-  >>> import collections
-  >>> list = ['aa', 'bb', 'aa', 'cc', 'bb']
-  >>> collections.Counter(list)
-  Counter({'aa': 2, 'bb': 2, 'cc': 1})
-  >>> ans = collections.Counter(list)
-  >>> ans
-  Counter({'aa': 2, 'bb': 2, 'cc': 1})
-  >>> ans['aa']
-  2
-  ```
-
-  - Counter의 메소드
-    - most_commons()
-      - 인자로 값을 넣을수도 안넣을 수도 있음
-      - 인자 없을 시, 요소들 중 빈도수 높은순으로 가장 많은 것부터 내림 차순으로 `[('값', 개수)]` 출력
-    - update(리스트명)
-      - 기존 리스트에 리스트 추가
 
 
 
