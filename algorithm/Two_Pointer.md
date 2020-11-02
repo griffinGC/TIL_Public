@@ -2,7 +2,9 @@
 
 - 배열의 특정구간을 연속적으로 처리할때 사용하는 기법
 
-- start 와 end를 각각의 위치를 매번 기록하면서 연속된 구간합을 처리하는 것
+- start 와 end를 각각의 위치를 매번 기록하면서 구간을 처리하는 것
+
+- 슬라이딩 윈도우와 비슷한 기법
 
 - 선형시간이 소요됨
 
@@ -46,6 +48,10 @@
 - 백준 2003 
 
   > https://www.acmicpc.net/problem/2003
+  
+- Leet code 15
+
+  > https://leetcode.com/problems/3sum/
 
 
 
