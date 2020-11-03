@@ -68,15 +68,15 @@
 
   - ArrayList는 탐색이 빠름
   - LinkedList는 입력, 삭제가 빠름
-    
+  
 - 알고리즘 풀다가 시간초과 나면 생각해볼것
-    
+  
 - `List<E> 변수명 = new ArrayList<E>(사이즈);`
   
   `List<E> 변수명 = new ArrayList<E>(30);`
   
 ### ArrayList
-  
+
   - 시간 복잡도는 O(n)
   - 배열이 다 차면 배열의 크기를 2배로 늘려줌. 계속 O(n) 유지 가능
 - 인덱스로 객체 관리, 배열과 다른점은 배열은 사용 중 크기 변경 못하지만, 
@@ -517,10 +517,11 @@
 
     ```java
     PriorityQueue<Person> priorityQueue = getPriorityQueue();
-    PriorityQueue<Person> reversedPriorityQueue = new PriorityQueue<Person>(priorityQueue.size(), Collections.reverseOrder());
+    PriorityQueue<Person> reversedPriorityQueue = 
+      new PriorityQueue<Person>(priorityQueue.size(), Collections.reverseOrder());
     reversedPriorityQueue.addAll(priorityQueue);
-    ```
-
+  ```
+    
     
 
 - `null` 원소 허용하지 않음

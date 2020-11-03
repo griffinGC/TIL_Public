@@ -24,7 +24,7 @@
   heapq.heappush(list, 값)
   # 혹은 아래와 같이 튜플을 넣을 수도 있음
   # 값에 따라 데이터 추출됨
-  heapq.heappush(list, (값, 데이터))
+  heapq.heappush(list, (priority, task1, task2,...))
   
   # 값 추출
   heqpq.heqppop(list)
@@ -40,6 +40,15 @@
 - 값 삽입
 
   - heapq.heappush(리스트명, 값)
+
+  - 힙에 넣는 값은 tuple 가능
+
+    > https://docs.python.org/3/library/heapq.html#heapq.heappush
+
+    - 값 비교할때 유용
+    - (priority, task)
+      - priority에 따라 task 비교 가능
+      - 
 
 - 값 추출
 
