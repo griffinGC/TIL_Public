@@ -266,6 +266,7 @@ for i in halfClosedRange {
   ```
 
 - 옵셔널 변수로 선언한 값을 출력하면 `Optional("값")` 형태로 나옴
+  
   - 이것에서 값 만을 가져오기위해 아래의 방법들을 사용 
 
 ### Forced unwrapping
@@ -317,3 +318,160 @@ func convertString(from : String?) {
 let myCarName: String = carName ?? "모델 S" // nil 일경우 default 값 삽입
 ```
 
+
+
+---
+
+## 배열
+
+- 형태
+  - `var 배열명 : [타입명] = [값1, 값2, ...]`
+  - `var 배열명 : Array[타입명] = [값1, 값2, ...]`
+  - `var 변수명 = [타입]()`
+  - `var 배열명 : [타입명] = []`
+- 값 추가
+  - 배열명.append(값)
+  - 배열명 += [값1,값2,...]
+  - 배열명.append(contentsOf: [값1, 값2])
+  - 파이썬 처럼 배열끼리 더할 수 있음
+  - 특정위치 삽입
+    - `배열명.insert(값, at:위치)`
+- 값 개수
+  - 배열명.count
+
+- 값 가져오기
+
+  - 배열명.first 
+
+    - 첫번째 원소를 optional로 가져옴 (nil 일 수도 있기 때문!)
+
+  - index로도 가져올 수 있음
+
+  - index를 range 타입으로 넣을 수 있음
+
+    ```swift
+    let numbers = evenNumbers[0...3] # 0,1,2,3 번째까지 가져옴
+    ```
+
+  - 반복문에서 파이썬처럼 enumerate 같은것 사용가능
+
+    - 배열명.enumerated
+
+    ```swift
+    for (index, num) in evenNumbers.enumerated(){
+      print("\(index), \(num)")
+    }
+    ```
+
+  - 배열명.prefix(N)
+
+    - 앞의 N개 만큼 가져옴
+
+  - 배열명.suffix(N)
+
+    - 뒤의 N개 만큼 가져옴
+
+- 포함여부
+  - 배열명.contains(값)
+
+- 최대, 최소
+  - 배열명.max(), 배열명.min()
+
+- 값 삭제
+  - 배열명.removeAll() 혹은 빈거 대입
+  - 배열명.remove(at:특정위치)
+  - 배열명.dropFirst(숫자)
+    - 숫자의 갯수만큼 앞의 삭제
+    - 실제 배열에는 영향 미치지 않음
+  - 배열명.dropLast(숫자)
+    - 숫자 갯수만큼 뒤의 원소 삭제
+    - 실제 배열에는 영향 미치지 않음
+
+- 값 변경
+  - 일반적으로 변경가능
+  - 구간을 통째로 변경 가능
+    - `배열명[0...2] = [-2, 0, 2]`
+  - 값 swap
+    - `배열명.swapAt(위치1, 위치2)`
+    - 위치1과 위치2의 값 변경
+
+
+
+## 딕셔너리
+
+- 순서 없음
+
+- 키와 value로 구성됨
+
+- 형태
+
+  ```swift
+  var 변수명:[키타입 : 값타입] = [키1 : 값1, 키2 : 값2]
+  var 변수명: Dictionary<키타입 : 값타입> = [키1 : 값1, 키2 : 값2]
+  ```
+
+- 값을 가져올때는 optional binding을 사용하면 좋음
+
+- 딕셔너리.isEmpty
+
+- 딕셔너리.count
+
+- nil로 기존 값을 업데이트하면 딕셔너리에서 사라짐
+
+- 반복문에서 사용
+
+  - 나오는 순서 보장 못함
+
+  ```swift
+  for (name, score) in scoreDic{
+    print("\(name), \(score)")
+  }
+  
+  for key in socreDic.keys{
+    print(key)
+  }
+  ```
+
+
+
+## Set
+
+- 유일한 값을 가지는 타입
+
+- 형태
+
+  ```swift
+  var 변수명 : Set<타입> = [값1, 값2...]
+  // 들어갈때 중복된거 제거되서 들어감
+  ```
+
+- 이름.isEmpty
+
+- 이름.count
+
+- 이름.contains(값)
+
+- 이름.insert(값)
+
+- 이름.remove(값)
+
+
+
+## Closure (클로저)
+
+- 이름이 없는 메서드
+
+  - `in` 키워드는 정의부와 실행부를 분리하기 위함
+
+    > https://academy.realm.io/kr/posts/closure-and-higher-order-functions-of-swift/
+
+  ```swift
+  {(매개변수들) -> 반환타입 in 
+  	실행코드
+  }
+  var multiplyClosure : (Int, Int) -> Int = { (a, b) -> in
+      return a * b}
+  var multiplyClosure : (Int, Int) -> Int = { $0 * $1 }
+  ```
+
+  
