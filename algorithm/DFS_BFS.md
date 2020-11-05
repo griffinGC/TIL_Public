@@ -91,17 +91,16 @@
           System.out.println("end");
       }
 
-
       public static ArrayList<Integer> dfsOrderNormal(ArrayList<ArrayList<Integer>> adj, int n, int start){
           ArrayList<Integer> dfsVisitList = new ArrayList<Integer>();
           Stack<Integer> dfsStack = new Stack<Integer>();
-
+    
           // 방문 리스트를 false로 초기화
           ArrayList<Boolean> visited = new ArrayList<Boolean>(Arrays.asList(new Boolean[n+1]));
           Collections.fill(visited, Boolean.FALSE);
-
+    
           dfsStack.push(start);
-
+    
           while(!dfsStack.empty()){
               Integer current = dfsStack.pop();
               if(visited.get(current) == true){
@@ -122,16 +121,15 @@
           return dfsVisitList;
       }
 
-
       public static void main(String[] args) {
           int N, M, start;
           Scanner sc = new Scanner(System.in);
           N = sc.nextInt();
           M = sc.nextInt();
           start = sc.nextInt();
-
+    
           ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>();
-
+    
           // 개수를 N개가 아닌 N+1로 만드는 이유는 u,v를 0부터가 아닌 1부터
           // 즉, 본래의 숫자에 맞게 넣기 때문
           for(int i = 0; i<=N; i++){
@@ -151,15 +149,14 @@
           for(int i = 0; i<=N; i++){
               Collections.sort(adj.get(i));
           }
-
+    
           ArrayList<Integer> result = dfsOrderNormal(adj, N, start);
           System.out.println("result size : " + result.size());
           printDFSArray(result);
       }
   }
-
-
   ```
+
   
   
   
@@ -256,16 +253,15 @@
 
           bfsQueue.add(start);
 
-
           while(!bfsQueue.isEmpty()){
               int first = bfsQueue.poll();
-
+    
               if(visited.get(first) == true){
                   continue;
               }
               visited.set(first, true);
               bfsVisitList.add(first);
-
+    
               for(int i = 0; i<adj.get(first).size(); i++){
                   int next = adj.get(first).get(i);
                   if(visited.get(next) == false){
@@ -273,23 +269,23 @@
                   }
               }
           }
-
+    
           return bfsVisitList;
       }
-
+    
       public static void main(String[] args) {
           int N, M, start;
           Scanner sc = new Scanner(System.in);
           N = sc.nextInt();
           M = sc.nextInt();
           start = sc.nextInt();
-
+    
           ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>();
-
+    
           for(int i = 0; i<=N; i++){
               adj.add(new ArrayList<Integer>());
           }
-
+    
           for(int i = 0; i<M; i++){
               int u, v;
               u = sc.nextInt();
@@ -297,16 +293,14 @@
               adj.get(u).add(v);
               adj.get(v).add(u);
           }
-
+    
           for(int i = 0; i<=N; i++){
               Collections.sort(adj.get(i));
           }
-
+    
           ArrayList<Integer> result = bfsOrderNormal(adj, N, start);
-
+    
           printBFSArray(result);
-
-
       }
   }
 
