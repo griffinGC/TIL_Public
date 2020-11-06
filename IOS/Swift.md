@@ -457,7 +457,11 @@ let myCarName: String = carName ?? "모델 S" // nil 일경우 default 값 삽�
 
 
 
-## Closure (클로저)
+## Closure (클로저) -> Closure expression 의미
+
+> https://axe-num1.tistory.com/18
+
+- 레퍼런스 타입
 
 - 이름이 없는 메서드
 
@@ -466,7 +470,7 @@ let myCarName: String = carName ?? "모델 S" // nil 일경우 default 값 삽�
     > https://academy.realm.io/kr/posts/closure-and-higher-order-functions-of-swift/
 
   ```swift
-  {(매개변수들) -> 반환타입 in 
+  {(매개변수목록) -> 반환타입 in 
   	실행코드
   }
   var multiplyClosure : (Int, Int) -> Int = { (a, b) -> in
@@ -474,4 +478,14 @@ let myCarName: String = carName ?? "모델 S" // nil 일경우 default 값 삽�
   var multiplyClosure : (Int, Int) -> Int = { $0 * $1 }
   ```
 
-  
+- 인자로 함수를 넘기는 곳에 클로저를 삽입 할 수 있음
+
+- Trailing Closure (후행 클로저)
+
+  - 여러줄의 실행코드가 들어갈때 사용
+  - 코드를 메서드의 바로 뒤에 추가
+  - 메서드가 하나의 클로저만을 인자로 전달할때, 메서드의 소괄호 생략 가능
+
+- 클로저 간소화
+
+  - 
