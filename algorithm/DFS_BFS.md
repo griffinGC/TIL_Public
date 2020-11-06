@@ -74,6 +74,7 @@
     }
   }
   ```
+  
 - Java 구현코드
   ```java
   package DFSandBFS;
@@ -157,9 +158,19 @@
   }
   ```
 
-  
-  
-  
+- Python
+
+  - 재귀 이용한 방식의 DFS
+
+  ```python
+  def dfs_recursive(v, discovered=[]):
+    discovered.append(v)
+    for w in graph[v]:
+      if not w in discovered:
+        discovered = dfs_recursive(w, discovered)
+    return discovered
+  ```
+
   
 
 ## BFS (Breadth First Search)
