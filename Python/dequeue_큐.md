@@ -13,6 +13,3 @@
   - `이름.popleft()`
 - 맨 뒤 값 삭제
   - `이름.pop()`
-- PriorityQueue도 있지만 내부는 heapq를 사용함
-  - PriorityQueue는 스레드 세이프 -> locking으로 인해 락킹오버헤드 발생
-  - heapq는 스레드 세이프 보장하지 못함
