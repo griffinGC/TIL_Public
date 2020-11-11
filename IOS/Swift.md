@@ -261,7 +261,7 @@ for i in halfClosedRange {
   - 없을때는 nil 할당 가능
 
   ```swift
-  let num = Int("10") // type은 Int? -> 변환이 될 수 도 안될 수도 있기 때문
+  let num = Int("10") // type은 `Int?` -> 변환이 될 수 도 안될 수도 있기 때문
   // 문자열이 변환이 가능 할 수도 없을 수도 있기 때문
   ```
 
@@ -337,13 +337,26 @@ let myCarName: String = carName ?? "모델 S" // nil 일경우 default 값 삽�
   - 특정위치 삽입
     - `배열명.insert(값, at:위치)`
 - 값 개수
-  - 배열명.count
-
+  
+- 배열명.count
+  
 - 값 가져오기
 
   - 배열명.first 
 
     - 첫번째 원소를 optional로 가져옴 (nil 일 수도 있기 때문!)
+
+    - 여기에 뒤에 클로저 사용가능
+
+      ```swift
+          let lectureName = lectures.first {(lec) -> Bool in
+              return lec.lecturer == lecturer
+          }?.className
+      ```
+
+      
+
+      
 
   - index로도 가져올 수 있음
 
@@ -372,11 +385,13 @@ let myCarName: String = carName ?? "모델 S" // nil 일경우 default 값 삽�
     - 뒤의 N개 만큼 가져옴
 
 - 포함여부
-  - 배열명.contains(값)
-
+  
+- 배열명.contains(값)
+  
 - 최대, 최소
-  - 배열명.max(), 배열명.min()
-
+  
+- 배열명.max(), 배열명.min()
+  
 - 값 삭제
   - 배열명.removeAll() 혹은 빈거 대입
   - 배열명.remove(at:특정위치)
@@ -476,6 +491,13 @@ let myCarName: String = carName ?? "모델 S" // nil 일경우 default 값 삽�
   var multiplyClosure : (Int, Int) -> Int = { (a, b) -> in
       return a * b}
   var multiplyClosure : (Int, Int) -> Int = { $0 * $1 }
+  
+  
+  // closure 이용
+  // 리스트에 클로저 사용해서 리턴 (옵셔널로 리턴됨)
+  let lectureName = lectures.first {(lec) -> Bool in
+  	return lec.lecturer == lecturer
+  }?.className ?? ""
   ```
 
 - 인자로 함수를 넘기는 곳에 클로저를 삽입 할 수 있음
@@ -488,4 +510,134 @@ let myCarName: String = carName ?? "모델 S" // nil 일경우 default 값 삽�
 
 - 클로저 간소화
 
-  - 
+
+
+## 구조체와 클래스
+
+### 구조체 (Structure)
+
+- Stack에 생성됨
+- value type
+- 복사 가능
+- 구조체를 a라는 변수에 할당하고 a를 b라는 변수에 할당하면 b라는 변수에도 새로운 구조체가 복사되서 할당됨 (공유하는 것 아님)
+
+```swift
+struct Store{
+  let x: Int
+  let y: Int
+  let name: String
+  
+  func isDeliverable(userLoc: (x: Int, y: Int)) -> Bool{
+    
+  }
+}
+```
+
+### 프로토콜
+
+- 구현되어야 하는 메소드나 프로퍼티
+
+- 구조체, 클래스, 열거형에서 프로토콜 사용 가능
+
+- 예를 들면 서비스를 이용해야 할 때, 해야할일들의 목록
+
+- CustomStringConvertible 프로토콜의 description
+
+  - 그것에 대해 설명하는 글
+  - 출력하면 자동적으로 description이 출력됨
+
+  ```swift
+  struct Store: CustomStringConvertible{
+    var description:String{
+      return "title \(title)"
+    }
+    ...
+  }
+  ```
+
+- Conforming
+
+  - 해야할 일을 코드로 구현하는 작업
+
+- 고급 프로그래밍을 위해서는 자주 사용됨
+
+
+
+### 클래스 (Class)
+
+- Heap에 생성됨
+- reference type
+- 공유 (복사 아님)
+- 구조체를 a라는 변수에 할당하고 a를 b라는 변수에 할당하면 b라는 변수와 a는 서로 같은 객체를 공유 (복사하는 것 아님)
+
+
+
+### 프로퍼티
+
+- stored property
+
+  - 값을 할당해서 가지고 있는 변수
+
+- computed property
+
+  - 값을 계산해서 가지고 있는 변수
+  - 값을 직접 저장하지 않고 저장된 정보를 이용해서 가공 혹은 저장할때 사용
+  - 접근할때 마다 다시 계산 됨
+  - 프로퍼티간의 관계를 셋팅하게 하려면 getter(get), setter(set) 이용해서  넣어줘야함
+
+  ```swift
+  
+  ```
+
+  
+
+- type property
+
+  - 생성된 인스턴스와 상관 없이 만들 수 있음
+  - 스트럭트의 타입 자체의 속성을 정의하고 싶을때 사용
+  - static 이용
+
+- 프로퍼티가 바뀐 시점을 알 수 있음
+  - stored property의 경우 `didSet{...}` 이용
+    - 값이 셋팅되고 나서 알 수 있음
+  - 값이 세팅되기전에는 `willSet{...}` 이용
+  - willSet -> didSet 수행
+    - 시점이 willSet이 먼저
+- lazy property
+  - 해당프로퍼티가 접근될때 그제서야 실행되는 것
+  - lazy키워드를 변수에 붙이고, 변수 뒤에 할당하는것으로는 코드 블럭 `{}`
+  - 최적화 하기 위해서 사용
+    - 지금 굳이 알필요 없는 것들은 미뤄서, 실제로 사용자가 접근할때 사용하기 위해서 사용
+    - 모든 사용자가 접근 할 필요가 없는 경우에 사용
+- computed property 대신 메서드를 사용하면 안되는지?
+  - 둘 다 가능
+  - property
+    - 값을 하나 반환
+  - method
+    - 작업 수행
+  - method가 값을 리턴하는 작업을 한다면
+  - 조건에 따라 나눠봄 
+    - setter가 필요하다면 computed property
+    - setter가 필요 없음
+      - 계산이 많이 필요? 혹은 DB 접근 필요?
+        - yes -> method
+        - no -> computed property
+
+### 메서드
+
+- 메서드가 인스턴스 내부의 stored 프로퍼티를 변경시키는 경우에는 메서드에 `mutating` 이라는 키워드 붙여야 함
+
+- type method도 존재
+
+- 메서드를 나중에 추가하고 싶을경우
+
+  - extension 키워드 사용
+
+    ```swift
+    
+    ```
+
+    - 필요한 메서드 추가 가능
+    - 새로운 메서드를 기존의 클래스에 넣는건 정답이 아닐 수 있다. 
+      - 기존 Int 클래스 같은데에도 추가 가능
+      - extension 사용 추천
