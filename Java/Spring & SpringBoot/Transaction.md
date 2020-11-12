@@ -6,7 +6,7 @@
 
 - `@Transactional`
 
-  - Service layer에서 사용
+  - Service layer에서 각각의 메서드 선언부 위에 사용
 
   - 이 어노테이션 붙이면 내부의 비지니스로직중 하나라도 에러나면 모두 rollback 처리되어서 DB에 반영 안됨
 
@@ -40,4 +40,5 @@
     
 
 - readOnly = true 옵션
+  
   - 트랜잭션 범위는 유지하되 조회 기능만 남겨두어, **조회 속도가 개선됨**
