@@ -7,8 +7,10 @@
 - `@Transactional`
 
   - Service layer에서 각각의 메서드 선언부 위에 사용
-
   - 이 어노테이션 붙이면 내부의 비지니스로직중 하나라도 에러나면 모두 rollback 처리되어서 DB에 반영 안됨
+  - 이 어노테이션만 붙이면 기본적으로 `readyOnly=true` 옵션 붙음
+  - 조회만 하는것 아니면 옵션으로 `readOnly=false` 붙이기
+    - `@Transactional(readOnly=false)`
 
 - ACID 충족 시켜야함
 
