@@ -61,9 +61,6 @@ function (param x){
 - 구현방식은 Top-Down, Down-Top 2가지 방식 존재
   1. Top-Down
      - 재귀 함수로 파라미터에 대한 해의 계산 과정 구현
-     - 
-
-
 
 ## 출처
 
