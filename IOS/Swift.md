@@ -330,9 +330,9 @@ let myCarName: String = carName ?? "모델 S" // nil 일경우 default 값 삽�
   - `var 변수명 = [타입]()`
   - `var 배열명 : [타입명] = []`
 - 값 추가
-  - 배열명.append(값)
-  - 배열명 += [값1,값2,...]
-  - 배열명.append(contentsOf: [값1, 값2])
+  - `배열명.append(값)`
+  - `배열명 += [값1,값2,...]`
+  - `배열명.append(contentsOf: [값1, 값2])`
   - 파이썬 처럼 배열끼리 더할 수 있음
   - 특정위치 삽입
     - `배열명.insert(값, at:위치)`
@@ -517,6 +517,10 @@ let myCarName: String = carName ?? "모델 S" // nil 일경우 default 값 삽�
 ### 구조체 (Structure)
 
 - Stack에 생성됨
+  - 속도 빠름
+  - 당장 처리해야 하는것은 스택에서 사용
+  - 효율적이고 빠름 
+  - 자동으로 data 제거
 - value type
 - 복사 가능
 - 구조체를 a라는 변수에 할당하고 a를 b라는 변수에 할당하면 b라는 변수에도 새로운 구조체가 복사되서 할당됨 (공유하는 것 아님)
@@ -533,13 +537,17 @@ struct Store{
 }
 ```
 
-### 프로토콜
+### 프로토콜 (protocol)
+
+> https://baked-corn.tistory.com/26
 
 - 구현되어야 하는 메소드나 프로퍼티
 
 - 구조체, 클래스, 열거형에서 프로토콜 사용 가능
 
 - 예를 들면 서비스를 이용해야 할 때, 해야할일들의 목록
+
+  - **반드시 포함해야 하는 메서드와 프로퍼티**
 
 - CustomStringConvertible 프로토콜의 description
 
@@ -561,14 +569,30 @@ struct Store{
 
 - 고급 프로그래밍을 위해서는 자주 사용됨
 
+- 다중 상속은 지원 안하나 다중 채택은 지원함
+
+  > https://baked-corn.tistory.com/26
+
+- 약간 느낌상 인터페이스 같음
+
+  - 단, 자바의 경우 초기값 설정 가능하나, 프로토콜은 불가
+  - 스위프트의 경우 프로토콜이라도 `optional` 이라는 키워드를 함수 앞에다가 붙이면 모두 구현할 필요는 없음
+
 
 
 ### 클래스 (Class)
 
 - Heap에 생성됨
+  - 느림
+  - 동적으로 메모리 할당 가능
+  - 자동으로 데이터 제가 안함
+    - 개발자가 신경써야하는데 이것을 xcode 같은데서 해줌
+  - 클래스 인스턴스는 Heap에 생성되나 그 클래스 인스턴스를 저장하는 변수는 스택에 생성됨
+    - 클래스 인스턴스를 저장하는 변수는 주소를 가지고 있음
 - reference type
 - 공유 (복사 아님)
 - 구조체를 a라는 변수에 할당하고 a를 b라는 변수에 할당하면 b라는 변수와 a는 서로 같은 객체를 공유 (복사하는 것 아님)
+- 클래스 메소드에서는 `mutating` 키워드 사용안함
 
 
 
@@ -578,15 +602,39 @@ struct Store{
 
   - 값을 할당해서 가지고 있는 변수
 
+  ```swift
+  let name: String
+  ```
+
+  
+
 - computed property
 
   - 값을 계산해서 가지고 있는 변수
-  - 값을 직접 저장하지 않고 저장된 정보를 이용해서 가공 혹은 저장할때 사용
+  - 값을 직접 저장하지 않고 저장된 정보를 이용해`서 가공 혹은 저장할때 사용
   - 접근할때 마다 다시 계산 됨
+  - 원래는 readOnly (getter)
   - 프로퍼티간의 관계를 셋팅하게 하려면 getter(get), setter(set) 이용해서  넣어줘야함
 
   ```swift
+  var description: String? {
+    return "Title: \(name), Teacher: \(instructor)"
+  }
   
+  var fullName: String? {
+    get{
+      return "\(firstName) \(lastName)"
+    }
+    
+    set {
+      if let firstName = newValue.components(separatedBy: " ").first {
+        self.firstName = firstName
+      }
+      if let lastName = newValue.components(separatedBy: " ").last {
+        self.lastName = lastName
+      }
+    }
+  }
   ```
 
   
@@ -597,18 +645,75 @@ struct Store{
   - 스트럭트의 타입 자체의 속성을 정의하고 싶을때 사용
   - static 이용
 
+  ```swift
+  struct Person {
+    ...
+    static let isAlien: Bool = false
+  }
+  ```
+
+  
+
 - 프로퍼티가 바뀐 시점을 알 수 있음
   - stored property의 경우 `didSet{...}` 이용
+    
     - 값이 셋팅되고 나서 알 수 있음
+    
+    ```swift
+    struct Person {
+      var firstName: String{
+        // 바뀌는 시점에 출력
+        didSet{
+          print("didSet: \(oldValue) ---> \(firstName)")
+        }
+      }
+    }
+    ```
+    
   - 값이 세팅되기전에는 `willSet{...}` 이용
+  
+    - didSet 직전에 수행됨
+  
+    ```swift
+    struct Person {
+      var firstName: String{
+        willSet{
+          print("didSet: \(oldValue) ---> \(firstName)")
+        }
+      }
+    }
+    ```
+  
   - willSet -> didSet 수행
+  
     - 시점이 willSet이 먼저
+  
+  
+  
+  
+  
 - lazy property
   - 해당프로퍼티가 접근될때 그제서야 실행되는 것
   - lazy키워드를 변수에 붙이고, 변수 뒤에 할당하는것으로는 코드 블럭 `{}`
   - 최적화 하기 위해서 사용
     - 지금 굳이 알필요 없는 것들은 미뤄서, 실제로 사용자가 접근할때 사용하기 위해서 사용
     - 모든 사용자가 접근 할 필요가 없는 경우에 사용
+  
+  ```swift
+  struct Person {
+    ...
+    lazy var isPopular: Bool = {
+      if fullName == "Jay Park" {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
+  ```
+  
+  
+  
 - computed property 대신 메서드를 사용하면 안되는지?
   - 둘 다 가능
   - property
@@ -625,7 +730,7 @@ struct Store{
 
 ### 메서드
 
-- 메서드가 인스턴스 내부의 stored 프로퍼티를 변경시키는 경우에는 메서드에 `mutating` 이라는 키워드 붙여야 함
+- 구조체 메서드가 인스턴스 내부의 stored 프로퍼티를 변경시키는 경우에는 메서드에 `mutating` 이라는 키워드 붙여야 함
 
 - type method도 존재
 
@@ -641,3 +746,55 @@ struct Store{
     - 새로운 메서드를 기존의 클래스에 넣는건 정답이 아닐 수 있다. 
       - 기존 Int 클래스 같은데에도 추가 가능
       - extension 사용 추천
+
+
+
+## 구조체를 써야 할 때
+
+- 두 object를 "같다, 다르다"로 비교해야하는 경우
+
+  - 데이터 자체를 비교해야할 경우
+
+    ```swift
+    let point1 = Point(x: 3, y: 5)
+    let point2 = Point(x: 3, y: 5)
+    ```
+
+- copy된 객체들이 독립적인 상태를 가져야 하는 경우
+
+  ```swift
+  var myCar = Car(owner: "JayZ")
+  var yourCar = myCar //
+  yourCar.owner = "Jennifer"
+  
+  myCar.owner // "JayZ"
+  yourCar.owner // "Jennifer"
+  ```
+
+- 코드에서 오브젝트의 데이터를 **여러 스레드**에 걸쳐서 사용할 경우
+
+  - 멀티 스레드 사용시 구조체 사용
+  - value type의 경우 인스턴스가 해당 인스턴스가 카피된 유니크 인스턴스, 그래서 여러 스레드에 걸쳐서 사용될때 안전하게 사용될 수 있음
+    - 한 객체에 여러 스레드가 동시에 접근했을때는 잠재적인 위험이 있음. 그런데 value 타입을 쓰면 각 인스턴스가 유니크한 인스턴스여서 이러한 위험을 피할 수 있음
+
+## 클래스를 써야 할 때
+
+- 두 object의 인스턴스 자체가 같음을 확인해야 할 때
+
+- 하나의 객체가 필요하고, 여러 대상에 의해 접근되고 변경이 필요한 경우
+
+  - UI application 객체가 있을때, 앱내의 여러 오브젝트에 의해서 접근이 될 필요가 있을 때
+
+- Swift에서는 일단 Struct로 작성하고 필요할때 class로 변경 할 것
+
+  - 언어가 struct를 많이 사용함
+
+  > https://developer.apple.com/swift/blog/?id=10
+
+- 다중 상속 지원 안함, 그러나 다중 상속과 유사한 기능인 프로토콜의 다중 채택 제공
+
+- 상속이 필요하거나 데이터가 캡슐화된 하나의 인스턴스가 필요할때 사용
+
+- 인스턴스가 소멸될 때 리소스를 확보하기 위한 작업이 필요한 때 사용
+
+- 클래스만이 상속과 소멸 지원, 런타임에서 클래스 타입을 식별 가능
