@@ -66,6 +66,7 @@
   1. constraint 삭제
   2. 컨트롤(control) 누르고 원하는 부모뷰와 관계 정의
      - 쉬프트 누르면서 하면 동시에 여러개 가능
+     - 혹은 오른쪽 아래 constraint 추가 버튼 사용해서 Add New Constraints에서 모두 0으로 줌
   3. 사이즈, 위치 설정
 
   - 정보가 하나라도 빠지면 빨간색이 뜸
@@ -83,3 +84,19 @@
 ### Display Name
 
 - 앱 이름 변경
+
+
+
+## IBAction, IBOutlet
+
+> https://etst.tistory.com/74
+
+- 스토리 보드와의 연결고리 역할
+- 변수나 함수를 정의할때 앞에 `@IBAction` 혹은 `@IBOutlet` 키워드를 붙이면 버튼이나 레이블 같은 컴포넌트와 연결 가능
+- IB는 Interface Builder를 뜻함
+- @IBAction
+  - 이벤트가 일어난 경우 호출되는 액션 정의
+  - 입력이 들어왔을때 어떤 행동을 할지를 나타내는 것
+- @IBOutlet
+  - 값에 접근하기 위한 변수
+  - 데이터를 가져오는 것
