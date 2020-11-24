@@ -523,7 +523,7 @@ let myCarName: String = carName ?? "모델 S" // nil 일경우 default 값 삽�
 
 ### 구조체 (Structure)
 
-- Stack에 생성됨
+- **Stack**에 생성됨
   - 속도 빠름
   - 당장 처리해야 하는것은 스택에서 사용
   - 효율적이고 빠름 
@@ -589,7 +589,7 @@ struct Store{
 
 ### 클래스 (Class)
 
-- Heap에 생성됨
+- **Heap**에 생성됨
   - 느림
   - 동적으로 메모리 할당 가능
   - 자동으로 데이터 제가 안함
