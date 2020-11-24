@@ -1,6 +1,8 @@
 # LIS (Longest Increasing Subsequence)
 
 > https://jason9319.tistory.com/113
+>
+> https://shoark7.github.io/programming/algorithm/3-LIS-algorithms
 
 - 가장 긴 증가하는 수열 찾기
   - 수열에서 몇개의 원소를 삭제하였을때 나오는 최장 긴 수열
@@ -14,8 +16,11 @@
 ```java
 for(int i = 0; i < n ; i++){
   if(dp[i] == 0) dp[i] = 1;
+  // 계속 0부터 다시 시작
   for(int j = 0; j < i; j++){
     if(arr[i] > arr[j]){
+      // 이전것이 아닌 처음부터 조회 함
+      // dp[i] < dp[j] + 1 을 넣어주는 이유는 가장 최근에 나온 것이 이전에 나온 작은 것보다 값이 작았을 경우 무시하고 최고로 작았을때를 고려하기 위함
       if(dp[i] < dp[j] + 1) {
         dp[i] = dp[j] + 1
       }
