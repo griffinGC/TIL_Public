@@ -1,6 +1,6 @@
-# Mac에서  MySql 사용 
+# MySql 설치
 
-1. brew 이용 설치
+1. brew 이용 설치 (MAC)
 
    - `brew update`를 통해 최신 버전으로 업데이트 해준다.
 
@@ -63,3 +63,14 @@
 ### 테이블 생성 및 데이터 삽입 테스트
 
 > https://futurists.tistory.com/11
+
+```sql
+CREATE TABLE professor
+(
+     _id INT PRIMARY KEY AUTO_INCREMENT,
+     name VARCHAR(32) NOT NULL,
+     belong VARCHAR(12) DEFAULT 'FOO',
+     phone VARCHAR(12)
+)
+```
+
