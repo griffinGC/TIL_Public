@@ -8,5 +8,6 @@ services:
     ports:
       - 3307:3306
     volumes:
-      - ~/cmy/mysql:/var/lib/mysql
+      - /home/griffin/cmy/mysql_test:/var/lib/mysql
+      # - ./test_lib:/var/lib/mysql
 
