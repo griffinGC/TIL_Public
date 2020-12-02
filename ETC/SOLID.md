@@ -12,11 +12,11 @@
 
 - 5가지 원칙
 
-  - Single Responsibility Principle
+  - Single Responsibility Principle (SRP)
 
     - 한번에 한가지 책임
 
-  - Open Closed Principle
+  - Open Closed Principle (OCP)
 
     - 확장에 열려있고 수정에 닫혀있어야 함
     - 새로운 기능이 추가될 경우 클래스는 **확장** 되어야 함
