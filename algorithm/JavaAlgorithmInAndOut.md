@@ -326,6 +326,7 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
   String str = String.valueOf(ary);
   ```
 - ***값이 null 일 경우, `.toString()` 함수의 경우 null pointer exception을 발생시키지만, `.valueOf()` 는 null을 리턴***
+  
   - null 값이 들어갈 경우가 생기면 `.valueOf()` 를 사용하는 것이 좋다.
 ### 12. 문자열 포함 여부 검색
 - `contains()`, `indexOf()`, `matches()` 존재
@@ -375,7 +376,9 @@ BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
   >
   > - https://deftkang.tistory.com/55
 - 문자 -> 문자열 변환
-  > https://kutar37.tistory.com/entry/%EC%9E%90%EB%B0%94-String%EC%9D%84-Char%EB%A1%9C-Char%EB%A5%BC-String%EC%9C%BC%EB%A1%9C-%EB%B3%80%ED%99%98%ED%95%98%EA%B8%B0
-
+  
+> https://kutar37.tistory.com/entry/%EC%9E%90%EB%B0%94-String%EC%9D%84-Char%EB%A1%9C-Char%EB%A5%BC-String%EC%9C%BC%EB%A1%9C-%EB%B3%80%ED%99%98%ED%95%98%EA%B8%B0
+  
 - StringBuilder
+  
   > https://www.youtube.com/watch?v=gc7bo5_bxdA
