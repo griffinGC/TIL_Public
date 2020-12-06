@@ -8,7 +8,7 @@
   - `이름.append(값)`
 - 맨 앞 삽입
   - `이름.appendleft(값)`
-- q = dequeue()
+- q = deque()
 - 맨 앞 값 삭제
   - `이름.popleft()`
 - 맨 뒤 값 삭제
