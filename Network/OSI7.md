@@ -1,5 +1,11 @@
 # OSI 7 Layer
 
+## 계층을 나누는 목적
+
+- 통신이 일어나는 과정을 단계별로 파악 가능
+- 에러 발생시 원인 파악 가능
+  - **트러블 슈팅 용이**
+
 ![osi7](https://1.bp.blogspot.com/-wtMZmsd3Wdw/W5Y8_ZlJzvI/AAAAAAAAAew/70nsmVdODV47cWgVAVOqFA6_0uGo0LunACLcBGAs/s640/%25EA%25B7%25B8%25EB%25A6%25BC4.PNG)
 
 ![osi7_2](https://media.vlpt.us/images/xldksps4/post/980fe5d0-fcfe-4395-9148-0a110475ba26/image.png)

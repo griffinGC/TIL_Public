@@ -63,7 +63,23 @@
 
 
 
-### (6) 그 외 명령어
+### (6) 원격 저장소에서 코드 가져오기
+
+> https://backlog.com/git-tutorial/kr/stepup/stepup3_2.html
+
+#### `git pull`
+
+- 원격 저장소에서 코드를 로컬로 가져오고 merge
+
+#### `git fetch`
+
+- 원격 저장소에서 코드를 로컬로 가져옴
+  - 로컬에서 merge 하지 않음
+  - 이름없는 브랜치로 로컬에 가져오게 됨
+
+
+
+### (7) 그 외 명령어
 
 - 현재 `git` 의 상태를 조회 `git status`
 
