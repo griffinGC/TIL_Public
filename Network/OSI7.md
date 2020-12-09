@@ -13,15 +13,22 @@
     - 네트워크를 통한 실질적인 전송을 위하여 적절한 크기로 분리한 것
 - Network (네트워크 계층)
   - IP Packet (패킷)
+    
     - 분할된 세그먼트에 목적지까지의 전달을 위해 IP Header (Source IP, Destination IP)를 붙인 형태
+    
+    - IP Datagram 이라고도 부름
+    
+    - 헤더와 데이터로 구성됨
+    
+      > https://m.blog.naver.com/PostView.nhn?blogId=printf7&logNo=10170430212&proxyReferer=https:%2F%2Fwww.google.com%2F
 - Data Link (링크 계층)
   - Ethernet Frame (프레임)
-    - 패킷에 Ethernet Header(맥 어드레스 포함)와 FCS를 위한 Trailer가 붙은 메세지
+    - 패킷에 **Ethernet Header**(맥 어드레스 포함)와 FCS를 위한 **Trailer**가 붙은 메세지
     - Ethernet header
       - 목적지 MAC 주소(6 Byte), 출발지 MAC 주소(6 Byte), 유형(2 Byte)
         - 유형은 프로토콜의 종류를 뜻함
           - IPv4, ARP, RARP, SNMP over Ethernet, IPv6
-    - FCS (Frame Check Sequence)
+    - **FCS** (Frame Check Sequence)
       - 데이터 전송 도중 오류가 발생하는지 확인하기 위한 용도
 - 기본적으로 데이터 전송하는 단위를 **패킷** 이라고 통칭하여 부름
   1. Application 계층에서 HTTP 패킷 생성 (A라고 부름)

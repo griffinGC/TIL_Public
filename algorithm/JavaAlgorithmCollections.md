@@ -63,9 +63,12 @@
 - List 구현 클래스
 
   - ArrayList, Vector, LinkedList
-
+  - vector와 arraylist의 차이
+      - vector가 동기화 된다면 arraylist는 동기화 되지 않은 상태
+    - vector는 한번에 하나의 스레드만 접근 가능, arraylist는 동시에 여러 스레드가 접근 가능
+      - arraylist는 동기화 되지 않았기 때문에 vector보다 속도가 빠름
+        - **멀티 스레드 환경이 아니라면 arraylist를 사용하는것이 좋음**
   - List가 인터페이스 이기 때문에 구현 객체를 생성해서 인터페이스 변수에 대입해야함
-
   - ArrayList는 탐색이 빠름
   - LinkedList는 입력, 삭제가 빠름
   
@@ -520,9 +523,11 @@
     PriorityQueue<Person> reversedPriorityQueue = 
       new PriorityQueue<Person>(priorityQueue.size(), Collections.reverseOrder());
     reversedPriorityQueue.addAll(priorityQueue);
+    ```
   ```
     
     
+  ```
 
 - `null` 원소 허용하지 않음
 

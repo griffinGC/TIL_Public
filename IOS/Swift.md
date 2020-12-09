@@ -1,5 +1,10 @@
 # Swift
 
+## 출력
+
+- print
+- dump
+
 ## Variable vs Constant
 
 - var
