@@ -44,6 +44,40 @@
 
 
 
+## Physical Layer (물리 계층, L1)
+
 #### 랜 카드
 
  물리계층에서 전기 신호로 변환 할때 사용
+
+### 허브
+
+약해지거나 파형이 뭉그러진 신호를 복원시키고, 해당 전기 신호를 전달받은 포트를 제외한 나머지 포트에 전달
+
+
+
+## Data Link Layer (링크 계층, L2)
+
+- Ethernet 이더넷
+
+
+
+## Network Layer (네트워크 계층, L3)
+
+## Transport Layer (전송 계층, L4)
+
+
+
+## Session Layer (세션 계층, L5)
+
+## Presentation Layer (프레젠테이션 계층, L6)
+
+## Application Layer (응용 계층, L7)
+
+
+
+
+
+
+
+
