@@ -1,4 +1,4 @@
-# OSI 7 Layer
+# dOSI 7 Layer
 
 ## 계층을 나누는 목적
 
