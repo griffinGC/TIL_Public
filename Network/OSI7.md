@@ -1,4 +1,4 @@
-# dOSI 7 Layer
+# OSI 7 Layer
 
 ## 계층을 나누는 목적
 
@@ -64,13 +64,19 @@
 
 ## Network Layer (네트워크 계층, L3)
 
+
+
 ## Transport Layer (전송 계층, L4)
 
 
 
 ## Session Layer (세션 계층, L5)
 
+
+
 ## Presentation Layer (프레젠테이션 계층, L6)
+
+
 
 ## Application Layer (응용 계층, L7)
 
@@ -78,6 +84,5 @@
 
 
 
-
-
+## TCP/IP
 
