@@ -44,8 +44,11 @@
 ```python
 def solution(tickets):
     answer = []
+    # 경로 설정을 위한 딕셔너리
     route = dict()
+    # 방문 여부 확인을 위한 딕셔너리
     visited = dict()
+    # 초기화
     for i,j in tickets:
         if i in route:
             route[i].append(j)
@@ -53,8 +56,10 @@ def solution(tickets):
         else:
             route[i] = [j]
             visited[i] = [0]
+    # 알파벳 순서대로 방문하기 위한 정렬
     for i in route:
         route[i] = sorted(route[i])
+    # dfs 재귀 & 백트래킹
     def dfs(v, answer):
         if v not in route:
             return answer
@@ -62,38 +67,20 @@ def solution(tickets):
         # if len(answer) == len(tickets) + 1:
         #     return answer
         for index, val in enumerate(route[v]):
+            # 방문하지 않았을 경우에만 수행
             if visited[v][index] == 0:
                 visited[v][index] = 1
                 answer.append(val)
                 tmp = dfs(val, answer)
+                # 완성되었을 경우 바로 종료 => 계속 종료해서 최종 종료까지 감
                 if len(tmp) == len(tickets) + 1:
                     return tmp
+                # (백트래킹) 실패했기 때문에 다시 방문할 수 있도록 만들기 위해 방문여부 초기화 및 추가했던것 삭제
                 visited[v][index] = 0
                 answer.pop()
         return answer
     answer.append("ICN")
     final_result = dfs("ICN", answer)
     return final_result
-
-# tc1 = [["ICN", "SFO"], ["ICN", "ATL"], ['SFO', 'ATL'], ['ATL', 'ICN'], ['ATL','SFO']]
-# # ['ICN', 'ATL', 'ICN', 'SFO', 'ATL', 'SFO']
-# result = solution(tc1)
-# print(result)
-
-# tc2 = [['ICN', 'A'], ['ICN', 'B'], ['B', 'ICN']]
-# # [ICN, B, ICN, A]
-# result = solution(tc2)
-# print(result)
-#
-# tc3 = [['ICN', 'A'], ['A', 'C'], ['A', 'D'], ['D', 'B'], ['B', 'A']]
-# # [ICN, A, D, B, A, C]
-# result = solution(tc3)
-# print(result)
-
-
-tc7 = [["ICN","BOO"], ["ICN", "COO"], [ "COO", "DOO" ], ["DOO", "COO"], [ "BOO", "DOO"] ,["DOO", "BOO"], ["BOO", "ICN" ], ["COO", "BOO"]]
-# ['ICN', 'BOO', 'DOO', 'BOO', 'ICN', 'COO', 'DOO', 'COO', 'BOO']
-result = solution(tc7)
-print(result)
 ```
 
