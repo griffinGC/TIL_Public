@@ -1,10 +1,19 @@
 # OSI 7 Layer
 
+> https://gyoogle.dev/blog/computer-science/network/OSI%207%EA%B3%84%EC%B8%B5.html
+>
+> https://gyoogle.dev/blog/interview/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC.html
+>
+> https://velog.io/@xldksps4/OSI-7%EA%B3%84%EC%B8%B5
+>
+> https://shlee0882.tistory.com/110
+
 ## 계층을 나누는 목적
 
 - **통신이 일어나는 과정을 단계별로 파악 가능**
 - **에러 발생시 원인 파악 가능**
   - **트러블 슈팅 용이**
+  - 특정한 곳에 이상이 생기면 그곳만 확인하면 됨
 
 ![osi7](https://1.bp.blogspot.com/-wtMZmsd3Wdw/W5Y8_ZlJzvI/AAAAAAAAAew/70nsmVdODV47cWgVAVOqFA6_0uGo0LunACLcBGAs/s640/%25EA%25B7%25B8%25EB%25A6%25BC4.PNG)
 
@@ -18,6 +27,8 @@
 >
 > [모두의네트워크](http://www.yes24.com/Product/Goods/61794014)
 
+- **데이터 송수신은 이것들을 헤더로 붙이고 떼는 방식의 캡슐화와 역캡슐화를 이용하여 이루어짐**
+  
 - Transport (전송 계층)
   
   - Segment (세그먼트)
@@ -25,6 +36,9 @@
     - TCP, UDP 에 따라 헤더 붙음
     
     > https://www.netmanias.com/ko/post/blog/5372/ethernet-ip-ip-routing-network-protocol/packet-header-ethernet-ip-tcp-ip
+    
+    - SP : Source Port
+    - DP : Destination Port
     
     ![SEGMENT](https://www.netmanias.com/ko/?m=attach&no=2021)
     
@@ -53,8 +67,8 @@
     - 패킷에 **Ethernet Header**(맥 어드레스 포함)와 FCS를 위한 **Trailer**가 붙은 메세지
     - Ethernet header
       - 목적지 MAC 주소(6 Byte), 출발지 MAC 주소(6 Byte), 유형(2 Byte)
-        - 유형은 프로토콜의 종류를 뜻함
-          - IPv4, ARP, RARP, SNMP over Ethernet, IPv6
+        - **유형은 상위 계층 프로토콜의 종류를 뜻함**
+          - IPv4, **ARP**, RARP, SNMP over Ethernet, IPv6
     - **FCS** (Frame Check Sequence)
       - 데이터 전송 도중 오류가 발생하는지 확인하기 위한 용도
   
@@ -91,56 +105,97 @@
 
 ## Physical Layer (물리 계층, L1)
 
-#### 랜 카드
+- 랜 카드
 
- 물리계층에서 전기 신호로 변환 할때 사용
+  - 물리계층에서 전기 신호로 변환 할때 사용
+- 허브
+  - 약해지거나 파형이 뭉그러진 신호를 복원시키고, 해당 전기 신호를 전달받은 포트를 제외한 나머지 포트에 전달
 
-### 허브
-
-약해지거나 파형이 뭉그러진 신호를 복원시키고, 해당 전기 신호를 전달받은 포트를 제외한 나머지 포트에 전달
-
-
+- 데이터를 **전기 신호**로 변환해서 **주고 받는 기능을 수행**하는 곳
+  - **데이터 전송하는데 필요한 기능 제공**
+- **시스템간의 물리적 연결과 전기 신호를 변환 및 제어, 전기신호로 바꾸어 전송하는 역할 수행**
 
 ## Data Link Layer (링크 계층, L2)
 
 - Ethernet 이더넷
-
+  - 데이터를 주고 받기 위한 규칙 중 하나
+- **브릿지, 스위치**
+- **프레임 (Frame)**
 - 링크 레이어 스위치는 링크 레이어 주소가 없음
-  - 그저 호스트와 라우터 사이에 데이터 그램 운반하는 역할만 수행
+  - 호스트와 라우터 사이에 데이터 운반하는 역할만 수행
+- **MAC 주소**를 이용하여 통신
+  - 물리적 주소
+- **Frame에 MAC주소 부여**
+- **정보의 오류와 흐름 관리**
+  - **에러검출**
+  - **송수신 확인 및 재전송**
+  - **흐름제어 진행**
+    -  CSMA/CD
+- 네트워크 기기간에 **데이터 전송 및 물리 주소 결정**
 
 ## Network Layer (네트워크 계층, L3)
 
+- **라우터**
 
+- **IP 패킷, 데이터그램**
+
+- **데이터를 목적지 까지 안전하고 빠르게 전송**(논리적 경로) => 라우팅
+
+- 라우터를 이용해 **이동할 경로 선택하여 IP 주소 지정, 경로에 따라 패킷 전송**
+
+- **라우팅**
+
+- **흐름제어**
+
+- **오류제어**
+
+- **세그멘테이션**
+
+  > **https://www.sciencedirect.com/topics/computer-science/network-segmentation**
+
+  - 네트워크를 작은 네트워크로 쪼개는 것
+  - 서브넷으로 쪼개는 것
+  - 네트워크의 성능과 보안성을 높임
+
+- 다른 네트워크와 통신하기 위한 **경로 설정** 및 **논리 주소(IP)** 결정
 
 ## Transport Layer (전송 계층, L4)
 
-
+- **TCP / UDP**
+- **세그먼트 (Segment)**
+- **프로토콜을 통해 통신을 활성화**
+- **포트 열어두고** 프로그램들이 전송을 할 수 있도록 제공
+- TCP : 신뢰성, 연결 지향적
+- UDP : 비신뢰성, 비연결성, 실시간
+  - 동영상, 영상통화시 사용
+- 신뢰할 수 있는 통신 구현
 
 ## Session Layer (세션 계층, L5)
 
-
+- API, Socket
+- 데이터가 통신하기 위한 논리적 **연결** 담당
+  - **연결이 손실되는 경우 연결 복구 시도**
+- **동기화**
+- TCP/IP **세션 만들고 없애는 책임** 가짐
+  - 3 way hand shake
+  - 4 way hand shake
+- 세션 체결, 통신 방식 결정
 
 ## Presentation Layer (프레젠테이션 계층, L6)
 
-
+- JPEG, MPEG
+- **데이터 표현에 대한 독립성 제공**, **암호화** 역할 수행
+  - HTTPS => SSL?
+- 세션 계층간의 주고 받는 인터페이스 일관성 있게 제공
+  - 파일 인코딩, 명령어를 포장, 압축, 암호화등의 데이터 변환
+  - **응용프로그램 형식 준비 또는 네트워크 형식으로 변환**
 
 ## Application Layer (응용 계층, L7)
 
+- HTTP, FTP, DNS 등
+- 최종 목적지 (사용자)
+- 응용 프로세스와 직접 관계하여 **일반적인 응용 서비스 수행**
+- 사용자 인터페이스, 전자우편, 데이터베이스 관리등의 서비스 제공
 
+- 어플리케이션에 대한 서비스 제공
 
-
-
-## TCP/IP
-
-- OSI7 레이어를 단축 시킨 모델
-
-![osi7_2](https://media.vlpt.us/images/xldksps4/post/980fe5d0-fcfe-4395-9148-0a110475ba26/image.png)
-
-- 총 4개의 계층으로 구성됨
-  - Application Layer
-    - Application + Presentation + Session
-  - Transport Layer
-  - Internet Layer
-  - Network Access Layer
-    - DataLink + Physical Layer
-- 계층이 7개나 되기 때문에 지금은 다 사용하지 않고 TCP/IP Protocol을 주로 많이 사용함
