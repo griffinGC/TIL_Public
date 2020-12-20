@@ -45,17 +45,17 @@
     - 네트워크를 통한 실질적인 전송을 위하여 적절한 크기로 분리한 것
   
 - Network (네트워크 계층)
-  - IP Packet (패킷), Datagram
+  - **IP Packet (패킷), Datagram**
     
     ![IP_PACKET](https://www.netmanias.com/ko/?m=attach&no=2020)
     
-    - 분할된 세그먼트에 목적지까지의 전달을 위해 IP Header (Source IP, Destination IP)를 붙인 형태
-    
-    - IP Datagram 이라고도 부름
-    
-    - 헤더와 데이터로 구성됨
-    
-      > https://m.blog.naver.com/PostView.nhn?blogId=printf7&logNo=10170430212&proxyReferer=https:%2F%2Fwww.google.com%2F
+  - 분할된 세그먼트에 목적지까지의 전달을 위해 IP Header (Source IP, Destination IP)를 붙인 형태
+  
+  - **IP Datagram** 이라고도 부름
+  
+  - 헤더와 데이터로 구성됨
+  
+    > https://m.blog.naver.com/PostView.nhn?blogId=printf7&logNo=10170430212&proxyReferer=https:%2F%2Fwww.google.com%2F
   
 - Data Link (링크 계층)
   - Ethernet Frame (프레임)
@@ -153,7 +153,7 @@
 
   > **https://www.sciencedirect.com/topics/computer-science/network-segmentation**
 
-  - 네트워크를 작은 네트워크로 쪼개는 것
+  - **네트워크를 작은 네트워크로 쪼개는 것**
   - 서브넷으로 쪼개는 것
   - 네트워크의 성능과 보안성을 높임
 
@@ -165,40 +165,66 @@
 
 ## Transport Layer (전송 계층, L4)
 
+> https://ko.wikipedia.org/wiki/%EC%A0%84%EC%86%A1_%EA%B3%84%EC%B8%B5
+>
+> https://movefast.tistory.com/24
+
 - **TCP / UDP**
 - **세그먼트 (Segment)**
 - **프로토콜을 통해 통신을 활성화**
 - **포트 열어두고** 프로그램들이 전송을 할 수 있도록 제공
-- TCP : 신뢰성, 연결 지향적
-- UDP : 비신뢰성, 비연결성, 실시간
+- **종단간 통신 (end to end)**
+  - 송신 호스트 : 메세지를 세그먼트로 분해해 네트워크 계층(L3)으로 전송
+  - 수신 호스트 : 세그먼트들을 메세지로 재조립해서 응용 계층(tcp/ip에서) 으로 전송
+- **TCP **
+  - 흐름제어 (Flow Control)
+    - 시퀀스 넘버 기반의 오류제어 방식 사용(ack등...)
+  - 혼잡제어 (Congestion Control)
+  - 다중화
+  - 연결 지향적 (연결 기반) - Connection Setup
+  - **신뢰할 수 있는 통신 구현**
+    - IP의 단점 보완
+  - 패킷들의 전송이 유효한지 확인하고 전송 실패한 패킷들을 재전송
+- **UDP** 
+  - 비신뢰성
+  - 비연결성
+  - 순서 보장 안됨
+  - 실시간
   - 동영상, 영상통화시 사용
-- 신뢰할 수 있는 통신 구현
 
 ## Session Layer (세션 계층, L5)
 
 - API, Socket
-- 데이터가 통신하기 위한 논리적 **연결** 담당
+- 데이터가 통신하기 위한 **논리적 연결** 담당
   - **연결이 손실되는 경우 연결 복구 시도**
+  - 응용프로그램의 관점에서 봐야함
+- 세션 설정, 유지, 종료, 전송 중단시 복구 등
 - **동기화**
-- TCP/IP **세션 만들고 없애는 책임** 가짐
+  - 통신하는 사용자 동기화
+- **TCP/IP 세션 만들고 없애는 책임 가짐**
   - 3 way hand shake
   - 4 way hand shake
-- 세션 체결, 통신 방식 결정
 
 ## Presentation Layer (프레젠테이션 계층, L6)
 
 - JPEG, MPEG
-- **데이터 표현에 대한 독립성 제공**, **암호화** 역할 수행
+- **서로 다른 응용프로세스의 데이터 표현에 대한 독립성 제공**, **암호화** 역할 수행
+  
   - HTTPS => SSL?
 - 세션 계층간의 주고 받는 인터페이스 일관성 있게 제공
   - 파일 인코딩, 명령어를 포장, 압축, 암호화등의 데이터 변환
+  
+    - MIME인코딩
+  
+    - 해당 데이터가 어떤 형태인지 구분, 인코딩 등의 역할 수행
+  
   - **응용프로그램 형식 준비 또는 네트워크 형식으로 변환**
 
 ## Application Layer (응용 계층, L7)
 
 - HTTP, FTP, DNS 등
 - 최종 목적지 (사용자)
-- 응용 프로세스와 직접 관계하여 **일반적인 응용 서비스 수행**
+- 응용 프로세스(브라우저 등)와 직접 관계하여 **일반적인 응용 서비스 수행** => 메일 서비스 같은거 가능하게 해줌
 - 사용자 인터페이스, 전자우편, 데이터베이스 관리등의 서비스 제공
 
 - 어플리케이션에 대한 서비스 제공
