@@ -1,6 +1,8 @@
 # Spring MVC
 
 > https://postitforhooney.tistory.com/entry/Spring-MVC-%ED%8C%A8%ED%84%B4%EC%97%90%EC%84%9C%EC%9D%98-5%EA%B0%80%EC%A7%80-%EA%B3%84%EC%B8%B5%EC%97%90-%EB%8C%80%ED%95%9C-%EC%A0%95%EB%B3%B4-%ED%8D%BC%EC%98%B4
+>
+> https://lazymankook.tistory.com/30
 
 ## MVC 패턴
 
@@ -18,7 +20,8 @@
 - DB같은 데이터 저장소와 연동하여 사용자가 입력한 데이터나 사용자에게 출력할 데이터를 다루는 일 수행
 - 여러개의 데이터 변경작업을 하나의 작업으로 묶는 트랜잭션을 다루는 일 수행
 - DAO 클래스
-- Service 클래스
+- Service 클래스 내부에서 DAO 사용
+  - service가 트랜잭션 단위
 
 ## View
 
