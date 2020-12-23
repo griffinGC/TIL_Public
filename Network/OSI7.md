@@ -30,20 +30,21 @@
 - **데이터 송수신은 이것들을 헤더로 붙이고 떼는 방식의 캡슐화와 역캡슐화를 이용하여 이루어짐**
   
 - Transport (전송 계층)
-  
+
   - Segment (세그먼트)
-    
+
     - TCP, UDP 에 따라 헤더 붙음
-    
-    > https://www.netmanias.com/ko/post/blog/5372/ethernet-ip-ip-routing-network-protocol/packet-header-ethernet-ip-tcp-ip
-    
-    - SP : Source Port
-    - DP : Destination Port
-    
-    ![SEGMENT](https://www.netmanias.com/ko/?m=attach&no=2021)
-    
     - 네트워크를 통한 실질적인 전송을 위하여 적절한 크기로 분리한 것
-  
+    - **포트 번호**를 가지고 있음
+      - SP : Source Port
+      - DP : Destination Port
+
+    > https://www.netmanias.com/ko/post/blog/5372/ethernet-ip-ip-routing-network-protocol/packet-header-ethernet-ip-tcp-ip
+
+    ![SEGMENT](https://www.netmanias.com/ko/?m=attach&no=2021)
+
+    
+
 - Network (네트워크 계층)
   - **IP Packet (패킷), Datagram**
     
@@ -94,8 +95,8 @@
     - 사설 IP의 경우 외부에서 공인 IP만 보이기 때문에 정확한 목적지 확인을 위해 MAC 주소 필수!
 - IP 주소
   - 호스트나 라우터 장비의 인터페이스에 할당된 32 비트 주소 (IPv4, IPv6)
-    - 네트워크 인터페이스
-      - 하드웨어 장비, 물리 연결 장비
+    - **네트워크 인터페이스**
+      - **하드웨어 장비, 물리 연결 장비**
   - IP 주소를 통해서 장치들이 서로 인식하고 통신 가능
 - **데이터를 통신하기 위해서는 MAC주소와 IP주소 둘다 필요**
   - 사설 IP의 경우 **IP는 아파트 하나의 동**이 되는것이고 그 내부에서 식별할때 고유한 주소를 가진 **MAC주소를 호**수처럼 사용하면 됨
@@ -154,7 +155,7 @@
   > **https://www.sciencedirect.com/topics/computer-science/network-segmentation**
 
   - **네트워크를 작은 네트워크로 쪼개는 것**
-  - 서브넷으로 쪼개는 것
+    - 서브넷으로 쪼개는 것
   - 네트워크의 성능과 보안성을 높임
 
 - 다른 네트워크와 통신하기 위한 **경로 설정** 및 **논리 주소(IP)** 결정

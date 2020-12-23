@@ -6,8 +6,9 @@
 >
 > https://www.sciencedirect.com/topics/computer-science/address-resolution=
 
-- IP 주소를 물리적 네트워크 주소(MAC)로 대응(bind) 시키기 위해 사용되는 프로토콜
+- **IP 주소**를 **물리적 네트워크 주소(MAC)**로 대응(bind) 시키기 위해 사용되는 프로토콜
   - TCP/IP 3계층(네트워크 계층)의 IP 주소를 2계층 (데이터 링크 계층)의 MAC 주소로 대응 시킬때 사용하는 프로토콜
+  - 즉, **IP -> MAC**
   - **2계층에서 수행됨**
     - 이더넷 헤더의 유형에 ARP들어감
 - MAC주소 물리적 네트워크 주소
@@ -46,8 +47,9 @@
 ## ARP Table
 
 - MAC 주소와 IP 주소의 매핑 정보를 메모리에 보관하는 장소
-  - ARP Cache로 저장 => 일정시간 지나면 삭제하고 다시 ARP 요청 전송
+  - **ARP Cache(캐시)로 저장 => 일정시간 지나면 삭제하고 다시 ARP 요청 전송**
   - 가장 최근에 변환한 `IP : MAC주소` 로 매핑하여 보관하고 있는 램의 영역
+- `arp -a` 명령어로 확인 가능
 - 이후 통신은 컴퓨터에 보관된 ARP 테이블을 참고하여 전송
 
 
@@ -79,8 +81,8 @@
      - 시작지 IP : A의 IP
      - 도착지 IP : B의 IP
   2. R의 SUBNET1에서 데이터 받고 프레임을 ip 계층으로 올려보냄
-  3. R에서 IP 시작점을 A의 주소로 하고, IP 도착지를 B의 주소로 설정된 것 확인하교 subnet2로 넘김
-  4. R에서 새로운 Link-layer frame 생성
+  3. **R에서 IP 시작점을 A의 주소로 하고, IP 도착지를 B의 주소로 설정된 것 확인하고 SUBNET2로 넘김**
+  4. R에서 **새로운 Link-layer frame 생성**
      1. B의 MAC주소를 도착지 MAC주소로 설정
         - **ARP 이용하여 알아냄**
      2. 시작지 MAC주소를 SUBNET2의 MAC 주소로 설정
