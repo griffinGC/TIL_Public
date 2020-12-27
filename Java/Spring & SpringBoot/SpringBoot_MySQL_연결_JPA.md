@@ -43,7 +43,7 @@
 
    - `@Entity` 어노테이션 반드시 작성해야함
    - `@Id` 는 엔티티의 기본키를 나타냄 (반드시 필요)
-   - `@GeneratedValue` 를 이용하여 값이 자동 증가되도록 만들어야 함
+   - `@GeneratedValue` 를 이용하여 **값이 자동 증가**되도록 만들어야 함
      - `@GeneratedValue(strategy = GenerationType.IDENTITY)`
 
 4. 인터페이스 작성

@@ -143,9 +143,10 @@ private Long id;
 
 ## @Enumerated(EnumType.STRING)
 
-
-
-
+- JPA로 데이터 베이스에 저장할때 Enum 값을 어떤 형태로 저장할지 결정
+- 기본적으로는 int 형으로 된 숫자가 저장 됨
+  - **숫자로 저장하면 그 값이 무슨 코드를 의미하는지 알 수 없음**
+  - 그래서 EnumType.STRING  선호
 
 ## 다대다 관계
 
