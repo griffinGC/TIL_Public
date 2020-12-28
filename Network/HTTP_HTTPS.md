@@ -26,9 +26,12 @@
   - 장점
     - **접속 유지는 최소한으로 하기 때문에 불특정 다수를 대상으로하는 서비스에 적함**
   - 단점
-    - **클라이언트의 이전 상태를 알 수 없음**
+    - **Stateless**
+      - 클라이언트의 이전 상태를 알 수 없음**
       - 로그인을 해도 로그 정보 유지 불가
       - 쿠키를 이용하여 해결
+    - 10번의 요청을 보내려면 10번의 끊고 맺는 과정이 필요함
+    - 모든 요청에 헤더 파일이 중복해서 들어감 => 비효율적
 - 전송 프로토콜 - **TCP**
 - 전송 포트 - **80**
 - keep alive
@@ -121,10 +124,40 @@
   2. HTML 다운
   3. 이미지, css, js 다운
   4. 모든 문서 다운 되면 연결 종료
-- http 요청 헤더에 keep-alive 방식을 지원하도록 명시
+- http 요청 헤더의 **Connection** 속성에 keep-alive 방식을 지원하도록 명시
   - `Connection:keep-alive`
 
 
+
+### HTTP 2.0
+
+> https://velog.io/@taesunny/HTTP2HTTP-2.0-%EC%A0%95%EB%A6%AC
+>
+> https://www.popit.kr/%EB%82%98%EB%A7%8C-%EB%AA%A8%EB%A5%B4%EA%B3%A0-%EC%9E%88%EB%8D%98-http2/
+
+- HTTP/1.1의 차기 버전
+- 속도 측면에서 훨씬 많은 향상이 이루어졌음
+- SPDY 기반 
+  - 구글의 비표준 개방형 네트워크 프로토콜 기반
+  - 기존의 HTTP Methods, Status Code, Semantics 개념들이 동일하게 호환
+- 평문이 아닌 Binary 포맷 (바이너리 포맷)으로 인코딩 된 Message, Frame으로 구성됨
+  - Headers frame
+  - Data frame
+- 특징
+  - HTTP Header Data Compression (HTTP 헤더 데이터 압축)
+    - **이전 헤더의 내용과 중복되는 필드를 재전송 하지 않아, 데이터 절약**
+    - **Header Table, Huffman Encoding 사용**
+  - **Server Push**
+    - 클라이언트가 **요청하지 않은** Javascript, CSS, Font, Img 파일등 **필요하게 될 특정 파일**들을 **서버에서 단일 HTTP 요청 응답시 함께 전송 가능**
+    - 기존에는 클라이언트가 필요한 리소스를 재요청 했었음
+  - HOL(Head Of Line) Blocking 문제 해결
+    - 이전버전에서는 **한번에 하나의 파일만 전송 가능**했었음
+      - 그로 인해, 선행하는 파일의 전송이 늦어지면 => 전체 파일의 전송시간이 늘어났음
+    - **여러 파일을 한번에 병렬 전송**
+  - Stream 우선순위
+    - HTTP 메시지가 많은 개별 프레임으로 분할 될 수 있고, 여러 스트림의 프레임을 다중화 할 수 있게 되면서, 스트림들의 우선순위 지정이 필요해짐
+    - **우선순위 지정 트리**를 사용하여 **서버의 스트림처리 우선 순위 지정 가능**
+    - 서버는 우선순위가 높은 응답이 클라이언트에 우선적으로 전달 될 수 있도록 대역폭 설정 가능
 
 
 
@@ -291,7 +324,7 @@
          - 클라이언트가 만든 **pre master secret를 인증서 안에 있던 서버의 공개키를 이용하여 암호화**
        - 암호화 한 pre master secret 값을 클라이언트는 서버에게 전송
          - 전송한 내용이 유출되더라도 pre master secret 값을 암호화한 개인키는 서버만이 가지고 있기 때문에 서버만이 해독 가능
-  4. 서버는 클라이언트가 보낸 pre master secret 값을 자신의 개인키를 이용하여 복호화 함
+  4. 서버는 클라이언트가 보낸 pre master secret 값을 **서버 자신의 개인키를 이용하여 복호화 함**
      - 서버와 클라이언트가 모두 pre master secret 값을 가지게 됨
      - 그리고 둘다 일련의 과정을 거쳐 pre master secret 값 -> master secret 값으로 바꿈
      - master secret을 이용해서 session key 생성
