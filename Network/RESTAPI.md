@@ -96,6 +96,9 @@
 
   3. **Self-descriptiveness** (자체 표현 구조)
      - REST API 메시지 그 자체로 쉽게 이해 가능
+     - 요청에 메시지의 처리 절차를 표현하는 정보를 가지고 있어야 함
+       - 서버가 이것을 분석해서 어떤 타입을 반환해야 하는지 알 수 있어야 함
+       - jpg, json, etc...
 
   4. **HATEOAS** (Hypermedia as the Engine of Application State)
 
