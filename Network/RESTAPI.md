@@ -8,6 +8,15 @@
 >
 > https://www.geeksforgeeks.org/rest-api-architectural-constraints/#:~:text=Client%2DServer%3A%20REST%20application%20should,user%20interface%20or%20user%20state.
 
+- 이전에는 SOAP(Simple Object Access Protocol) 방식사용
+
+  - SOAP는 좀 더 복잡하고 무거움
+  - REST는 유연한 구현, SOAP는 XML메시징 같은 특정 요건이 있는 프로토콜
+
+  > https://blog.bearer.sh/what-is-a-rest-api/#:~:text=Before%20REST%2C%20the%20main%20approach,Wide%20Web%20Consortium%20(W3C).
+  >
+  > https://www.redhat.com/ko/topics/integration/whats-the-difference-between-soap-rest
+
 ### 리소스
 
 - 수행대상이 되는 리소스는 **URI**로 정의 됨
@@ -43,66 +52,96 @@
 
 - **Uniform Interface**
 
-  - 가장 큰 특징
+  > https://stackoverflow.com/questions/25172600/rest-what-exactly-is-meant-by-uniform-interface
+  >
+  > https://codewords.recurse.com/issues/five/what-restful-actually-means
 
   - URI로 지정한 리소스에 대한 조작을 통일되고 한정적인 인터페이스로 수행하는 아키텍쳐 스타일
+  - 가장 큰 특징으로 아래와 같은 4가지의 원칙(인터페이스)를 따름
+    - **기기나 어플리케이션의 타입(웹, 모바일앱)등에 구애 받지 않고 상호작용 하는 동일한 방법 사용 해야 함**
 
-  - 시스템에서 자원은 오직 하나의 논리적 URI를 가져야 함
+  1. **리소스(URI)로 구분됨**
 
-  - 하나의 리소스는 너무 크면 안되고 그것의 표현에 
+     - 모든 리소스가 URI로 구분됨
 
-  - **기기나 어플리케이션의 타입(웹, 모바일앱)등에 구애 받지 않고 동일한 방식 제공**
+  2. **표현(Representation)을 통해서 리소스 조작**
 
-    - 리소스에 상관없이 동일한 API 메소드 가짐 (URI 기반)
+     > https://sookocheff.com/post/api/how-rest-constraints-affect-api-design/#:~:text=2.-,Manipulation%20of%20Resources%20Using%20Representations,client%20can%20understand%20and%20manipulate
+     >
+     > https://blog.npcode.com/2017/04/03/rest%EC%9D%98-representation%EC%9D%B4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80/
 
-      - 이미지나 문서나 처리가 일관된 형태로 요청됨
+     - REST 기반시스템에서는 **HTTP메소드와 URI를 사용하여 리소스의 모든 작업수행 가능**
 
-    - **HATEOAS** (Hypermedia as the Engine of Application State)
+       - 클라이언트가 보내는 Representation에 GET, POST, DELETE 같은 것과 헤더에는 어떤 형식으로 응답 받을지(**응답 형태**) 등을 포함해서 보내고 그것을 통해서 리소스 조작가능
 
-      > https://wallees.wordpress.com/2018/04/19/rest-api-hateoas/
-      >
-      > https://dzone.com/articles/rest-api-what-is-hateoas
+     - 표현 (Representation) 이란, 클라이언트가 이해하고 조작할 수 있는 형식으로 **리소스의 현재 상태**
 
-      - 결합도 낮춰줌
+       - 어떤 리소스의 특정 시점의 상태를 반영하는 정보
 
-        - 모든 리소스 URL에 대해서 하드코딩했다면 결합도가 매우 높음
-        - 대신, URL들을 리턴하면 이것을 사용할 수 있어 결합도가 낮아짐
+       ```shell
+       GET /user/1234
+       Accept: text/plain
+       ```
 
-      - **현재 리소스와 연관된 자원 상태 정보를 제공**
+       - 서버가 응답하는 것은 resource가 아닌 Representation
 
-      - 클라이언트가 서버와 동적인 상호작용이 가능하도록 하는 것
+       ```shell
+       Content-Type: text/plain
+       Content-language: en
+       
+       Hello
+       ```
 
-        - **서버는 현재 리소스와 연관된 링크 정보를 제공**
-        - **클라이언트는 연관된 링크 정보를 바탕으로 리소스에 접근**
+     - 예를들어, 유저가 유저들의 리스트를 요청했을때 유저의 id를 받았다면, 그 id를 이용해서 그 특정 유저의 정보를 수정하거나 삭제할 수 있다는 것
 
-      - 상태(State)를 변화시킬수 있는 URI를 서버로부터 받고, 그 URI로 State를 변화시키는 것
+  3. **Self-descriptiveness** (자체 표현 구조)
+     - REST API 메시지 그 자체로 쉽게 이해 가능
 
-        - 응답으로 받은 링크를 이용하여 그 URI로 State 변화
+  4. **HATEOAS** (Hypermedia as the Engine of Application State)
 
-      - **요청보낼 URI가 변경되더라도 클라이언트에서 동적으로 생성된  URI를 사용함으로써, 클라이언트가 URI 수정에 따른 코드를 변경하지 않아도 됨**
+  > https://wallees.wordpress.com/2018/04/19/rest-api-hateoas/
+  >
+  > https://dzone.com/articles/rest-api-what-is-hateoas
 
-        - 즉, URI가 나중에 변경되더라도 클라이언트는 이미 URI를 링크로 받아온 것을 사용하면 되기 때문에 URI 변경되었다고 코드를 수정하지 않아도 됨
+  - 결합도 낮춰줌
 
-      - **즉, 응답의 리소스에 서로 연관된 리소스들 링크도 함께 반환 되는 것**
+    - 모든 리소스 URL에 대해서 하드코딩했다면 결합도가 매우 높음
+    - 대신, URL들을 리턴하면 이것을 사용할 수 있어 결합도가 낮아짐
+      - 특정 URL에 대한 의존도가 낮아짐
 
-        ```shell
-        {
-        	"account":{
-        		"account_number": 11111,
-        		"balance":{
-        			"currenty": "won",
-        			"value" : 1000
-        		},
-        		"links": {
-        			"deposit": "/accounts/11111/deposit",
-        			"withdraw": "/accounts/11111/withdraw",
-        			"transfer": "/accounts/11111/transfer",
-        		}
-        	}
-        }
-        ```
+  - **현재 리소스와 연관된 자원 상태 정보를 제공**
 
-        
+  - 클라이언트가 서버와 동적인 상호작용이 가능하도록 하는 것
+
+    - **서버는 현재 리소스와 연관된 링크 정보를 제공**
+    - **클라이언트는 연관된 링크 정보를 바탕으로 리소스에 접근**
+
+  - 상태(State)를 변화시킬수 있는 URI를 서버로부터 받고, 그 URI로 State를 변화시키는 것
+
+    - 응답으로 받은 링크를 이용하여 그 URI로 State 변화
+
+  - **요청보낼 URI가 변경되더라도 클라이언트에서 동적으로 생성된  URI를 사용함으로써, 클라이언트가 URI 수정에 따른 코드를 변경하지 않아도 됨**
+
+    - 즉, URI가 나중에 변경되더라도 클라이언트는 이미 URI를 링크로 받아온 것을 사용하면 되기 때문에 URI 변경되었다고 코드를 수정하지 않아도 됨
+
+  - **즉, 응답의 리소스에 서로 연관된 리소스들 링크도 함께 반환 되는 것**
+
+    ```shell
+    {
+    	"account":{
+    		"account_number": 11111,
+    		"balance":{
+    			"currenty": "won",
+    			"value" : 1000
+    		},
+    		"links": {
+    			"deposit": "/accounts/11111/deposit",
+    			"withdraw": "/accounts/11111/withdraw",
+    			"transfer": "/accounts/11111/transfer",
+    		}
+    	}
+    }
+    ```
 
 - **Stateless**
 
@@ -117,13 +156,10 @@
 
   - **클라이언트의 응답 캐시 가능**
     - 성능향상 가능
-  - 기존 웹 인프라 그대로 사용가능
+  - HTTP 기준 웹표준을 그대로 사용하기 때문에, 기존 웹 인프라 그대로 사용가능
+    - 그렇기 때문에 캐시 사용 가능
   - **모든 응답에 응답이 캐시 가능한지 여부와 클라이언트측에서 응답을 캐시할 수 있는 기간이 포함되어야 함**
     - **즉, 같은 URI에 대한 요청이 여러번있을때, URI 리소스를 매번 서버로 요청하지 않고, 클라이언트의 HTTP 캐시에서 미리 가져온 정보 반환**
-
-- **Self-descriptiveness**
-
-  - REST API 메시지 그 자체로 쉽게 이해 가능
 
 - **Client-Server architecture**
 
@@ -176,6 +212,8 @@
 
 
 ### RESTful
+
+> https://meetup.toast.com/posts/92
 
 - REST API의 설계 의도를 정확하게 지켜주는 API
 
