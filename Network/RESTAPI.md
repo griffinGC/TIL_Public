@@ -72,10 +72,15 @@
 
      - REST 기반시스템에서는 **HTTP메소드와 URI를 사용하여 리소스의 모든 작업수행 가능**
 
+       - Representation이 Header를 가지고 있기 때문에 그것을 가지고 Resource
        - 클라이언트가 보내는 Representation에 GET, POST, DELETE 같은 것과 헤더에는 어떤 형식으로 응답 받을지(**응답 형태**) 등을 포함해서 보내고 그것을 통해서 리소스 조작가능
 
      - 표현 (Representation) 이란, 클라이언트가 이해하고 조작할 수 있는 형식으로 **리소스의 현재 상태**
 
+       > https://tools.ietf.org/html/rfc7231#section-3
+
+       - Representation Metadata 와 Representation Data로 구성되어 있음
+         - ex. `Context-Type : text/plain ` 같은 것이 Metadata
        - 어떤 리소스의 특정 시점의 상태를 반영하는 정보
 
        ```shell
@@ -95,7 +100,7 @@
      - 예를들어, 유저가 유저들의 리스트를 요청했을때 유저의 id를 받았다면, 그 id를 이용해서 그 특정 유저의 정보를 수정하거나 삭제할 수 있다는 것
 
   3. **Self-descriptiveness** (자체 표현 구조)
-     - REST API 메시지 그 자체로 쉽게 이해 가능
+     - **REST API 메시지 그 자체로 쉽게 이해 가능**
      - 요청에 메시지의 처리 절차를 표현하는 정보를 가지고 있어야 함
        - 서버가 이것을 분석해서 어떤 타입을 반환해야 하는지 알 수 있어야 함
        - jpg, json, etc...
@@ -161,6 +166,7 @@
     - 성능향상 가능
   - HTTP 기준 웹표준을 그대로 사용하기 때문에, 기존 웹 인프라 그대로 사용가능
     - 그렇기 때문에 캐시 사용 가능
+    - HTTP 프로토콜 표준에서 사용하는 Last-modified 혹은 E-Tag 이용해서 캐시 구현가능
   - **모든 응답에 응답이 캐시 가능한지 여부와 클라이언트측에서 응답을 캐시할 수 있는 기간이 포함되어야 함**
     - **즉, 같은 URI에 대한 요청이 여러번있을때, URI 리소스를 매번 서버로 요청하지 않고, 클라이언트의 HTTP 캐시에서 미리 가져온 정보 반환**
 
