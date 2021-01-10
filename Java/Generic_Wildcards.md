@@ -1,10 +1,14 @@
 # Generic
 
 - generic 타입은 타입들에 대해 parameterized(매개변수화)한 generic 클래스나 인터페이스
-- 하나의 코드를 다양한 데이터 타입에 대해 사용할 수 있도록 하는 기능
+
+- **컴파일러가 검증하기때문에 안정적인 방식**
+
+- 하나의 코드를 **다양한 데이터 타입**에 대해 사용할 수 있도록 하는 기능
   - generic 없이 그냥 Object 로만 표현을 하게 된다면 아무거나 넘겨 줄 수 있지만, 컴파일할때 어떤걸로 사용할지 알 수 없음
   - 어떻게 사용될 지 알 수 없음
   - 캐스팅은 좋지 않은 방식임
+  
 - java7부터는 인스턴스 생성할 때 타입 인자 2번 주지 않아도 됨
   - 컴파일러가 context보고 결정 함
   - List<Integer> list = new ArrayList<>();
@@ -13,29 +17,34 @@
 
   - 클래스 이름 옆에 `<T>` 를 붙여서 클래스 내부에서 타입변수 `T` 이용해서 사용 가능
 
+    - 자료형 매개변수
+  - 어떤 애가 쓰일지는 실제 클래스를 **사용**할때 정함
+  
+  - `<E>` 는 element 의미
+  
   - Before
-
+  
     ```java
     public class Box{
       private Object object;
-      
+    
       public void set(Object object) {this.object = object;}
-      public Object get(){return object;}
+    public Object get(){return object;}
     }
     ```
-
+  
   - After
-
+  
     ```java
     public class Box<T>{
       // T는 "Type"을 지칭함
       private T t;
-      
+    
       public void set(T t){ this.t = t;}
       public T get(return t;)
     }
     ```
-
+  
     - `Object` 들이 `T` 로 대체 가능함
     - 타입 변수가 내가 명시한 원시타입이아닌 어떤 클래스 타입, 어떤 인터페이스 타입, 배열 타입, 어떠한 타입이든 올 수 있음
 
@@ -175,9 +184,8 @@
 - parameterized type을 만들기 위해서 type argument를 넘겨줄때
   - `Foo<T>` : type Parameter
   - `Foo<String>` : type Argument
-- 
-
-
+  
+  
 
 
 
