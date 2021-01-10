@@ -6,12 +6,29 @@
 
 - 하나의 코드를 **다양한 데이터 타입**에 대해 사용할 수 있도록 하는 기능
   - generic 없이 그냥 Object 로만 표현을 하게 된다면 아무거나 넘겨 줄 수 있지만, 컴파일할때 어떤걸로 사용할지 알 수 없음
+    - 사용 안하면 Object로 인식
   - 어떻게 사용될 지 알 수 없음
   - 캐스팅은 좋지 않은 방식임
   
 - java7부터는 인스턴스 생성할 때 타입 인자 2번 주지 않아도 됨
   - 컴파일러가 context보고 결정 함
   - List<Integer> list = new ArrayList<>();
+
+- 메서드 내에서의 자료형 매개 변수는 **메서드 내에서만 유효!**
+
+  - 지역변수와 같은 개념
+
+  ```java
+  // Shape<T>의 T와 메서드의 <T,V>에 있는 T는 서로 다름
+  class Shape<T>{
+      // <T,V>는 Point<T,V>를 위한 것
+      public static <T, V> double makeRectangle(Point<T, V> p1, Point<T, V> p2){
+          
+      }
+  }
+  ```
+
+  
 
 - 예시 코드
 
@@ -45,10 +62,11 @@
     }
     ```
   
-    - `Object` 들이 `T` 로 대체 가능함
+    - `Object` 들은 `T` 로 대체 가능함
     - 타입 변수가 내가 명시한 원시타입이아닌 어떤 클래스 타입, 어떤 인터페이스 타입, 배열 타입, 어떠한 타입이든 올 수 있음
-
-
+    
+  
+  
 
 ### Generic type 초기화 및 호출
 
@@ -67,6 +85,8 @@
 
 - Generic class는 여러개의 타입 파라미터를 가질 수 있음
 
+  - 2개 이상일 경우 사용
+  
   ```java
   public interface Pair<K, V>{
     public K getKey();
@@ -79,13 +99,54 @@
   }
   ```
 
+
+
+
+## Generic 사용방식
+
+- **사용시** 데이터 타입 지정
   
+- 특정 타입을 상속받는 애들만 넣을 수 있도록 만들 수 있음
+
+  ```java
+  public class GenericPrinter<T extends Material>{
+      ....
+  }
+  ```
+
+  - 특정 타입으로 제한 가능
+  - **사용 가능한 클래스 제한 둘때 상위 클래스 상속 이용**
+    - 상위 클래스를 추상(abstract)클래스로 지정해도 됨
+    - 이럴 경우 상위 클래스에 정의된 메서드를 공유 가능
+
+- generic 예제
+
+  ```java
+  package genericPractice;
+  
+  public class GenericPrinterTest {
+  
+      public static void main(String[] args) {
+          // generic을 이용한 클래스를 사용할때 T의 값을 powder로 지정
+          GenericPrinter<Powder> powderPrinter = new GenericPrinter<>();
+          Powder powder = new Powder();
+          powderPrinter.setMaterial(powder);
+          System.out.println(powderPrinter);
+  
+          GenericPrinter<Plastic> plasticGenericPrinter = new GenericPrinter<>();
+          Plastic plastic = new Plastic();
+          plasticGenericPrinter.setMaterial(plastic);
+          System.out.println(plasticGenericPrinter);
+      }
+  
+  }
+  ```
 
 
 
 ### 장점
 
-- 컴파일 시 오류가 체크되는 장점이 있음
+- **컴파일 시** 오류가 체크되는 장점이 있음
 - 컬렉션에 넣을 타입을 지정하고 사용하면 캐스팅이 필요 없음
 - 프로그래머가 generic 알고리즘을 작성할 수 있게 해줌
   - generic 알고리즘 
