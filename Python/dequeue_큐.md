@@ -6,6 +6,8 @@
 - `from collections import deque`
 - 맨 뒤 삽입
   - `이름.append(값)`
+  - 여러 원소 삽입
+    - `이름.extend([리스트])`
 - 맨 앞 삽입
   - `이름.appendleft(값)`
 - q = deque()
