@@ -11,7 +11,8 @@
 - Web(Spring MVC)에 집중할 수 있는 어노테이션
 - 이것을 사용하면 아래와 같은 어노테이션 사용가능
   - @Controller, @ControllerAdvice와 같은 외부 연동과 관련된 부분만 활성화됨
-- @Service, @Component, @Repository는 사용 불가
+- WebSecurityConfigurerAdapter, WebMvcConfigurer를 비롯한 @ControllerAdvice, @Controller 읽음
+- **@Service, @Component, @Repository는 사용 불가**
 - JPA 기능은 테스트 불가
   - JPA기능을 테스트 하기 위해서는 @SpringBootTest 와 TestRestTemplate 사용
 
@@ -44,8 +45,8 @@
   ...
       ResponseEntity<Long> responseEntity = restTemplate
       									.postForEntity(url, reauestDto, Long.class)
-  ```
-  
+```
+
   
 
 

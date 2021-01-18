@@ -49,7 +49,7 @@
         1. h2-console 화면을 추가하기 위한 옵션 disable
            
         - `http.csrf().disable().headers().frameOptions().disable()`
-           
+          
         2. `.authorizeRequests()`
 
            - URL별 권한 관리를 설정하는 옵션의 시작점
@@ -117,4 +117,40 @@
 
              - `SessionUser` 클래스는 세션에 사용자 정보를 저장하기 위한 Dto클래스
 
-               
+### 네이버 로그인 구현
+
+1. 네이버 오픈 API 등록
+
+2. 네이버 아이디 로그인 선택
+
+3. 서비스 url설정
+
+   - 일단 로컬로 설정
+
+     `http://localhost:8080/`
+
+   - 네이버 아이디로 로그인 Callback URL 설정
+
+     `http://localhost:8080/login/oauth2/code/naver`
+
+4. 생성된 키 값들을 `application-oauth.properties`에 등록
+
+   - 네이버는 스프링 시큐리티 지원하지 않기 때문에 Common-OAuth2Provider에서 해주던 값들 전부 수동으로 입력
+
+     ```properties
+     # registration
+     spring.security.oauth2.client.registration.naver.client-id=클라이언트id
+     spring.security.oauth2.client.registration.naver.client-secret=클라이언트secret
+     spring.security.oauth2.client.registration.naver.redirect-uri={baseUrl}/{action}/oauth2/code/{registrationId}
+     spring.security.oauth2.client.registration.naver.authorization_grant_type=authorization_code
+     spring.security.oauth2.client.registration.naver.scope=name, email, profile_image
+     spring.security.oauth2.client.registration.naver.client-name=Naver
+     
+     # provider
+     spring.security.oauth2.client.provider.naver.authorization_uri=https://nid.naver.com/oauth2.0/authorize
+     spring.security.oauth2.client.provider.naver.token_uri=https://nid.naver.com/oauth2.0/token
+     spring.security.oauth2.client.provider.naver.user-info-uri=https://openapi.naver.com/v1/nid/me
+     spring.security.oauth2.client.provider.naver.user_name_attribute=response
+     ```
+
+5. 기존에 작성된 OAuthAttributes 코드 수정

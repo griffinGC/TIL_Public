@@ -49,8 +49,7 @@
     - 값 비교할때 유용
     - (priority, task)
       - priority에 따라 task 비교 가능
-      - 
-
+  
 - 값 추출
 
   - heapq.heappop(리스트명)
