@@ -18,8 +18,9 @@ def countdown(number):
 ```
 
 - 재귀 함수에서는 호출 스택 사용
-  - 재귀 할때마다 스택에 쌓임
-
+  
+- 재귀 할때마다 스택에 쌓임
+  
 - 덧셈 예제
 
   ```python
@@ -36,3 +37,14 @@ def countdown(number):
   ```
 
   
+
+- 파이썬에서는 재귀를 사용할때 RecursionError 발생할 수 있음
+
+  - 이를 막기위해서 코드 추가해주어야 함
+
+    ```python
+    import sys
+    sys.setrecursionlimit(1000000)
+    ```
+
+    
