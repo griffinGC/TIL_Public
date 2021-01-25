@@ -7,23 +7,26 @@
 > https://www.fun-coding.org/Chapter20-prim-live.html
 >
 > https://www.fun-coding.org/Chapter20-kruskal-live.html
+>
+> https://chanhuiseok.github.io/posts/algo-33/
 
 - 주어진 그래프의 모든 정점을 연결하는 부분 그래프 중에 그 가중치의 합이 최소인 트리
 
 ## 해결방안
 
-### Kruskal
+### Kruskal 알고리즘
 
 - 시간복잡도 O(elog2e)
   - e는 edge
-  - 간선들을 정렬하는 시간에 좌우됨
+  - **간선들을 정렬하는 시간에 좌우됨**
   - 그래프 내에 **적은 숫자의 간선**만을 가지는 희소 그래프 (Sparse Graph)의 경우 적합
 
 - Greedy(그리디) 이용하여 네트워크의 모든 정점을 최소 비용으로 연결하는 최적 해답 찾는 방식
 
 - 각 단계에서 **사이클을 이루지 않는 최소 비용 간선 선택**
-  - 간선 선택을 기반으로 하는 알고리즘
-
+  
+- 간선 선택을 기반으로 하는 알고리즘
+  
 - 이전 단계에서 만들어진 신장 트리와는 상관없이 무조건 **최선의 간선**만을 선택
 
 - 조건
@@ -36,12 +39,72 @@
   1. 그래프의 간선들을 가중치의 오름차순으로 정렬
   2. 정렬된 간선 리스트에서 순서대로 **사이클을 형성하지 않는 간선**을 선택
      - 가장 낮은 가중치를 먼저 선택
-
-     - 사이클을 형성하는 간선은 제외
+- 사이클을 형성하는 간선은 제외
      - **사이클을 형성하는지 체크해야 함**
+       - union - find를 이용하여 간선 양끝 정점이 같은 집합에 속해 있는지 확인
   3. 해당 간선을 현재의 MST 집합에 추가
 
-### Prim MST
+- 코드 예시
+
+  - 각 노드에 대해서 집합 초기화 : O(V)
+
+  - 모든 간선을 비용을 기준으로 정렬 및 비용이 작은 간선부터 양 끝의 정점 비교
+
+    => 퀵소트 이용시 O(nlogn) => O(ElogE)
+
+  - 두 정점의 최상위 정점을 확인하고, 서로 다를 경우 두 정점 연결: O(E)
+
+  - 따라서 최악의 경우인 **O(ElogE)**가 시간 복잡도가 됨
+
+  ```python
+  # https://www.fun-coding.org/Chapter20-kruskal-live.html
+  parent = dict() # root 역할
+  rank = dict()
+  
+  def find(x):
+      if parent[x] != x:
+          parent[x] = find(parent[x])
+          return parent[x]
+      else:
+          return x
+  
+  def union(x, y):
+      root1 = find(x)
+      root2 = find(y)
+      # rank가 더 높은 쪽을 parent로 삼음
+      if rank[root1] > rank[root2]:
+          parent[root2] = root1
+      else:
+          parent[root1] = root2
+          if rank[root1] == rank[root2]:
+              rank[root2] += 1
+  def make_set(node):
+      parent[node] = node
+      rank[node] = 0
+  
+  def kruskal(graph):
+      mst = list()
+      # 초기화
+      for node in graph['vertices']:
+          make_set(node)
+  
+      edges = graph['edges']
+      edges.sort()
+  
+      for edge in edges:
+          weight, node_v, node_u = edge
+          if find(node_v) != find(node_u):
+              union(node_v, node_u)
+              mst.append(edge)
+      return mst
+  
+  
+  print(val)
+  ```
+
+  
+
+### Prim 알고리즘
 
 - 시간복잡도 O(n^2)
   - n은 정점의 갯수
@@ -95,7 +158,7 @@
       heapq.heappush(d[b], (c, a))
   
   val = 0
-# priority Queue 이용
+	# priority Queue 이용
   q = []
   nodes = {1}
   q.extend(d[1])
@@ -110,6 +173,5 @@
           if edge[1] not in nodes:
               heapq.heappush(q, edge)
   print(val)
+
   ```
-  
-  
