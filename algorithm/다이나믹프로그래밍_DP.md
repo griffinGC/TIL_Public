@@ -33,11 +33,11 @@
   
 - Bottom-Up은 작은 값부터 해결해 나가는 방식이라고 볼 수 있음
 
-  - Tabulation (타뷸레이션)
+  - **Tabulation (타뷸레이션)**
 
 - Top-Down
 
-  - Memoizaion (메모이제이션)
+  - **Memoizaion (메모이제이션)**
 
 - **최적 부분구조**와 **중복되는 부분 문제**에서 사용할 수 있음
   
