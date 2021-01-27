@@ -79,13 +79,13 @@
        - 도착지를 B의 맥주소가 아닌 SUBNET1의 맥주소로 설정함
        - **이때 ARP사용!**
      - 시작지 IP : A의 IP
-     - 도착지 IP : B의 IP
+     - 도착지 IP : **B의 IP**
   2. R의 SUBNET1에서 데이터 받고 프레임을 ip 계층으로 올려보냄
   3. **R에서 IP 시작점을 A의 주소로 하고, IP 도착지를 B의 주소로 설정된 것 확인하고 SUBNET2로 넘김**
   4. R에서 **새로운 Link-layer frame 생성**
      1. B의 MAC주소를 도착지 MAC주소로 설정
         - **ARP 이용하여 알아냄**
-     2. 시작지 MAC주소를 SUBNET2의 MAC 주소로 설정
+     2. **시작지 MAC주소를 SUBNET2의 MAC 주소로 설정**
      3. IP는 기존에 설정된 것과 동일하게 유지
         1. 시작지 IP : A
         2. 도착지 IP : B
