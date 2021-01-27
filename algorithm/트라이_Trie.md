@@ -14,12 +14,21 @@
 
 - **같은 문자가 같은 자식을 타고 내려가다가, 달라지는 문자부터 서로 다른 노드로 분기됨**
 
+- 트라이는 다음 문자를 키로 하는 자식 노드 형태로 점점 깊어짐
+
+- 각각의 노드는 word 값을 가짐
+
+  - 이 값은 단어가 모두 완성 되었을때만 True로 됨
+  - 예를 들어 apple을 넣었을 경우 단어가 완성되는 e에서 True로 변경됨
+  
+- 같은 문자가 같은 자식을 타고 내려가다가, 달라지는 문자부터 서로 다른 노드로 분기 됨
+
   ```python
   # 트라이를 저장할 노드
   class TrieNode:
       def __init__(self):
           self.word = False
-          self.children = collections.defaultdict(TrieNode)
+          self.children = {}
   
   
   # 트라이 연산을 구현할 별도 클래스
@@ -36,6 +45,7 @@
                   node.children[char] = TrieNode()
               node = node.children[char]
           # 단어가 모두 완성되었을 때만 True 리턴
+          # children과 같은 depth의 word에 True 지정
           node.word = True
   
       # 단어가 존재하는지 여부, 마지막에 word가 True인지 확인하면 됨
@@ -55,7 +65,6 @@
                   return False
               node = node.children[char]
           return True
-  
   ```
 
   
