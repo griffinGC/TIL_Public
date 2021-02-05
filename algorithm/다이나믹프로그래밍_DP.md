@@ -131,7 +131,7 @@ def fib(n):
 
 
 
-## 배낭 문제 Knapsack Problem
+##  문제 Knapsack Problem
 
 ### 쪼갤 수 있는 배낭문제 Fraction Knapsack Problem
 
