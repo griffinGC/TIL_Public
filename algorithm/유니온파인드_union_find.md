@@ -55,7 +55,8 @@
   - rank에 트리의 높이를 저장
   - **항상 높이가 더 낮은 트리를 높은 트리 밑에 넣음**
     - 트리가 계속 깊어지는 것을 막아줌
-
+  - rank는 높이 역할 수행
+  
   ```python
   # 트리의 높이 초기화
   rank = [0 for i in range(max)]
@@ -65,28 +66,38 @@
       y = find(y)
       if x == y:
           return
+      # 높이가 더 낮은 트리(x)를 높이가 높은 트리(y) 밑에 넣는다.
+      # 즉, 높이가 더 높은 쪽을 root로 삼음
       if rank[x] < rank[y]:
           root[x] = y
       else:
           root[y] = x
+          # 같을 경우, x를 현재 y의 root로 잡았으니까, x의 랭크를 하나 추가해줌
+          # 랭크가 높을 수록 root로 하기 때문!
           if rank[x] == rank[y]:
               rank[x] += 1
   
+  def simple_union(x, y):
+      x = find(x)
+      y = find(y)
+      root[y] = x
+              
   node_count = [1 for i in range(max)]
   
   def union_count2(x, y):
       x = find(x)
       y = find(y)
   
-      if x != y:
+    if x != y:
           # y의 root를 x로 변경
           root[y] = x
           # 루트인 x에 노드 카운트 추가
           node_count[x] += node_count[y]
           # 기존 y는 1로 초기화
           node_count[y] = 1
-      
+  
       return node_count[x]
+  
   ```
-
+  
   
