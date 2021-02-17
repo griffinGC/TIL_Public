@@ -19,12 +19,15 @@
   - 파이썬 라이브러리
     
     
-    - 1번째 인자로는 list, 2번째 인자로는 뽑을 갯수 (2번째 인자 없으면 자동으로 전체)
+    - **1번째 인자로는 list, 2번째 인자로는 뽑을 갯수 (2번째 인자 없으면 자동으로 전체)**
+    
+    - 튜플의 리스트로 반환
     
       > https://mong9data.tistory.com/32
     
     ```python
     from itertools import combinations
+    combi = combinations(리스트, 갯수) # 리스트는 n, 갯수는 m
     ```
     
     
