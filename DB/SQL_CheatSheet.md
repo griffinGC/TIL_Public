@@ -326,7 +326,11 @@ SELECT 컬럼명1 FROM 테이블1 WHERE 조건식 ORDER BY 컬럼명1 LIMIT 행�
 - `DAY(컬럼명)`
   - 컬럼 데이터의 날짜만을 추출
 
-
+- 시간을 이용하여 데이터 조회
+  - `WHERE DATE(컬럼명) BETWEEN '시작시간' AND '종료시간'`
+  - 컬럼의 시작시간부터 종료시간 사이에 있는 데이터를 조회
+- 특정 시간만 조회
+  - `WHERE DATE(컬럼명)='특정시간'`
 
 
 
@@ -343,3 +347,5 @@ SELECT 컬럼명1 FROM 테이블1 WHERE 조건식 ORDER BY 컬럼명1 LIMIT 행�
 > https://www.everdevel.com/MySQL/total-function/
 >
 > https://galid1.tistory.com/609
+>
+> https://zetawiki.com/wiki/MySQL_datetime_%EB%82%A0%EC%A7%9C%EB%A1%9C_%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0
