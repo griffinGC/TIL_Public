@@ -2,6 +2,7 @@
 
 - **CSS는 속성이 겹치면 뒤에 있는 것이 적용 된다.**
 - 가장 위에 위치할때
+  
   - z-index: 999;
 - 밑에 라인
   - border-bottom: 1px solid rgba(0,0,0,0.1);
@@ -11,6 +12,7 @@
   - 컨텐츠를 쓸 경우 안에있는 자식에게 적용하기 위함
   - 같은 이유로 inner를 만들어줌
 - 가운데 정렬
+  
   - margin: 0 auto;
 - 백그라운드 이미지는 넣는 순간 여백을 차지 하지 않음. 공간을 차지하지 않음
   - 이미지로 넣어줄때 형태를 넣어줘야 함
@@ -187,3 +189,9 @@
 
 1. a 태그 안에 넣은 div 두개는 나란히 정렬되었는데, 왜 search_box 태그 안에 넣은 input과 div는 서로 줄바꿈 되어서 정렬되어있나?
    - div가 기본적으로 줄바꿈이라는 속성을 가지고 있기 때문
+
+
+
+## 참고자료
+
+> https://code.tutsplus.com/ko/tutorials/the-30-css-selectors-you-must-memorize--net-16048
