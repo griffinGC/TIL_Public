@@ -635,10 +635,12 @@
   - Comparator
 
     - **기본정렬기준과 다르게 정렬하고 싶을때 사용하는 함수형 인터페이스**
+      - 즉, **새로운 정렬 기준을 만드는 것!**
     - 구현하려면 새로운 클래스로 구현하려는 클래스 Comparator 구현해서 compare 오버라이딩 
     - 객체간의 특별한 정렬이 필요할때 사용
     - 익명의 Comparator 객체를 만들어서 사용가능
-    - **함수형 인터페이스 이므로 구현하는 클래스를 새로 생성해도 되지만, *람다식* 으로 바로 사용해도 됨**
+    - **함수형 인터페이스(Functional Interface) 이므로 구현하는 클래스를 새로 생성해도 되지만, *람다식* 으로 바로 사용해도 됨**
+      - 메서드를 하나만 가지는 인터페이스
     - `public class MyComparator implements Comparator<비교할클래스>`
     - 사용법
       - Arrays.sort(배열, new MyComparator);
@@ -684,14 +686,23 @@
     Collections.sort(bikeList, new Comparator<Bike>(){
       @Override
       public int compare(Bike b1, Bike b2){
-        return b2.getsize() - b1.getSize();
+        return b2.getSize() - b1.getSize();
       }
     })
     ```
-  ***Comparable 과 Comparator의 차이는 기본정렬 기준을 구현하느냐 아님 기본정렬 외에 다른 기준으로 정렬하고자 하느냐 이다.***
-  
+     - 람다(lambda)를 이용한 방식
+
+       ```java
+       Collections.sort(bikeList, (b1, b2) => return b2.getSize() - b1.getSize())
+       ```
+
+    ***Comparable 과 Comparator의 차이는 기본정렬 기준을 구현하느냐 아님 기본정렬 외에 다른 기준으로 정렬하고자 하느냐 이다.***
+
+    - Comparable은 기준이 되는 정렬기준을 다시 확립시키는 것
+    - Comparator는 정렬을 하는 새로운 기준을 만드는 것
+
   #### Comparable의 compareTo의 경우 인자로 하나만 들어오지만, Comparator의 compare는 인자로 2개가 들어온다.
-  
+
 
 ## 출처 정리
 
