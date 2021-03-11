@@ -352,19 +352,25 @@
   ```
   ### HashMap
 
-  - 가장 간단한 구조의 `Map` 의 구현 클래스
+  - **병렬처리 하지 않음**
 
-  - 키로 사용될 객체는 `hashCode()` 와 `equals()` 메소드를 재정의 해서 동등 객체가 될 조건 정의해야 함
-
-  - 동일한 키 조건은 `hashCode()` 의 리턴 값이 동일해야 하고,  `equals()` 가 true를 리턴해야 함
-
-  - 객체 저장 전에 먼저 객체의 `hashCode()` 메소드를 호출해서 해시코드를 얻음
-
+    - 동기화 고려 안함
+  - null 값 허용
+  
+- 가장 간단한 구조의 `Map` 의 구현 클래스
+  
+- 키로 사용될 객체는 `hashCode()` 와 `equals()` 메소드를 재정의 해서 동등 객체가 될 조건 정의해야 함
+  
+- 동일한 키 조건은 `hashCode()` 의 리턴 값이 동일해야 하고,  `equals()` 가 true를 리턴해야 함
+  
+- 객체 저장 전에 먼저 객체의 `hashCode()` 메소드를 호출해서 해시코드를 얻음
+  
     그리고 이미 저장된 객체들과 비교. 같으면 `equals()` 로 다시 비교 후, 
-
+  
     True 나오면 동일로 판단하고 저장 안함. False 나올 경우에만 저장
-
+  
   - **키(Key)와 값(Value)은 기본타입 사용불가!!**
+    
     - 클래스 및 인터페이스 타입만 가능!!
     - Ex) String, Integer...
     - `Map<String, Integer> map = new HashMap<String, Integer>();`
@@ -372,12 +378,16 @@
   - Map과 ArrayList를 같이 사용 할 수 있음
     - `Map<String, Object> map = new HashMap<String, Object>();` 이런식으로 사용 가능
     - 여기서 나중에 ArrayList에 값을 추가하여도 Map에 반영되어 있음
+    
   - **HashMap은 순서를 보장하지 않음**
   ### Hashtable
    - 중복을 허용하지 않음
+  
+  - null 값 허용 하지 않음
+  
    - HashMap 처럼 키로 사용할 객체는 hashCode()와 equals() 메소드를 재정의 해서 동등객체가 될 조건 정해야 함
   
-      - 단, 동기화 된 메소드로 하나의 스레드가 실행을 완료해야함, 다음 스레드를 실행할 수 있음
+      - 단, **동기화** 된 메소드로 하나의 스레드가 실행을 완료해야함, 다음 스레드를 실행할 수 있음
   
         (Vector 처럼)
   
