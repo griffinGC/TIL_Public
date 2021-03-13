@@ -228,7 +228,7 @@ SELECT name, COUNT(name), SUM(quantity) FROM tableA GROUP BY name;
 
   - `컬럼명1` 의 갯수를 세는 쿼리
 
-- DISTINCT는 맨 마지막에 적는게 아니라, SELECT하는 곳에 원하는 컬럼명 바로 앞에 적음
+- DISTINCT는 맨 마지막에 적는게 아니라, SELECT하는 곳에 **원하는 컬럼명 바로 앞**에 적음
 - 정렬하지 않고 가져오기 때문에 GROUP BY 에 비해 성능은 좋음
 
 
