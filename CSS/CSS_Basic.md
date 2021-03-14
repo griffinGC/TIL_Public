@@ -30,21 +30,29 @@
     - element의 넓이와 높이 지정 가능
       - 즉, 형태 지정 가능
     - 다음줄에 다음 element가 오는게 아니라 바로 뒤에 옴
+    
   - block
     - 다음 element 밀어내고 혼자 한 줄 차지함
     - width, height, padding, margin 모두 삽입 가능
+    
   - float 속성 사용하면 가로 배치 가능
+
   - flex
-    - 정렬하고자 하는 대상의 부모에게 주는 속성
+
+    - flex 속성을 이용하면 손쉽게 가로 배치 가능
+
+    > https://velog.io/@bearsjelly/css-flex
+
+    - 정렬하고자 하는 대상의 **부모**에게 주는 속성
+      - 즉 내가 menu > menu-list에 속성을 주고 싶다면 부모인 menu에다가 flex 속성을 주어야 하는 것
     - flex-direction
       - 방향설정 가능
       - column : 세로 배치 받으라는 것
         - flex-direction: column;
-          - justify-content를 space-between 사용시, 세로로 균등하게 정렬됨
-            - flex를 세로로 바꿨기 때문
     - justify-content 제공
       - center 가운데 정렬 기능
       - space-between 알맞게 분배하는 기능
+      - 주 축의 정렬방법 설정
     - 세로 가운데 정렬
       - align-items: center;
 
@@ -73,6 +81,7 @@
 
 - margin vs padding
   - 시계방향 회전
+    - **위, 오른쪽, 아래, 왼쪽**
   - 2개만 줄 경우, 위아래, 좌우
   - margin
     - 바깥쪽 여백
