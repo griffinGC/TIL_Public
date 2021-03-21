@@ -37,6 +37,18 @@
     
   - float 속성 사용하면 가로 배치 가능
 
+  - table
+
+    > https://www.codingfactory.net/10776
+
+    - 동일한 넓이와 간격을 가지게 만들어줌
+    - 부모 태그의 display에 선언
+      - display: table
+    - 부모 태그의 table-layout: fixed 선언시 동일한 간격을 가지게 됨
+    - 자식태그에 display: table속성 선언
+      - table-cell : 열처럼 생각 가로로 동일하게 나눔
+      - table-row : 행처럼 생각 세로로 동일하게 나눔
+
   - flex
 
     - flex 속성을 이용하면 손쉽게 가로 배치 가능
@@ -89,6 +101,10 @@
     - 안쪽 여백
   - 컨텐츠를 밀때 margin으로 하면 margin 병합 현상이 일어날 수 있음. 그러므로 컨텐츠를 밀때는 위에서 아래로 밀어줌
   - 아래 컨텐츠가 어쩔수 없이 위를 밀어줄대는 padding-top 사용 
+  - 중앙 정렬
+    - `margin: 0 auto;`
+    - 위아래 여백 0
+    - auto는 가로 중앙에 배치 한다는 뜻 => 좌우 여백 균등하게 배분
 - border-radius: 3px;
   - 라운딩 주는 것
   - 50% 주면 정원이 됨
