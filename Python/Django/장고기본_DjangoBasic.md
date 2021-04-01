@@ -20,11 +20,23 @@
 
 1. 가상환경 생성
 
+   ```zsh
+   (env) ~/djangoTest$ python3 -m venv 가상환경명
+   ```
+
 2. 가상환경 실행
 
 3. 장고 설치
 
+   ```zsh
+   (env) ~/djangoTest$ pip install django
+   ```
+
 4. 장고 어드민으로 프로젝트 생성
+
+   ```zsh
+   (env) ~/djangoTest$ django-admin startproject 프로젝트명
+   ```
 
    - 프로젝트명으로 된 디렉토리에 프로젝트 생성 됨
 
@@ -54,7 +66,19 @@
 
       - `__init__.py`
 
-        
+5. 장고 migrate
+
+   - migrate하지 않으면 에러 발생
+
+   ```zsh
+   (env) ~/djangoTest$ python mange.py migrate
+   ```
+
+6. 장고 실행
+
+   ```zsh
+   (env) ~/djangoTest$ python mange.py runserver
+   ```
 
 ```sh
 ~$ mkdir 디렉토리명
@@ -65,3 +89,61 @@
 ~/디렉토리명/$ django-admin startproject 프로젝트명
 ```
 
+
+
+### 장고 앱 (Django App)
+
+> http://pythonstudy.xyz/python/article/305-Django-App
+
+- 장고에서 사용하는 **파이썬 패키지**
+- **자신의 model, view, template, URL 매핑 등을 독자적으로 가지고 있음**
+- **하나의 장고 프로젝트는 하나 이상의 장고 앱으로 이루어져 있음**
+- 규모가 큰 장고 프로젝트는 보통 여러개의 장고 앱들을 모듈화하여 구성
+  - 개발 및 유지보수가 효율적
+
+#### 사용법
+
+1. 장고 앱 (Django App) 생성 
+
+   ```zsh
+   (env) ~/djangoTest$ ./manage.py startapp 앱이름
+   or
+   (env) ~/djangoTest$ django-admin startapp 앱이름
+   ```
+
+   - 앱 이름으로 디렉토리가 생성되고 그 안에 기본 파일들이 생성됨
+   - 앱 위치는 db.sqlite3의 위치와 동일
+
+2. `settings.py` 에 추가
+
+   - `INSTALLED_APPS` 리스트에 **Django App이름** 추가
+
+   ```python
+   INSTALLED_APPS = [
+       'django.contrib.admin',
+       'django.contrib.auth',
+       'django.contrib.contenttypes',
+       'django.contrib.sessions',
+       'django.contrib.messages',
+       'django.contrib.staticfiles',
+     	'앱이름',
+   ]
+   ```
+
+3. `urls.py` 에 사용할 패턴 추가
+
+   - 정규표현식 `^$` 는 빈 문자열 (루트) 가리킴
+   - `url(r'^$', views.index)` 혹은 `path('home', views.index)`
+     - url 혹은 path를 사용하면 됨
+     - url 사용하려면 `from django.conf.urls import url` 필수
+
+   ```python
+   urlpatterns = [
+       path('admin/', admin.site.urls),
+     	url(r'^$', views.index),
+     	or
+     	path('home', views.index)
+   ]
+   ```
+
+   
