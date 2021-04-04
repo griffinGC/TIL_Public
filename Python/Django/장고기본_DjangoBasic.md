@@ -15,6 +15,7 @@
   3. 패턴 목록에서 url과 맞는지 처음부터 하나씩 대조
   4. 일치하는 패턴이 있다면 해당 요청을 관련된 **함수(view)**에 넘겨줌
 - 모든 작업은 View 함수에서 처리하고 응답함
+  - `views.py`
 
 ### 장고 프로젝트 (Django Project)
 
@@ -258,4 +259,51 @@
 
 > https://velog.io/@magnoliarfsit/ReDjango-7.-ORM%EA%B3%BC-Queryset
 
-- QuerySet
+- QuerySet (쿼리셋)
+  - **전달받은 모델의 객체 목록**
+  - 데이터베이스로부터 데이터를 읽고 필터를 걸거나 정렬 등 가능
+  - queryset은 데이터 베이스의 여러 레코드를 나타냄
+  - view함수에서 queryset 변수에 `objects(객체)`를 어떻게 가져올지 지정 가능
+    - queryset을 어떻게 지정하느냐에 따라 가져올 데이터 지정 가능
+    - 전체를 가져올때
+      - `queryset = 객체이름.objects.all()`
+      - 반환되는 객체가 `QuerySet`
+  - `objects`는 ModelManager
+    - 
+
+```python
+from .models import Blog
+Blog.objects.all()
+```
+
+
+
+# Django Rest Framework
+
+## api 생성 순서
+
+### 1. model 정의
+
+### 2. Serializer 정의
+
+### 3. Views 추가
+
+> https://www.django-rest-framework.org/api-guide/generic-views/
+
+#### Generic view 사용법
+
+- `Retrieve`가 접두사로 붙은 api
+  - retrieve 는 아이디 값만 볼 수 있음
+- `Destroy`
+  - destroy는 값을 삭제할 수 있음
+- `Update`
+  - update는 정보수정
+
+#### Viewset 사용법
+
+- viewset
+  - retrieve, update, delete
+
+### 4. url 추가
+
+- 라우터에 View 추가
