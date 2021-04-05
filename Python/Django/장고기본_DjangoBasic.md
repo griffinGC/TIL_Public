@@ -259,17 +259,40 @@
 
 > https://velog.io/@magnoliarfsit/ReDjango-7.-ORM%EA%B3%BC-Queryset
 
-- QuerySet (쿼리셋)
-  - **전달받은 모델의 객체 목록**
-  - 데이터베이스로부터 데이터를 읽고 필터를 걸거나 정렬 등 가능
-  - queryset은 데이터 베이스의 여러 레코드를 나타냄
-  - view함수에서 queryset 변수에 `objects(객체)`를 어떻게 가져올지 지정 가능
-    - queryset을 어떻게 지정하느냐에 따라 가져올 데이터 지정 가능
-    - 전체를 가져올때
-      - `queryset = 객체이름.objects.all()`
-      - 반환되는 객체가 `QuerySet`
-  - `objects`는 ModelManager
-    - 
+> https://docs.djangoproject.com/en/3.1/ref/models/querysets/
+
+#### QuerySet (쿼리셋)
+
+- **전달받은 모델의 객체 목록**
+- 데이터베이스로부터 데이터를 읽고 필터를 걸거나 정렬 등 가능
+- queryset은 데이터 베이스의 여러 레코드를 나타냄
+- view함수에서 queryset 변수에 `objects(객체)`를 어떻게 가져올지 지정 가능
+  - queryset을 어떻게 지정하느냐에 따라 가져올 데이터 지정 가능
+- `objects`는 기본 ModelManager
+
+- 메소드
+  - **일종의 쿼리문처럼 사용 가능**
+  - `.all()`
+    - 전체 데이터 가져오기
+    - `queryset = 객체이름.objects.all()`
+  - `.values()`
+    - 딕셔너리로 각 객체 정보를 갖는 리스트 형태로 반환
+  - `.filter()`
+    - 특정 조건에 맞는 row만 반환
+  - `.exclude()`
+    - filter와 반대로 작용
+    - 특정 조건이 없는 row만 반환
+  - `.get()`
+    - 하나의 모델 객체만 가져옴
+    - 인자로 `컬럼명=조건` 넣음
+    - 값이 한개가 아닐때는 에러 발생
+      - try-catch로 예외처리 필요
+  - `.count()`
+    - 데이터의 갯수를 세기위한 함수
+  - `.first()`
+    - 데이터 중 가장 첫번째 row 리턴
+  - `.last()`
+    - 데이터 중 마지막 row 리턴
 
 ```python
 from .models import Blog
