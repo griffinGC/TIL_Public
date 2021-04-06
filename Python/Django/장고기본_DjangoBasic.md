@@ -301,6 +301,175 @@ Blog.objects.all()
 
 
 
+## View
+
+> https://ssungkang.tistory.com/entry/Django-APIView-Mixins-generics-APIView-ViewSet%EC%9D%84-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90
+
+### 클래스형 뷰 CBV Class Based View
+
+- **상속과 믹스인을 사용해서 코드 재사용하고 뷰를 체계적으로 구성 가능**
+
+- APIView
+  - CBV 중 하나
+  - 하나의 URL에 대해서만 처리 가능
+  - 요청 메서드에 맞게 멤버함수를 정의하면 해당 메서드로 request가 들어올때 호출하게 됨
+  - 각 클래스에 대해 `.as_view()` 이용해서 라우팅 해줌
+- 믹스인을 사용하여 serializer에 대한 중복처리 방지
+  - `CreateModelMixin`
+  - `ListModelMixin`
+  - `RetrieveModelMixin`
+  - `UpdateModelMixin`
+  - `DestroyModelMixin`
+  - `queryset` 과 `serializer_class`를 지정하면 나머지는 상속받은 `Mixin`과 연결해 주면 됨
+
+#### generics APIView
+
+- 여러개를 상속해야하니 가독성 떨어지는 문제를 해결함
+- 이를 이용하면 각 request method에 대한 연결을 GenericApiView 이용해서 가능
+- `generics.CreateAPIView`, `generics.ListAPIView`, `generics.RetrieveAPIView`, ....
+
+```python
+from rest_framework import generics
+from .models import Post
+from .serializers import PostSerializer
+
+# generics API 사용
+class PostListGenericAPIView(generics.ListCreateAPIView):
+  	# 쿼리 입력
+		queryset = Post.objcests.all() 
+    # 직렬화
+    serializer_class = PostSerializer
+```
+
+
+
+#### ViewSet
+
+> https://ssungkang.tistory.com/entry/Django-ViewSet-%EA%B3%BC-Router
+
+- generics API View에서 더 진화된 버전
+- 여러개를 한번에 가능하게 만들어줌
+
+- viewsets.ReadOnlyModelViewSet
+  - 목록 조회, 특정 레코드 조회
+
+- **viewsets.ModelViewSet**
+
+  - 목록 조회, 특정 레코드 생성/조회/수정/삭제 가능
+
+  ```python
+  from rest_framework import generics
+  from .models import Post
+  from .serializers import PostSerializer
+  
+  # generics API 사용
+  class PostViewSet(viewsets.ModelViewSet):
+    	# 쿼리 입력
+  		queryset = Post.objcests.all() 
+      # 직렬화
+      serializer_class = PostSerializer
+  ```
+
+- 라우팅
+
+  > https://ssungkang.tistory.com/entry/Django-ViewSet-%EA%B3%BC-Router
+
+  > https://www.django-rest-framework.org/api-guide/viewsets/
+
+  - Router를 통해서 하나의 Url로 처리 가능
+  - `urls.py` 에서 `.as_view()` 메서드와 함께 사용
+
+  ```python
+  from django.urls import path, include
+  from . import views
+  from rest_framework.routers import DefaultRouter
+  
+  router = DefaultRouter()
+  # 라우터에 url 주소 등록 => http://localhost:8000/viewset
+  router.register('viewset', views.Post)
+  
+  # 기본 주소에다가 router 주소 등록
+  urlpatterns = [
+    path('', include(router.urls))
+  ]
+  ```
+
+  - `.as_view(인자)`
+
+    - 클래스의 인스턴스를 생성, 인스턴스는 `dispatch()` 메서드 호출
+
+    - 인자로 HTTP method를 구분하여 넣음
+
+      - 뷰 로직 구현하는데 필요한 것이 있다면 인자로 넘겨줌
+      - 함수는 어떤 viewsets을 사용했느냐에 따라 다른 Mixin을 적절히 상속받아 사용하게 됨
+
+      ```python
+      .as_view({ 'http 메서드' : '함수'})
+      .as_view({'get': 'list'})
+      # 직접 정의해서 넣어줄 수도 있음
+      path('users/', ListCreateAPIView.as_view(queryset=User.objects.all(), serializer_class=UserSerializer), name='user-list')
+      ```
+
+      
+
+---
+
+### 함수형 뷰 FBV Function Based View
+
+- 신속한 개발이 가능하지만 로직이 복잡해짐
+  - `if request.method == 'GET'` 같은 조건이 필요함
+
+#### api_view
+
+- FBV에 대해서 사용하는 데코레이터
+
+- 첫번째 인자로 해당 함수에서 가능한 request method 지정
+
+```python
+# views 파일
+from rest_framework.response import Response
+from rest_frmaework.views import APIView
+from .models import Post
+from .serializers import PostSerializer
+from rest_framework.decorators import api_view
+
+@api_view(['GET', 'POST', 'DELETE'])
+def post_detail(request, pk):
+  	post = get_object_or_404(Post, pk=pk)
+    if request.method == 'GET':
+      	serializer = PostSerializer(post)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+      	serializer = PostSerializer(post, data=request.data)
+        if serializer.is_valid():
+          	serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_404_BAD_REQUEST)
+    else:
+      	post.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+```
+
+```python
+# urls 파일
+from django.urls import path, include
+from . import views
+
+urlpatterns = {
+  	# FBV
+  	path('cbv/post/', views.post_list),
+  	path('cbv/post/<int:pk>/', views.post_detail),
+}
+```
+
+
+
+
+
+
+
+
+
 # Django Rest Framework
 
 ## api 생성 순서
@@ -309,23 +478,22 @@ Blog.objects.all()
 
 ### 2. Serializer 정의
 
+> https://ssungkang.tistory.com/entry/Django-django-rest-framework-%EB%A5%BC-%EC%9C%84%ED%95%9C-JSON-%EC%A7%81%EB%A0%AC%ED%99%94?category=320582
+
+- JSON 직렬화 
+
+```python
+class PostSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = name
+		fields = '__all__'
+```
+
+- 직렬화된 문자열을 Views에서 클라이언트로 넘겨주어야함
+
 ### 3. Views 추가
 
 > https://www.django-rest-framework.org/api-guide/generic-views/
-
-#### Generic view 사용법
-
-- `Retrieve`가 접두사로 붙은 api
-  - retrieve 는 아이디 값만 볼 수 있음
-- `Destroy`
-  - destroy는 값을 삭제할 수 있음
-- `Update`
-  - update는 정보수정
-
-#### Viewset 사용법
-
-- viewset
-  - retrieve, update, delete
 
 ### 4. url 추가
 
