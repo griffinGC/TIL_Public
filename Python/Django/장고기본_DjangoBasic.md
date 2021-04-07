@@ -398,6 +398,8 @@ class PostListGenericAPIView(generics.ListCreateAPIView):
 
     - 클래스의 인스턴스를 생성, 인스턴스는 `dispatch()` 메서드 호출
 
+    - 요청에 대한 뷰를 리턴하고 응답
+
     - 인자로 HTTP method를 구분하여 넣음
 
       - 뷰 로직 구현하는데 필요한 것이 있다면 인자로 넘겨줌
@@ -406,6 +408,7 @@ class PostListGenericAPIView(generics.ListCreateAPIView):
       ```python
       .as_view({ 'http 메서드' : '함수'})
       .as_view({'get': 'list'})
+      .as_view({'get': 'retrieve'})
       # 직접 정의해서 넣어줄 수도 있음
       path('users/', ListCreateAPIView.as_view(queryset=User.objects.all(), serializer_class=UserSerializer), name='user-list')
       ```
